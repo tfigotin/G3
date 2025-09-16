@@ -1,5 +1,5 @@
 /****************************************************************
- * CS1B - G2 : Serendipity Menus (Navigatin & Stubs)            *
+ * CS1B - G2 : Serendipity Menus (Navigatin & Stubs)             *
  * Partner A : Tamar Figotin (A00328312) - role: driver         *
  * Partner B : Luke Leibee   (1248406) - role: function         *
  * Due Date  : 2025-09-07                                       *
