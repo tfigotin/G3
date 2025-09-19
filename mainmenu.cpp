@@ -90,7 +90,7 @@ int main()
 			cin.ignore();
 		}
 
-	}while(choice != 4);
+	}while(choice != '4');
 
 	return 0;
 }
