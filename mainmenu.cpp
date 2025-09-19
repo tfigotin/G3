@@ -13,6 +13,7 @@
 //#include "serendipity.h"  ?
 #include <iostream>
 #include <iomanip>
+#include <limits>
 using namespace std;
 
 //clear screen function
@@ -45,7 +46,7 @@ void printMainMenu()
 	cout << PROMPT_START << setw(COLUMN_WIDTH - PROMPT_START_LENGTH) << "4. Exit" 						    << "*" << endl;
 
 	cout << "* " <<  string(COLUMN_WIDTH - COLUMN_SUBTRACT, ' ') << "*" << endl; //Print empty line
-	cout << PROMPT_START << setw(COLUMN_WIDTH - PROMPT_START_LENGTH) << "Enter Your Choice: " << setw(COLUMN_WIDTH) << "*" << endl;
+//	cout << PROMPT_START << setw(COLUMN_WIDTH - PROMPT_START_LENGTH) << "Enter Your Choice: " << setw(COLUMN_WIDTH) << "*" << endl;
 
 	cout << "* " <<  string(COLUMN_WIDTH - COLUMN_SUBTRACT, ' ') << "*" << endl; //Print empty line
 	cout << string(COLUMN_WIDTH, '*') << endl; //Print bottom border
@@ -62,9 +63,12 @@ int main()
 		printMainMenu();
 
 		//Input
-		cout << "\033[3A";  //moves cursor up X amount of rows
-		cout << "\033[26C"; //moves cursor to the right X amount of columns
-		cin.get(choice);
+	//		cout << "\033[3A";  //moves cursor up X amount of rows
+	//	cout << "\033[26C"; //moves cursor to the right X amount of columns
+	//	cin.get(choice);
+	//	cin.ignore(numeric_limits<streamsize>::max(), '\n');  // flush leftover '\n'
+		cout << "Enter Your Choice: ";
+		cin >> choice;
 
       switch(choice)
       {
@@ -78,7 +82,7 @@ int main()
 				//reports();
 				break;
 			case '4':
-				cout << "You chose option 4" << endl;
+				cout << endl << "You chose option 4" << endl;
 				break;
 			default:
 				cout << "*** ->" << choice << "<- *** is Invalid!" << endl;
@@ -86,8 +90,8 @@ int main()
 				break;
 			cin.clear();
 
-			cin.ignore();
-			cin.ignore();
+	//		cin.ignore();
+	//		cin.ignore();
 		}
 
 	}while(choice != '4');
