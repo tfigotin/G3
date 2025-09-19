@@ -42,7 +42,7 @@ void printMainMenu()
 	cout << left;
 	cout << PROMPT_START << setw(COLUMN_WIDTH - PROMPT_START_LENGTH) << "1. Cashier Module" 			    << "*" << endl;
 	cout << PROMPT_START << setw(COLUMN_WIDTH - PROMPT_START_LENGTH) << "2. Inventory Database Module"  << "*" << endl;
-	cout << PROMPT_START << setw(COLUMN_WIDTH - PROMPT_START_LENGTH) << "3. Report Moduele" 			    << "*" << endl;
+	cout << PROMPT_START << setw(COLUMN_WIDTH - PROMPT_START_LENGTH) << "3. Report Module" 			    << "*" << endl;
 	cout << PROMPT_START << setw(COLUMN_WIDTH - PROMPT_START_LENGTH) << "4. Exit" 						    << "*" << endl;
 
 	cout << "* " <<  string(COLUMN_WIDTH - COLUMN_SUBTRACT, ' ') << "*" << endl; //Print empty line
