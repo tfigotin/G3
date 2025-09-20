@@ -10,93 +10,124 @@
  *					./serendipity                                    *
  ****************************************************************/
 
-//#include "serendipity.h"  ?
 #include <iostream>
-#include <iomanip>
+#include <string>
 #include <limits>
 using namespace std;
 
-//clear screen function
+// clear screen (ANSI)
 void clearScreen()
 {
-	cout << "\033[H\033[2J" << endl;
+    cout << "\033[H\033[J";
 }
 
-void printMainMenu()
+// box layout constants
+const int COLUMN_WIDTH = 50;
+const int INNER_WIDTH  = COLUMN_WIDTH - 2;
+const int PROMPT_START_LENGTH = 5; // left indent inside the box
+
+// drawing helpers
+void printBorder() {
+    cout << string(COLUMN_WIDTH, '*') << '\n';
+}
+void printEmptyLine() {
+    cout << "*" << string(INNER_WIDTH, ' ') << "*" << '\n';
+}
+void printCenteredLine(const string &s) {
+    int left  = max(0, (INNER_WIDTH - (int)s.length()) / 2);
+    int right = INNER_WIDTH - left - (int)s.length();
+    cout << "*" << string(left, ' ') << s << string(right, ' ') << "*" << '\n';
+}
+void printLeftLine(int indent, const string &s) {
+    string line = string(indent, ' ') + s;
+    int right = max(0, INNER_WIDTH - (int)line.length());
+    cout << "*" << line << string(right, ' ') << "*" << '\n';
+}
+
+// Print menu, read input (user types), then overwrite the prompt line so right '*' aligns.
+// Resulting choice returned in 'choice'.
+void printMainMenu(string &choice)
 {
-	const int COLUMN_WIDTH 	  		 = 50;
-	const int PROMPT_START_LENGTH  = 9;
-	const int COLUMN_SUBTRACT 		 = 3;
-	const string PROMPT_START 		 = "*       ";
+    printBorder();
+    printEmptyLine();
+    printCenteredLine("Serendipity Booksellers");
+    printCenteredLine("Main Menu");
+    printEmptyLine();
 
-	cout << string(COLUMN_WIDTH, '*') << endl; //Print top border
-	cout << "* " << string(COLUMN_WIDTH - COLUMN_SUBTRACT, ' ') << "*" <<  endl; //Print empty line
+    // options
+    printLeftLine(PROMPT_START_LENGTH, "1. Cashier Module");
+    printLeftLine(PROMPT_START_LENGTH, "2. Inventory Database Module");
+    printLeftLine(PROMPT_START_LENGTH, "3. Report Module");
+    printLeftLine(PROMPT_START_LENGTH, "4. Exit");
+    printEmptyLine();
 
-	//Print Serendipity Booksellers and Main Menu
-	cout << "* " << setw(COLUMN_WIDTH/2 + 6) << "Serendipity Booksellers"   << setw(COLUMN_WIDTH/2 - 8) << "*" << endl;
-	cout << "* " << setw(COLUMN_WIDTH/2 - 3) << "Main Menu" 	<< setw(COLUMN_WIDTH/2 + 1) << "*" << endl;
+    // build left portion of the prompt (indent + text)
+    string prompt = "Enter Your Choice: ";
+    string leftPart = string(PROMPT_START_LENGTH, ' ') + prompt;
 
-	cout << "* " << string(COLUMN_WIDTH - COLUMN_SUBTRACT, ' ') << "*" <<  endl; //Print empty line
+    // Print the prompt (no newline) and flush so the user types on the same line.
+    cout << "*" << leftPart << flush;
 
-	//Print Prompts
-	cout << left;
-	cout << PROMPT_START << setw(COLUMN_WIDTH - PROMPT_START_LENGTH) << "1. Cashier Module" 			    << "*" << endl;
-	cout << PROMPT_START << setw(COLUMN_WIDTH - PROMPT_START_LENGTH) << "2. Inventory Database Module"  << "*" << endl;
-	cout << PROMPT_START << setw(COLUMN_WIDTH - PROMPT_START_LENGTH) << "3. Report Module" 			    << "*" << endl;
-	cout << PROMPT_START << setw(COLUMN_WIDTH - PROMPT_START_LENGTH) << "4. Exit" 						    << "*" << endl;
+    // Read the user's line (skip leading whitespace/newline)
+    getline(cin >> ws, choice);
 
-	cout << "* " <<  string(COLUMN_WIDTH - COLUMN_SUBTRACT, ' ') << "*" << endl; //Print empty line
-//	cout << PROMPT_START << setw(COLUMN_WIDTH - PROMPT_START_LENGTH) << "Enter Your Choice: " << setw(COLUMN_WIDTH) << "*" << endl;
+    // Move the cursor up one line and to the start of that line, then rewrite the entire prompt line
+    // This overwrites the previously-echoed input line so the right '*' can be placed in the correct column.
+    cout << "\033[A\r";
 
-	cout << "* " <<  string(COLUMN_WIDTH - COLUMN_SUBTRACT, ' ') << "*" << endl; //Print empty line
-	cout << string(COLUMN_WIDTH, '*') << endl; //Print bottom border
-	cout << right;
+    // Make sure the displayed input doesn't overflow the inner width
+    int maxInputLen = INNER_WIDTH - (int)leftPart.length();
+    if (maxInputLen < 0) maxInputLen = 0;
+    string displayChoice = choice.substr(0, maxInputLen);
+
+    int used = (int)leftPart.length() + (int)displayChoice.length();
+    int spaces = INNER_WIDTH - used;
+    if (spaces < 0) spaces = 0;
+
+    cout << "*" << leftPart << displayChoice << string(spaces, ' ') << "*" << '\n';
+
+    // "You selected" line inside the same box
+    string selectedLine = "You selected: " + choice;
+    string leftSel = string(PROMPT_START_LENGTH, ' ') + selectedLine;
+    int usedSel = (int)leftSel.length();
+    int spacesSel = INNER_WIDTH - usedSel;
+    if (spacesSel < 0) {
+        // truncate if too long
+        int allowed = INNER_WIDTH - PROMPT_START_LENGTH;
+        if (allowed < 0) allowed = 0;
+        leftSel = string(PROMPT_START_LENGTH, ' ') + selectedLine.substr(0, allowed);
+        spacesSel = INNER_WIDTH - (int)leftSel.length();
+    }
+    cout << "*" << leftSel << string(spacesSel, ' ') << "*" << '\n';
+
+    printBorder();
 }
 
 int main()
 {
-	char choice {};
+    string choice;
+    do {
+        clearScreen();
+        printMainMenu(choice);
 
-	do
-	{
-		clearScreen();
-		printMainMenu();
+        if (choice == "1")
+            cout << "Cashier module goes here...\n";
+        else if (choice == "2")
+            cout << "Inventory module goes here...\n";
+        else if (choice == "3")
+            cout << "Report module goes here...\n";
+        else if (choice == "4")
+            cout << "Exiting program...\n";
+        else
+            cout << "Invalid choice, please select 1–4.\n";
 
-		//Input
-	//		cout << "\033[3A";  //moves cursor up X amount of rows
-	//	cout << "\033[26C"; //moves cursor to the right X amount of columns
-	//	cin.get(choice);
-	//	cin.ignore(numeric_limits<streamsize>::max(), '\n');  // flush leftover '\n'
-		cout << "Enter Your Choice: ";
-		cin >> choice;
+        if (choice != "4") {
+            cout << "\nPress Enter to continue...";
+            // wait for Enter
+            cin.get();
+        }
 
-      switch(choice)
-      {
-			case '1':
-				//cashier();
-				break;
-			case '2':
-				//invmenu();
-				break;
-			case '3':
-				//reports();
-				break;
-			case '4':
-				cout << endl << "You chose option 4" << endl;
-				break;
-			default:
-				cout << "*** ->" << choice << "<- *** is Invalid!" << endl;
-				cout << "Please enter a valid choice 1-4" << endl;
-				break;
-			cin.clear();
+    } while (choice != "4");
 
-	//		cin.ignore();
-	//		cin.ignore();
-		}
-
-	}while(choice != '4');
-
-	return 0;
+    return 0;
 }
-
-
