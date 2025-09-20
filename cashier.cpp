@@ -21,22 +21,26 @@ int main()
     int quantity;
     double price, subtotal, tax, total;
 
-    // --- Input prompts ---
-    cout << "Enter Date (MM/DD/YY): ";
-    getline(cin, date);
+    // --- Box with Prompts (input inside the box) ---
+    cout << "+--------------------------------------------------+" << endl;
+    cout << "|  Serendipity Booksellers                         |" << endl;
+    cout << "|    Cashier Module                                |" << endl;
+    cout << "|                                                  |" << endl;
 
-    cout << "Enter Quantity of Book: ";
+    cout << "|  Date: ";
+    getline(cin, date);
+    cout << "|  Quantity of Book: ";
     cin >> quantity;
     cin.ignore();
 
-    cout << "Enter ISBN: ";
+    cout << "|  ISBN: ";
     getline(cin, isbn);
-
-    cout << "Enter Title: ";
+    cout << "|  Title: ";
     getline(cin, title);
-
-    cout << "Enter Price: ";
+    cout << "|  Price: ";
     cin >> price;
+
+    cout << "+--------------------------------------------------+" << endl;
 
     // --- Calculations ---
     subtotal = quantity * price;
@@ -45,63 +49,30 @@ int main()
 
     cout << fixed << showpoint << setprecision(2);
 
-    // --- Redraw box with inputs inside ---
-    cout << "\n+--------------------------------------------------+\n";
-    cout << "|  Serendipity Booksellers                         |\n";
-    cout << "|    Cashier Module                                |\n";
-    cout << "|                                                  |\n";
+    // --- Receipt ---
+    cout << "\nSerendipity Book Sellers\n";
+    cout << "Date: " << date << endl;
 
-    // Values filled in here
-    cout << "|  Date: " << date;
-    cout << string(46 - date.size(), ' ') << "|\n";
-
-    cout << "|  Quantity of Book: " << quantity;
-    cout << string(33 - to_string(quantity).size(), ' ') << "|\n";
-
-    cout << "|  ISBN: " << isbn;
-    cout << string(43 - isbn.size(), ' ') << "|\n";
-
-    cout << "|  Title: " << title;
-    cout << string(42 - title.size(), ' ') << "|\n";
-
-    cout << "|  Price: " << price;
-    string priceStr = to_string(price);
-    cout << string(42 - priceStr.size(), ' ') << "|\n";
-
-    cout << "+--------------------------------------------------+\n";
-
-	// --- Boxed Receipt ---
-    cout << "+--------------------------------------------------------------+\n";
-    cout << "|  Serendipity Book Sellers                                    |\n";
-    cout << "|  Date: " << date
-         << string(56 - date.size(), ' ') << "|\n";
-    cout << "|                                                              |\n";
-
-    cout << "|  " << left << setw(4) << "Qty"
+    cout << left << setw(5) << "Qty"
          << setw(15) << "ISBN"
          << setw(25) << "Title"
          << right << setw(8) << "Price"
-         << setw(10) << "Total"
-         << " |\n";
+         << setw(10) << "Total" << endl;
 
-    cout << "|  " << string(60, '-') << "  |\n";
+    cout << "--------------------------------------------------------------" << endl;
 
-    ostringstream subtotalStr;
-    subtotalStr << fixed << setprecision(2) << subtotal;
-
-    cout << "|  " << left << setw(4) << quantity
+    cout << left << setw(5) << quantity
          << setw(15) << isbn
          << setw(25) << title
-         << " $" << setw(7) << price
-         << " $" << setw(9) << subtotal << " |\n";
+         << right << "$" << setw(7) << price
+         << "$" << setw(9) << subtotal << endl;
 
-    cout << "|                                                              |\n";
-    cout << "|                                    Subtotal $" << setw(7) << subtotal << " |\n";
-    cout << "|                                         Tax $" << setw(7) << tax << " |\n";
-    cout << "|                                       Total $" << setw(7) << total << " |\n";
-    cout << "|                                                              |\n";
-    cout << "|  Thank You for Shopping at Serendipity!                      |\n";
-    cout << "+--------------------------------------------------------------+\n";
+    cout << endl;
+    cout << right << setw(40) << "Subtotal" << " $" << setw(7) << subtotal << endl;
+    cout << right << setw(40) << "Tax" << " $" << setw(7) << tax << endl;
+    cout << right << setw(40) << "Total" << " $" << setw(7) << total << endl;
+
+    cout << "\nThank You for Shopping at Serendipity!" << endl;
 
     return 0;
 }
