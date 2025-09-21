@@ -9,3 +9,21 @@
 					invmenu.cpp reports.cpp -o serendipity &&        *
 					./serendipity                                    *
  ****************************************************************/
+
+#ifndef INVMENU_H
+#define INVMENU_H
+
+// Inventory menu function
+void invMenu();
+
+// Stub functions
+void lookUpBook();
+void addBook();
+void editBook();
+void deleteBook();
+
+#endif
+
+
+
+

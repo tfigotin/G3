@@ -10,39 +10,13 @@
  *					./serendipity                                    *
  ****************************************************************/
 
+#include "menuhelpers.h"
+#include "invmenu.h"
 #include <iostream>
 #include <string>
 #include <limits>
 using namespace std;
 
-// clear screen (ANSI)
-void clearScreen()
-{
-    cout << "\033[H\033[J";
-}
-
-// box layout constants
-const int COLUMN_WIDTH = 50;
-const int INNER_WIDTH  = COLUMN_WIDTH - 2;
-const int PROMPT_START_LENGTH = 5; // left indent inside the box
-
-// drawing helpers
-void printBorder() {
-    cout << string(COLUMN_WIDTH, '*') << '\n';
-}
-void printEmptyLine() {
-    cout << "*" << string(INNER_WIDTH, ' ') << "*" << '\n';
-}
-void printCenteredLine(const string &s) {
-    int left  = max(0, (INNER_WIDTH - (int)s.length()) / 2);
-    int right = INNER_WIDTH - left - (int)s.length();
-    cout << "*" << string(left, ' ') << s << string(right, ' ') << "*" << '\n';
-}
-void printLeftLine(int indent, const string &s) {
-    string line = string(indent, ' ') + s;
-    int right = max(0, INNER_WIDTH - (int)line.length());
-    cout << "*" << line << string(right, ' ') << "*" << '\n';
-}
 
 // Print menu, read input (user types), then overwrite the prompt line so right '*' aligns.
 // Resulting choice returned in 'choice'.
@@ -113,7 +87,7 @@ int main()
         if (choice == "1")
             cout << "Cashier module goes here...\n";
         else if (choice == "2")
-            cout << "Inventory module goes here...\n";
+            invMenu();
         else if (choice == "3")
             cout << "Report module goes here...\n";
         else if (choice == "4")
