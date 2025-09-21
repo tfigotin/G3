@@ -88,7 +88,6 @@ int main()
 
         if (choice == "1")
 				cashier();
-            // cout << "Cashier module goes here...\n";
         else if (choice == "2")
             invMenu();
         else if (choice == "3")
