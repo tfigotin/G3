@@ -59,6 +59,9 @@ using namespace std;
 	 int quantity;
 	 double price;
 
+	 //Clear Screen from main menu
+	 cout << "\033[2J\033[1;1H";
+
 	 // Collect input first (prompts are simple console prompts)
 	 cout << "Date: ";
 	 getline(cin, date);
