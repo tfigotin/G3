@@ -12,6 +12,7 @@
 
 #include "menuhelpers.h"
 #include "invmenu.h"
+#include "reports.h"
 #include <iostream>
 #include <string>
 #include <limits>
@@ -89,7 +90,7 @@ int main()
         else if (choice == "2")
             invMenu();
         else if (choice == "3")
-            cout << "Report module goes here...\n";
+            repMenu();
         else if (choice == "4")
             cout << "Exiting program...\n";
         else

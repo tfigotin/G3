@@ -9,3 +9,19 @@
 					invmenu.cpp reports.cpp -o serendipity &&        *
 					./serendipity                                    *
  ****************************************************************/
+
+#ifndef REPORTS_H
+#define REPORTS_H
+
+// Reports menu function
+void repMenu();
+
+// Stub functions
+void invListing();
+void invWholesale();
+void invRetail();
+void quantList();
+void costList();
+void ageList();
+
+#endif
