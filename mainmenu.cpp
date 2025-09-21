@@ -11,6 +11,7 @@
  ****************************************************************/
 
 #include "menuhelpers.h"
+#include "cashier.h"
 #include "invmenu.h"
 #include "reports.h"
 #include <iostream>
@@ -86,7 +87,8 @@ int main()
         printMainMenu(choice);
 
         if (choice == "1")
-            cout << "Cashier module goes here...\n";
+				cashier();
+            // cout << "Cashier module goes here...\n";
         else if (choice == "2")
             invMenu();
         else if (choice == "3")

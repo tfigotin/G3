@@ -9,3 +9,22 @@
  *					invmenu.cpp reports.cpp -o serendipity &&        *
  *					./serendipity                                    *
  ****************************************************************/
+#ifndef CASHIER_H
+#define CASHIER_H
+
+#include <string>
+using namespace std;
+
+// function prototype for cashier module
+void cashier();
+
+// prototypes for helpers (if you need them outside cashier.cpp)
+void printTopBorder();
+void printBottomBorder();
+void printLine(const string &text);
+
+void printReceiptTop();
+void printReceiptBottom();
+void printReceiptLine(const string &text);
+
+#endif
