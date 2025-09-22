@@ -80,7 +80,7 @@ using namespace std;
 	 cout << "Title: ";
 	 getline(cin, title);
 
-	 cout << "Price: ";
+	 cout << "Price: $";
 	 while (!(cin >> price)) {
 	     cin.clear();
 	     cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -106,7 +106,7 @@ using namespace std;
 	 // format price to two decimals
 	 ostringstream oss;
 	 oss << fixed << setprecision(2) << price;
-	 printLine("Price: " + oss.str());
+	 printLine("Price: $" + oss.str());
 
 	 printBottomBorder();
 
@@ -141,7 +141,18 @@ using namespace std;
 
 	// Horizontal separator
 	printReceiptLine(string(RECEIPT_CONTENT, '_'));
-	printReceiptLine("");
+
+	// Line item row
+	ostringstream item;
+	item << left << setw(5)  << quantity
+     << setw(15) << isbn
+     << setw(25) << title
+     << right << setw(8) << fixed << setprecision(2) << price
+     << setw(10) << fixed << setprecision(2) << subtotal;
+	printReceiptLine(item.str());
+
+	printReceiptLine(""); // blank line before totals
+
 
 	// Totals
 	ostringstream sub, taxline, tot;
