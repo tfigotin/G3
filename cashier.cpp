@@ -52,6 +52,14 @@ using namespace std;
 	    cout << "| " << left << setw(RECEIPT_CONTENT) << text << " |" << endl;
 	}
 
+	// --- Helper to truncate text to fit a column ---
+	string truncate(const string &s, size_t width) {
+    if (s.size() <= width)
+        return s;
+    else
+        return s.substr(0, width - 3) + "..."; // add ellipsis
+	}
+
 	// Cashier function
 	void cashier() {
 
@@ -101,7 +109,7 @@ using namespace std;
 	 printLine("Quantity of Book: " + to_string(quantity));
 
 	 printLine("ISBN: " + isbn);
-	 printLine("Title: " + title);
+	 printLine("Title: " + truncate(title, CONTENT_PAD - 7));
 
 	 // format price to two decimals
 	 ostringstream oss;
@@ -144,21 +152,34 @@ using namespace std;
 
 	// Line item row
 	ostringstream item;
-	item << left << setw(5)  << quantity
+
+	// format price and subtotal with $ prefix
+	ostringstream priceStream, subtotalStream;
+	priceStream << "$" << fixed << setprecision(2) << price;
+	subtotalStream << "$" << fixed << setprecision(2) << subtotal;
+
+	item << left  << setw(5)  << quantity
      << setw(15) << isbn
-     << setw(25) << title
-     << right << setw(8) << fixed << setprecision(2) << price
-     << setw(10) << fixed << setprecision(2) << subtotal;
+     << setw(25) << truncate(title, 25)
+     << right << setw(8)  << priceStream.str()
+     << setw(10) << subtotalStream.str();
+
 	printReceiptLine(item.str());
 
 	printReceiptLine(""); // blank line before totals
 
-
 	// Totals
 	ostringstream sub, taxline, tot;
-	sub     << right << setw(50) << "Subtotal" << " $" << setw(7) << fixed << setprecision(2) << subtotal;
-	taxline << right << setw(50) << "Tax"      << " $" << setw(7) << fixed << setprecision(2) << tax;
-	tot     << right << setw(50) << "Total"    << " $" << setw(7) << fixed << setprecision(2) << total;
+
+	// labels on the left, values aligned with Total column
+	sub     << right << setw(56) << "Subtotal"
+        	  << setw(10) << ("$" + (ostringstream() << fixed << setprecision(2) << subtotal).str());
+
+	taxline << right << setw(56) << "Tax"
+           << setw(10) << ("$" + (ostringstream() << fixed << setprecision(2) << tax).str());
+
+	tot     << right << setw(56) << "Total"
+           << setw(10) << ("$" + (ostringstream() << fixed << setprecision(2) << total).str());
 
 	printReceiptLine(sub.str());
 	printReceiptLine(taxline.str());

@@ -27,4 +27,6 @@ void printReceiptTop();
 void printReceiptBottom();
 void printReceiptLine(const string &text);
 
+string truncate(const string &s, size_t width);
+
 #endif
