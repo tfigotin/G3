@@ -173,13 +173,13 @@ using namespace std;
 
 	// labels on the left, values aligned with Total column
 	sub     << right << setw(56) << "Subtotal"
-        	  << setw(10) << ("$" + (ostringstream() << fixed << setprecision(2) << subtotal).str());
+        	  << setw(7) << ("$" + (ostringstream() << fixed << setprecision(2) << subtotal).str());
 
 	taxline << right << setw(56) << "Tax"
-           << setw(10) << ("$" + (ostringstream() << fixed << setprecision(2) << tax).str());
+           << setw(7) << ("$" + (ostringstream() << fixed << setprecision(2) << tax).str());
 
 	tot     << right << setw(56) << "Total"
-           << setw(10) << ("$" + (ostringstream() << fixed << setprecision(2) << total).str());
+           << setw(7) << ("$" + (ostringstream() << fixed << setprecision(2) << total).str());
 
 	printReceiptLine(sub.str());
 	printReceiptLine(taxline.str());
