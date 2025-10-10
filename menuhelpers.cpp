@@ -29,3 +29,9 @@ void printLeftLine(int indent, const string &s) {
     int right   = max(0, INNER_WIDTH - (int)line.length());
     cout << "*" << line << string(right, ' ') << "*\n";
 }
+
+void printLeftLineArray(int indent, const string &s, int i) {
+    string line = string(indent, ' ') + s;
+	 int right   = max(0, INNER_WIDTH - (int)line.length());
+	 cout << "* " << "<" << i << ">" << line << string(right, ' ') << ">\n";
+}

@@ -19,5 +19,6 @@ void printBorder();
 void printEmptyLine();
 void printCenteredLine(const string &s);
 void printLeftLine(int indent, const string &s);
+void printLeftLineArray(int indent, const string &s, int i);
 
 #endif

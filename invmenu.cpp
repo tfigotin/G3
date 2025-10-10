@@ -12,6 +12,7 @@
 
 #include "menuhelpers.h"
 #include "invmenu.h"
+#include "bookinfo.h"
 #include <iostream>
 #include <string>
 #include <limits>
@@ -78,6 +79,66 @@ void printInvMenu(string &invChoice)
     printBorder();
 }
 
+void printAddBookMenu(string &addBookChoice)
+	{
+	 const int menuSize = 10;
+    string addBookArr[menuSize] = {"Return to Inventory Menu", "Enter Book Title", "Enter ISBN", "Enter Author", "Enter Publisher", "Enter Date Added (mm/dd/yyyy)",
+										    "Enter Quantity on Hand", "Enter Wholesale Cost", "Enter Retail Price", "Save Book to Database"};
+    printBorder();
+    printEmptyLine();
+    printCenteredLine("Serendipity Booksellers");
+    printCenteredLine("Add Book");
+    printEmptyLine();
+
+    for(int i = 1; i < menuSize; i++) //loop through index 1-9
+		{
+			printLeftLineArray(PROMPT_START_LENGTH, addBookArr[i], i);
+		}
+	 printLeftLineArray(PROMPT_START_LENGTH, addBookArr[0], 0);
+    printEmptyLine();
+
+    // build left portion of the prompt (indent + text)
+    string prompt = "Enter Your Choice: ";
+    string leftPart = string(PROMPT_START_LENGTH, ' ') + prompt;
+
+    // Print the prompt (no newline) and flush so the user types on the same line.
+    cout << "*" << leftPart << flush;
+
+    // Read the user's line (skip leading whitespace/newline)
+    getline(cin >> ws, addBookChoice);
+
+    // Move the cursor up one line and to the start of that line, then rewrite the entire prompt line
+    // This overwrites the previously-echoed input line so the right '*' can be placed in the correct column.
+    cout << "\033[A\r";
+
+    // Make sure the displayed input doesn't overflow the inner width
+    int maxInputLen = INNER_WIDTH - (int)leftPart.length();
+    if (maxInputLen < 0) maxInputLen = 0;
+    string displayChoice = addBookChoice.substr(0, maxInputLen);
+
+    int used = (int)leftPart.length() + (int)displayChoice.length();
+    int spaces = INNER_WIDTH - used;
+    if (spaces < 0) spaces = 0;
+
+    cout << "*" << leftPart << displayChoice << string(spaces, ' ') << "*" << '\n';
+
+    // "You selected" line inside the same box
+    string selectedLine = "You selected: " + addBookChoice;
+    string leftSel = string(PROMPT_START_LENGTH, ' ') + selectedLine;
+    int usedSel = (int)leftSel.length();
+    int spacesSel = INNER_WIDTH - usedSel;
+    if (spacesSel < 0) {
+        // truncate if too long
+        int allowed = INNER_WIDTH - PROMPT_START_LENGTH;
+        if (allowed < 0) allowed = 0;
+        leftSel = string(PROMPT_START_LENGTH, ' ') + selectedLine.substr(0, allowed);
+        spacesSel = INNER_WIDTH - (int)leftSel.length();
+    }
+    cout << "*" << leftSel << string(spacesSel, ' ') << "*" << '\n';
+
+    printBorder();
+}
+
 void invMenu()
 {
     string invChoice;
@@ -116,7 +177,48 @@ void lookUpBook()
 
 void addBook()
 {
-	cout << "Add Book goes here..." << endl;
+	string addBookChoice;
+	bookInfo newBook;
+
+	do {
+        clearScreen();
+        printAddBookMenu(addBookChoice);
+
+        if (addBookChoice == "1"){
+
+    			string title;
+   			cout << "Enter book title: ";
+    			cin >> title;
+
+    			newBook.setBookTitle(title);
+		  }
+        else if (addBookChoice == "2")
+            cout << "Enter ISBN: ";
+        else if (addBookChoice == "3")
+            cout << "Enter Author: ";
+        else if (addBookChoice == "4")
+            cout << "Enter Publisher: ";
+        else if (addBookChoice == "5")
+				cout << "Enter Date Added (mm/dd/yyyy): ";
+		  else if (addBookChoice == "6")
+				cout << "Enter Quantity on Hand: ";
+		  else if (addBookChoice == "7")
+				cout << "Enter Wholesale Cost: ";
+		  else if (addBookChoice == "8")
+				cout << "Enter Retail Price: ";
+		  else if (addBookChoice == "9")
+				cout << "Saving...";
+		  else if (addBookChoice == "0")
+				cout << "Returning...";
+		  else
+            cout << "Invalid choice, please select 0–9.\n";
+
+        if (addBookChoice != "0") {
+            cout << "\nPress Enter to continue...";
+            // wait for Enter
+            cin.get();
+        }
+    } while (addBookChoice != "0");
 }
 
 void editBook()
