@@ -188,7 +188,7 @@ void addBook(std::vector<bookInfo>& inventory)
 
     			string title;
    			cout << "Enter book title: ";
-    			cin >> title;
+   			getline(cin, title);  // read whole line including spaces
 
     			newBook.setBookTitle(title);
 		  }
