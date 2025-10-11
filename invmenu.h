@@ -17,16 +17,16 @@
 #include "bookinfo.h"
 
 // Inventory menu function
-void invMenu();
+void invMenu(std::vector<bookInfo>& inventory);
 
 // Stub functions
 //void lookUpBook();
-void addBook();
-void editBook();
-void deleteBook();
+void addBook(std::vector<bookInfo>& inventory);
+void editBook(std::vector<bookInfo>& inventory);
+void deleteBook(std::vector<bookInfo>& inventory);
 
 // Look Up Book
-void lookUpBook(vector<bookInfo> &inventory);
+void lookUpBook(std::vector<bookInfo> &inventory);
 
 #endif
 

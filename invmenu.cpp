@@ -139,7 +139,7 @@ void printAddBookMenu(string &addBookChoice)
     printBorder();
 }
 
-void invMenu()
+void invMenu(std::vector<bookInfo>& inventory)
 {
     string invChoice;
     do {
@@ -147,13 +147,13 @@ void invMenu()
         printInvMenu(invChoice);
 
         if (invChoice == "1")
-            lookUpBook();
+            lookUpBook(inventory);
         else if (invChoice == "2")
-            addBook();
+            addBook(inventory);
         else if (invChoice == "3")
-            editBook();
+            editBook(inventory);
         else if (invChoice == "4")
-            deleteBook();
+            deleteBook(inventory);
         else if (invChoice == "5")
 				cout << "Returning...";
 		  else
@@ -175,7 +175,7 @@ void lookUpBook()
 	cout << "Look Up Book gooes here..." << endl;
 }
 
-void addBook()
+void addBook(std::vector<bookInfo>& inventory)
 {
 	string addBookChoice;
 	bookInfo newBook;
@@ -221,12 +221,12 @@ void addBook()
     } while (addBookChoice != "0");
 }
 
-void editBook()
+void editBook(std::vector<bookInfo>& inventory)
 {
     cout << "Edit Book goes here..." << endl;
 }
 
-void deleteBook()
+void deleteBook(std::vector<bookInfo>& inventory)
 {
     cout << "Delete Book goes here..." << endl;
 }

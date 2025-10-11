@@ -82,6 +82,7 @@ void printMainMenu(string &choice)
 int main()
 {
     string choice;
+	 vector<bookInfo> inventory;
     do {
         clearScreen();
         printMainMenu(choice);
@@ -89,7 +90,7 @@ int main()
         if (choice == "1")
 				cashier();
         else if (choice == "2")
-            invMenu();
+            invMenu(inventory);
         else if (choice == "3")
             repMenu();
         else if (choice == "4")

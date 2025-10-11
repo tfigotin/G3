@@ -53,7 +53,7 @@ void lookUpBook(vector<bookInfo>& inventory)
     vector<int> matches;
 
     // Search through all books
-    for (int i = 0; i < inventory.size(); ++i)
+    for (size_t i = 0; i < inventory.size(); ++i)
     {
         string title = toLower(inventory[i].getBookTitle());
         string isbn  = toLower(inventory[i].getISBN());
