@@ -13,14 +13,20 @@
 #ifndef INVMENU_H
 #define INVMENU_H
 
+#include <vector>
+#include "bookinfo.h"
+
 // Inventory menu function
 void invMenu();
 
 // Stub functions
-void lookUpBook();
+//void lookUpBook();
 void addBook();
 void editBook();
 void deleteBook();
+
+// Look Up Book
+void lookUpBook(vector<bookInfo> &inventory);
 
 #endif
 

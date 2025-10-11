@@ -6,6 +6,9 @@
  * Purpose   : .  *
  * Build     :                                     *
  ****************************************************************/
+#include <iostream>
+#include <iomanip>
+using namespace std;
 
 #include "bookinfo.h"
 
@@ -31,4 +34,19 @@ bookInfo::bookInfo(string t, string i, string a, string d,
     qtyOnHand = q;
     wholeValue = w;
     retailValue = r;
+}
+
+void displayBookInfo(const bookInfo &book)
+{
+    cout << "\n================= Book Information =================\n";
+    cout << left << setw(18) << "Title:"        << book.getBookTitle()      << '\n';
+    cout << setw(18) << "ISBN:"                << book.getISBN()       << '\n';
+    cout << setw(18) << "Author:"              << book.getAuthor()     << '\n';
+    cout << setw(18) << "Date Added:"          << book.getDateAdded()  << '\n';
+    cout << setw(18) << "Quantity on Hand:"    << book.getQtyOnHand()  << '\n';
+    cout << setw(18) << "Wholesale Cost:"      << "$" << fixed << setprecision(2)
+         << book.getWholeValue() << '\n';
+    cout << setw(18) << "Retail Price:"        << "$" << fixed << setprecision(2)
+         << book.getRetailValue() << '\n';
+    cout << "=====================================================\n";
 }

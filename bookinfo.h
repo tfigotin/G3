@@ -41,4 +41,6 @@ public:
    double getRetailValue() const { return retailValue; }
 };
 
+void displayBookInfo(const bookInfo &book);
+
 #endif
