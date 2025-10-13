@@ -316,13 +316,14 @@ void addBook(std::vector<bookInfo>& inventory)
 
 				if(toupper(confirm) == 'Y')
 				{
-					cout << "Discarding changes and returning...\n";
+					cout << "Continuing...\n";
 					newBook = bookInfo();
 					break;
 				}
 				else
 				{
 					cout << "Returning...";
+					addBookChoice = ""; //reset user's input so we don't exit loop
 					continue;
 				}
 			}

@@ -1,9 +1,6 @@
 
 
 
-
-
-
 #include "menuhelpers.h"
 #include <iomanip>
 
@@ -34,10 +31,17 @@ void printLeftLine(int indent, const string &s) {
 void printAddBookArray(const string &s, int i, const string &value) { // function for string
 	cout << "* <" << i << "> " << setw(30) << s;
 
-	if(i != 0 && i !=  9)
+	if(i != 0 && i !=  9) // 0 & 9 do not have pending values
 	{
-		cout << " > --" << setw(28) << value << "*";
+		string displayValue = value; // make copy of value to truncate
+		const int WIDTH = 28;
+
+		if (displayValue.length() > WIDTH)
+			displayValue = displayValue.substr(0, WIDTH - 3) + "...";
+
+		cout << " > --" << setw(28) << displayValue << "*";
 	}
+
 	else
 	{
 		cout << right << setw(34) << "*";
@@ -48,9 +52,9 @@ void printAddBookArray(const string &s, int i, const string &value) { // functio
 
 void printAddBookArray(const string &s, int i, double &valueDouble) {   //function for double
 	cout << "* <" << i << "> " << setw(30) << s;
-	cout << " > --" << setw(6) << valueDouble << right << setw(23) << "*";
+	cout << " > --$" << setw(6) << fixed << setprecision(2) << valueDouble << right << setw(22) << "*";
 
-	cout << endl << left;
+	cout << endl << left << setprecision(6);
 }
 
 void printAddBookArray(const string&s, int i, int &valueInt) { //function for int
