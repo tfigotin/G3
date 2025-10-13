@@ -109,7 +109,7 @@ void printAddBookMenu(vector<bookInfo> &inventory, string &addBookChoice, bookIn
 	 int valueInt;
 	 double valueDouble;
 
-	 for (int i = 1; i < 7; i++) //loop through default constructor, assign value to members
+	 for (int i = 1; i < 6; i++) //loop through default constructor, assign value to members
 	 {
 	 	switch (i)
     	{
@@ -211,7 +211,7 @@ void invMenu(std::vector<bookInfo>& inventory)
 // Stub function definitions
 void lookUpBook()
 {
-	cout << "Look Up Book gooes here..." << endl;
+	cout << "Look Up Book goes here..." << endl;
 }
 
 void addBook(std::vector<bookInfo>& inventory)
@@ -283,8 +283,7 @@ void addBook(std::vector<bookInfo>& inventory)
 			int qty;
 			cout << "Enter Quantity on Hand: ";
 			cin >> qty;
-			cin.clear();
-			cin.ignore();
+			cin.ignore(10000, '\n');
 			newBook.setQtyOnHand(qty);
 			unsavedChanges = true;
 		}
@@ -293,8 +292,7 @@ void addBook(std::vector<bookInfo>& inventory)
 			double wholeValue;
 			cout << "Enter Wholesale Cost: ";
 			cin >> wholeValue;
-			cin.clear();
-			cin.ignore();
+			cin.ignore(10000, '\n');
 			newBook.setWholeValue(wholeValue);
 			unsavedChanges = true;
 		}
@@ -303,8 +301,7 @@ void addBook(std::vector<bookInfo>& inventory)
 			double retail;
 			cout << "Enter Retail Price: ";
 			cin >> retail;
-			cin.clear();
-			cin.ignore();
+			cin.ignore(10000, '\n');
 			newBook.setRetailValue(retail);
 			unsavedChanges = true;
 		}
