@@ -5,6 +5,7 @@
 
 
 #include "menuhelpers.h"
+#include <iomanip>
 
 void clearScreen() {
     cout << "\033[H\033[J";
@@ -30,8 +31,31 @@ void printLeftLine(int indent, const string &s) {
     cout << "*" << line << string(right, ' ') << "*\n";
 }
 
-void printLeftLineArray(int indent, const string &s, int i) {
-    string line = string(indent, ' ') + s;
-	 int right   = max(0, INNER_WIDTH - (int)line.length());
-	 cout << "* " << "<" << i << ">" << line << string(right, ' ') << ">\n";
+void printAddBookArray(const string &s, int i, const string &value) { // function for string
+	cout << "* <" << i << "> " << setw(30) << s;
+
+	if(i != 0 && i !=  9)
+	{
+		cout << " > --" << setw(28) << value << "*";
+	}
+	else
+	{
+		cout << right << setw(34) << "*";
+	}
+
+	cout << endl << left;
+}
+
+void printAddBookArray(const string &s, int i, double &valueDouble) {   //function for double
+	cout << "* <" << i << "> " << setw(30) << s;
+	cout << " > --" << setw(5) << valueDouble << right << setw(24) << "*";
+
+	cout << endl << left;
+}
+
+void printAddBookArray(const string&s, int i, int &valueInt) { //function for int
+	cout << "* <" << i << "> " << setw(30) << s;
+	cout << " > --" << setw(5) << valueInt << right << setw(24) << "*";
+
+	cout << endl << left;
 }

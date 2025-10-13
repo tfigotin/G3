@@ -18,6 +18,7 @@ bookInfo::bookInfo() {
     bookTitle = "EMPTY";
     isbn = "EMPTY";
     author = "EMPTY";
+	 publisher = "EMPTY";
     dateAdded = "EMPTY";
     qtyOnHand = 0;
     wholeValue = 0.00;
@@ -25,11 +26,12 @@ bookInfo::bookInfo() {
 }
 
 /******************** Full Constructor ********************/
-bookInfo::bookInfo(string t, string i, string a, string d,
+bookInfo::bookInfo(string t, string i, string a, string p,  string d,
                    int q, double w, double r) {
     bookTitle = t;
     isbn = i;
     author = a;
+	 publisher = p;
     dateAdded = d;
     qtyOnHand = q;
     wholeValue = w;
@@ -42,6 +44,7 @@ void displayBookInfo(const bookInfo &book)
     cout << left << setw(18) << "Title:"        << book.getBookTitle()      << '\n';
     cout << setw(18) << "ISBN:"                << book.getISBN()       << '\n';
     cout << setw(18) << "Author:"              << book.getAuthor()     << '\n';
+	 cout << setw(18) << "Publisher:"			  << book.getPublisher()  << '\n';
     cout << setw(18) << "Date Added:"          << book.getDateAdded()  << '\n';
     cout << setw(18) << "Quantity on Hand:"    << book.getQtyOnHand()  << '\n';
     cout << setw(18) << "Wholesale Cost:"      << "$" << fixed << setprecision(2)
@@ -50,3 +53,5 @@ void displayBookInfo(const bookInfo &book)
          << book.getRetailValue() << '\n';
     cout << "=====================================================\n";
 }
+
+

@@ -74,7 +74,7 @@ void lookUpBook(vector<bookInfo>& inventory)
     // Display results
     cout << "\nMatches found:\n";
     cout << "------------------------------------------------------\n";
-    for (int i = 0; i < matches.size(); ++i)
+    for (size_t i = 0; i < matches.size(); ++i) //compare unsigned to unsigned
     {
         const bookInfo& b = inventory[matches[i]];
         cout << setw(2) << (i + 1) << ") "
@@ -104,7 +104,8 @@ void lookUpBook(vector<bookInfo>& inventory)
             cout << "Canceled. Returning to Inventory Menu...\n";
             return;
         }
-        else if (choice > 0 && choice <= matches.size())
+		  //compare unsigned ints
+        else if (choice > 0 && static_cast<size_t>(choice) <= matches.size())
         {
             cout << "\n";
             displayBookInfo(inventory[matches[choice - 1]]);
