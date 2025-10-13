@@ -48,7 +48,7 @@ void printAddBookArray(const string &s, int i, const string &value) { // functio
 
 void printAddBookArray(const string &s, int i, double &valueDouble) {   //function for double
 	cout << "* <" << i << "> " << setw(30) << s;
-	cout << " > --" << setw(5) << valueDouble << right << setw(24) << "*";
+	cout << " > --" << setw(6) << valueDouble << right << setw(23) << "*";
 
 	cout << endl << left;
 }
