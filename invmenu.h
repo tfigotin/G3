@@ -25,7 +25,7 @@ void editBook(std::vector<bookInfo>& inventory);
 void deleteBook(std::vector<bookInfo>& inventory);
 
 // Look Up Book
-void lookUpBook(std::vector<bookInfo> &inventory);
+int lookUpBook(std::vector<bookInfo> &inventory);
 
 #endif
 

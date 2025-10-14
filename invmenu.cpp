@@ -186,9 +186,12 @@ void invMenu(std::vector<bookInfo>& inventory)
         clearScreen();
         printInvMenu(invChoice);
 
-        if (invChoice == "1")
-            lookUpBook(inventory);
-        else if (invChoice == "2")
+        if (invChoice == "1") {
+				int index = lookUpBook(inventory);
+				if (index != -1)
+        		cout << "\n(Book index " << index << " selected.)\n";
+		  }
+		  else if (invChoice == "2")
      	      addBook(inventory);
         else if (invChoice == "3")
             editBook(inventory);
@@ -210,14 +213,14 @@ void invMenu(std::vector<bookInfo>& inventory)
 }
 
 // Function definitions
-void lookUpBook(vector<bookInfo>& inventory)
+int lookUpBook(vector<bookInfo>& inventory)
 {
     cout << "\n==================== Look Up Book ====================\n";
 
     if (inventory.empty())
     {
         cout << "Inventory is empty. Nothing to look up.\n";
-        return;
+        return -1;
     }
 
     // Prompt user for search term
@@ -230,7 +233,7 @@ void lookUpBook(vector<bookInfo>& inventory)
     if (search.empty())
     {
         cout << "Returning to Inventory Menu...\n";
-        return;
+        return -1;
     }
 
     // Convert input to lowercase for comparison
@@ -258,7 +261,7 @@ void lookUpBook(vector<bookInfo>& inventory)
     if (matches.empty())
     {
         cout << "\nNo matches found for \"" << search << "\".\n";
-        return;
+        return -1;
     }
 
     // Display results
@@ -292,15 +295,16 @@ void lookUpBook(vector<bookInfo>& inventory)
         if (choice == 0)
         {
             cout << "Canceled. Returning to Inventory Menu...\n";
-            return;
+            return -1;
         }
                   //compare unsigned ints
         else if (choice > 0 && static_cast<size_t>(choice) <= matches.size())
         {
+				int selectedIndex = matches[choice - 1];
             cout << "\n";
-            displayBookInfo(inventory[matches[choice - 1]]);
-            return;
-        }
+            displayBookInfo(inventory[selectedIndex]);
+            return selectedIndex;
+		  }
         else
         {
             cout << "Invalid selection. Try again.\n";
