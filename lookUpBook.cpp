@@ -1,9 +1,13 @@
 /****************************************************************
- * CS1B - G3 : Serendipity Inventory System
- * File      : lookUpBook.cpp
- * Purpose   : Implements the Look Up Book submenu. Allows users
- *             to search by title or ISBN, view matching books,
- *             and display detailed info using displayBookInfo().
+ * CS1B - G3 : Inventory Submenus                               *
+ * Partner A : Tamar Figotin (A00328312) - role: driver         *
+ * Partner B : Luke Leibee   (1248406) - role: function         *
+ * Due Date  : 2025-09-07                                       *
+ * Purpose   : Practice making a multi-file C++ program with    *
+ *             menus, input checks, and a simple cashier slip.  *
+ * Build     : g++ -std=c++17 -Wall -Wextra -o main mainmenu.cpp*
+ *             bookinfo.cpp cashier.cpp invmenu.cpp             *
+ *             lookUpBook.cpp menuhelpers.cpp reports.cpp       *
  ****************************************************************/
 
 #include <iostream>
