@@ -449,7 +449,7 @@ void addBook(std::vector<bookInfo>& inventory)
 
     } while (addBookChoice != "0" && inventory.size() < MAX_BOOKS);
 
-	do
+	while(inventory.size() >= MAX_BOOKS && addBookChoice != "0")
 	{
 		clearScreen();
       printAddBookMenu(inventory, addBookChoice, newBook);
@@ -457,7 +457,6 @@ void addBook(std::vector<bookInfo>& inventory)
 		if(addBookChoice == "0")
 		{
 			cout << "Returning To Inventory Menu...";
-			break;
 		}
 		else
 		{
@@ -467,7 +466,7 @@ void addBook(std::vector<bookInfo>& inventory)
       cout << "**************************************************\n\n";
 		cin.get();
 		}
-	}while (inventory.size() >= MAX_BOOKS);
+	}
 }
 
 void editBook(std::vector<bookInfo>& inventory)
