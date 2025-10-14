@@ -316,7 +316,10 @@ void addBook(std::vector<bookInfo>& inventory)
 
 	if (inventory.size() >= MAX_BOOKS)
 	{
-   	cout << "Inventory is full! Cannot add more books.\n";
+   	cout << "\n**************************************************\n";
+      cout << "*           Inventory Database is FULL!          *\n";
+      cout << "*    You cannot add any more books to the store. *\n";
+      cout << "**************************************************\n\n";
    	return;
 	}
 
@@ -443,7 +446,28 @@ void addBook(std::vector<bookInfo>& inventory)
       	cout << "Invalid choice, please select 0–9.\n";
 			cin.get();
 		}
+
     } while (addBookChoice != "0" && inventory.size() < MAX_BOOKS);
+
+	do
+	{
+		clearScreen();
+      printAddBookMenu(inventory, addBookChoice, newBook);
+
+		if(addBookChoice == "0")
+		{
+			cout << "Returning To Inventory Menu...";
+			break;
+		}
+		else
+		{
+		cout << "\n**************************************************\n";
+      cout << "*           Inventory Database is FULL!          *\n";
+      cout << "*    You cannot add any more books to the store. *\n";
+      cout << "**************************************************\n\n";
+		cin.get();
+		}
+	}while (inventory.size() >= MAX_BOOKS);
 }
 
 void editBook(std::vector<bookInfo>& inventory)
