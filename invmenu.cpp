@@ -407,6 +407,7 @@ void addBook(std::vector<bookInfo>& inventory)
                 cout << "**************************************************\n\n";
                 break; // exit addBook() and go back to invMenu()
             }
+
 		}
 		else if (addBookChoice == "0")
 		{
