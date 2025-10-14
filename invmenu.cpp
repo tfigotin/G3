@@ -304,6 +304,15 @@ void addBook(std::vector<bookInfo>& inventory)
 			cout << "Book successfully added to inventory!\n";
 			unsavedChanges = false;
 			newBook = bookInfo(); // go back to default values
+
+			// Check if inventory just reached MAX_BOOKS
+            if (inventory.size() >= MAX_BOOKS) {
+                cout << "\n**************************************************\n";
+                cout << "*           Inventory Database is FULL!          *\n";
+                cout << "*    You cannot add any more books to the store. *\n";
+                cout << "**************************************************\n\n";
+                break; // exit addBook() and go back to invMenu()
+            }
 		}
 		else if (addBookChoice == "0")
 		{

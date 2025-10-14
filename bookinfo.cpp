@@ -41,7 +41,14 @@ bookInfo::bookInfo(string t, string i, string a, string p,  string d,
 void displayBookInfo(const bookInfo &book)
 {
     cout << "\n================= Book Information =================\n";
-    cout << left << setw(18) << "Title:"        << book.getBookTitle()      << '\n';
+
+	 // Truncate long titles
+    string title = book.getBookTitle();
+    const int maxTitleLength = 34;
+    if (title.length() > maxTitleLength)
+        title = title.substr(0, maxTitleLength - 3) + "...";
+
+    cout << left << setw(18) << "Title:"       << title                << '\n';
     cout << setw(18) << "ISBN:"                << book.getISBN()       << '\n';
     cout << setw(18) << "Author:"              << book.getAuthor()     << '\n';
 	 cout << setw(18) << "Publisher:"			  << book.getPublisher()  << '\n';
