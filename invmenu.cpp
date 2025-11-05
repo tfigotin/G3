@@ -81,6 +81,8 @@ void printInvMenu(string &invChoice)
     printBorder();
 }
 
+
+//Print AddBookMenu
 void printAddBookMenu(vector<bookInfo> &inventory, string &addBookChoice, bookInfo &newBook)
 	{
 	 const int MENU_SIZE = 10;
@@ -164,6 +166,100 @@ void printAddBookMenu(vector<bookInfo> &inventory, string &addBookChoice, bookIn
 
     // "You selected" line inside the same box
     string selectedLine = "You selected: " + addBookChoice;
+    string leftSel = string(PROMPT_START_LENGTH, ' ') + selectedLine;
+    int usedSel = (int)leftSel.length();
+    int spacesSel = INNER_WIDTH - usedSel;
+    if (spacesSel < 0) {
+        // truncate if too long
+        int allowed = INNER_WIDTH - PROMPT_START_LENGTH;
+        if (allowed < 0) allowed = 0;
+        leftSel = string(PROMPT_START_LENGTH, ' ') + selectedLine.substr(0, allowed);
+        spacesSel = INNER_WIDTH - (int)leftSel.length();
+    }
+    cout << "*" << leftSel << string(spacesSel, ' ') << "*" << '\n';
+
+    printBorder();
+}
+
+
+//Print Edit Book Menu
+void printEditBookMenu(vector<bookInfo> &inventory, string &editBookChoice, bookInfo &editBook)
+	{
+	 const int MENU_SIZE = 10;
+    string addBookArr[MENU_SIZE] = {"Return to Inventory Menu", "Edit Book Title", "Edit ISBN", "Edit Author", "Edit Publisher", "Edit Date Added (mm/dd/yyyy)",
+										    "Edit Quantity on Hand", "Edit Wholesale Cost", "Edit Retail Price", "Save Book to Database"};
+
+    printBorder();
+    printEmptyLine();
+    printCenteredLine("Serendipity Booksellers");
+    printCenteredLine("Edit Book");
+	 printEmptyLine();
+
+    printEmptyLine();
+	 cout << "*";
+
+	 cout << right
+			<< setw(69) << "--PENDING VALUES *" << endl
+	 		<< left;
+
+	 string value;
+	 int valueInt;
+	 double valueDouble;
+
+	 for (int i = 1; i < 6; i++) //loop through default constructor, assign value to members
+	 {
+	 	switch (i)
+    	{
+    		case 1: value = editBook.getBookTitle(); break;
+      	case 2: value = editBook.getISBN(); break;
+      	case 3: value = editBook.getAuthor(); break;
+			case 4: value = editBook.getPublisher(); break;
+      	case 5: value = editBook.getDateAdded(); break;
+    	}
+		printAddBookArray(addBookArr[i], i, value);
+	 }
+
+	 valueInt = editBook.getQtyOnHand();
+	 printAddBookArray(addBookArr[6], 6, valueInt);
+
+	 valueDouble = editBook.getWholeValue();
+	 printAddBookArray(addBookArr[7], 7, valueDouble);
+
+	 valueDouble = editBook.getRetailValue();
+	 printAddBookArray(addBookArr[8], 8, valueDouble);
+
+	 value = "";
+	 printAddBookArray(addBookArr[9], 9, value);
+	 printAddBookArray(addBookArr[0], 0, value);
+    printEmptyLine();
+
+    // build left portion of the prompt (indent + text)
+    string prompt = "Enter Your Choice: ";
+    string leftPart = string(PROMPT_START_LENGTH, ' ') + prompt;
+
+    // Print the prompt (no newline) and flush so the user types on the same line.
+    cout << "*" << leftPart << flush;
+
+    // Read the user's line (skip leading whitespace/newline)
+    getline(cin >> ws, editBookChoice);
+
+    // Move the cursor up one line and to the start of that line, then rewrite the entire prompt line
+    // This overwrites the previously-echoed input line so the right '*' can be placed in the correct column.
+    cout << "\033[A\r";
+
+    // Make sure the displayed input doesn't overflow the inner width
+    int maxInputLen = INNER_WIDTH - (int)leftPart.length();
+    if (maxInputLen < 0) maxInputLen = 0;
+    string displayChoice = editBookChoice.substr(0, maxInputLen);
+
+    int used = (int)leftPart.length() + (int)displayChoice.length();
+    int spaces = INNER_WIDTH - used;
+    if (spaces < 0) spaces = 0;
+
+    cout << "*" << leftPart << displayChoice << string(spaces, ' ') << "*" << '\n';
+
+    // "You selected" line inside the same box
+    string selectedLine = "You selected: " + editBookChoice;
     string leftSel = string(PROMPT_START_LENGTH, ' ') + selectedLine;
     int usedSel = (int)leftSel.length();
     int spacesSel = INNER_WIDTH - usedSel;
@@ -316,7 +412,7 @@ void addBook(std::vector<bookInfo>& inventory)
 {
 	string addBookChoice;
 	bookInfo newBook;
-	bool unsavedChanges = false; //tracks for entered data
+	bool unsavedChanges = false;
 
 	if (inventory.size() >= MAX_BOOKS)
 	{
@@ -475,7 +571,133 @@ void addBook(std::vector<bookInfo>& inventory)
 
 void editBook(std::vector<bookInfo>& inventory)
 {
-    cout << "Edit Book goes here..." << endl;
+	string editBookChoice;
+	bool unsavedChanges = false;
+
+	clearScreen();
+
+	int idx = lookUpBook(inventory);
+	if (idx == -1)
+		return;
+
+	bookInfo &book = inventory[idx]; // Real book
+	bookInfo editBook = book;        // Copy of Book for unsaved changes
+
+	do{
+		clearScreen();
+		printEditBookMenu(inventory, editBookChoice, editBook);
+
+		if(editBookChoice == "1")
+		{
+			string title;
+   		cout << "Edit book title: ";
+   		getline(cin, title);
+    		editBook.setBookTitle(title);
+			unsavedChanges = true;
+		}
+		else if (editBookChoice == "2")
+		{
+      	string isbn;
+         cout << "Enter ISBN: ";
+         getline(cin, isbn);
+         editBook.setISBN(isbn);
+			unsavedChanges = true;
+		}
+      else if (editBookChoice == "3")
+		{
+      	string author;
+         cout << "Edit Author: ";
+         getline(cin, author);
+         editBook.setAuthor(author);
+			unsavedChanges = true;
+		}
+      else if (editBookChoice == "4")
+		{
+      	string publisher;
+         cout << "Edit Publisher: ";
+         getline(cin, publisher);
+         editBook.setPublisher(publisher);
+			unsavedChanges = true;
+		}
+      else if (editBookChoice == "5")
+		{
+			string dateAdded;
+			cout << "Edit Date Added (mm/dd/yyyy): ";
+			getline(cin, dateAdded);
+			editBook.setDateAdded(dateAdded);
+			unsavedChanges = true;
+		}
+		else if (editBookChoice == "6")
+		{
+			int qty;
+			cout << "Edit Quantity on Hand: ";
+			cin >> qty;
+			cin.ignore(10000, '\n');
+			editBook.setQtyOnHand(qty);
+			unsavedChanges = true;
+		}
+		else if (editBookChoice == "7")
+		{
+			double wholeValue;
+			cout << "Edit Wholesale Cost: ";
+			cin >> wholeValue;
+			cin.ignore(10000, '\n');
+			editBook.setWholeValue(wholeValue);
+			unsavedChanges = true;
+		}
+		else if (editBookChoice == "8")
+		{
+			double retail;
+			cout << "Edit Retail Price: ";
+			cin >> retail;
+			cin.ignore(10000, '\n');
+			editBook.setRetailValue(retail);
+			unsavedChanges = true;
+		}
+		else if (editBookChoice == "9")
+		{
+			cout << "Saving...\n";
+			book = editBook;
+			cout << "Book successfully updated!\n";
+			unsavedChanges = false;
+		}
+
+		else if (editBookChoice == "0")
+		{
+			if(unsavedChanges)
+			{
+				char confirm;
+				cout << "You have unsaved changes. Do you wish to proceed? (Y/N)";
+				cin >> confirm;
+				cin.ignore();
+
+				if(toupper(confirm) == 'Y')
+				{
+					cout << "Continuing...\n";
+					editBook = bookInfo();
+					break;
+				}
+				else
+				{
+					cout << "Returning...";
+					editBookChoice = ""; //reset user's input so we don't exit loop
+					continue;
+				}
+			}
+			else
+			{
+				cout << "Returning To Look Up Book Menu...";
+				break;
+			}
+		} //end of else if
+
+		else
+		{
+      	cout << "Invalid choice, please select 0–9.\n";
+			cin.get();
+		}
+
+	} while (editBookChoice != "0");
 }
 
 void deleteBook(std::vector<bookInfo>& inventory)
