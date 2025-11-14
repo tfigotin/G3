@@ -702,5 +702,52 @@ void editBook(std::vector<bookInfo>& inventory)
 
 void deleteBook(std::vector<bookInfo>& inventory)
 {
-    cout << "Delete Book goes here..." << endl;
+    if (inventory.empty())
+    {
+        cout << "\nInventory is empty. Nothing to delete.\n";
+        return;
+    }
+
+    char again = 'y';
+
+    while (tolower(again) == 'y')
+    {
+        clearScreen();
+        cout << "\n==================== Delete Book ====================\n";
+
+        int idx = lookUpBook(inventory);
+        if (idx == -1)
+        {
+            cout << "No book selected.\n";
+        }
+        else
+        {
+
+            // Confirm delete
+            char confirm;
+            cout << "\nDelete this book? (y/n): ";
+            cin >> confirm;
+            cin.ignore(10000, '\n');
+
+            if (tolower(confirm) == 'y')
+            {
+                // ERASE the element → plugs the hole
+                inventory.erase(inventory.begin() + idx);
+
+                cout << "\nBook deleted successfully!\n";
+                cout << "(Inventory has been compacted — no holes.)\n";
+            }
+            else
+            {
+                cout << "\nDeletion canceled.\n";
+            }
+        }
+
+        // Ask if user wants to delete another
+        cout << "\nDelete another? (y/n): ";
+        cin >> again;
+        cin.ignore(10000, '\n');
+    }
+
+    cout << "\nReturning to Inventory Menu...\n";
 }
