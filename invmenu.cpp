@@ -22,6 +22,15 @@ using namespace std;
 
 const int MAX_BOOKS = 20;
 
+//search inventory for ISBN
+int findISBN(const vector<bookInfo>& inventory, const string& isbn) {
+	for(size_t i = 0; i < inventory.size(); i++) {
+		if (inventory[i].getISBN() == isbn)
+			return i;
+	}
+	return -1;
+}
+
 // Print menu, read input (user types), then overwrite the prompt line so right '*' aligns.
 // Resulting choice returned in 'choice'.
 void printInvMenu(string &invChoice)
@@ -576,128 +585,194 @@ void editBook(std::vector<bookInfo>& inventory)
 
 	clearScreen();
 
-	int idx = lookUpBook(inventory);
-	if (idx == -1)
-		return;
+	bool editing = true;
 
-	bookInfo &book = inventory[idx]; // Real book
-	bookInfo editBook = book;        // Copy of Book for unsaved changes
-
-	do{
-		clearScreen();
-		printEditBookMenu(inventory, editBookChoice, editBook);
-
-		if(editBookChoice == "1")
+	while(editing)
+	{
+		int idx = lookUpBook(inventory);
+		if (idx == -1)
 		{
-			string title;
-   		cout << "Edit book title: ";
-   		getline(cin, title);
-    		editBook.setBookTitle(title);
-			unsavedChanges = true;
-		}
-		else if (editBookChoice == "2")
-		{
-      	string isbn;
-         cout << "Enter ISBN: ";
-         getline(cin, isbn);
-         editBook.setISBN(isbn);
-			unsavedChanges = true;
-		}
-      else if (editBookChoice == "3")
-		{
-      	string author;
-         cout << "Edit Author: ";
-         getline(cin, author);
-         editBook.setAuthor(author);
-			unsavedChanges = true;
-		}
-      else if (editBookChoice == "4")
-		{
-      	string publisher;
-         cout << "Edit Publisher: ";
-         getline(cin, publisher);
-         editBook.setPublisher(publisher);
-			unsavedChanges = true;
-		}
-      else if (editBookChoice == "5")
-		{
-			string dateAdded;
-			cout << "Edit Date Added (mm/dd/yyyy): ";
-			getline(cin, dateAdded);
-			editBook.setDateAdded(dateAdded);
-			unsavedChanges = true;
-		}
-		else if (editBookChoice == "6")
-		{
-			int qty;
-			cout << "Edit Quantity on Hand: ";
-			cin >> qty;
+			cout << "Book not found.\n";
+			char again;
+			cout << "Edit another? (Y/N): ";
+			cin >> again;
 			cin.ignore(10000, '\n');
-			editBook.setQtyOnHand(qty);
-			unsavedChanges = true;
-		}
-		else if (editBookChoice == "7")
-		{
-			double wholeValue;
-			cout << "Edit Wholesale Cost: ";
-			cin >> wholeValue;
-			cin.ignore(10000, '\n');
-			editBook.setWholeValue(wholeValue);
-			unsavedChanges = true;
-		}
-		else if (editBookChoice == "8")
-		{
-			double retail;
-			cout << "Edit Retail Price: ";
-			cin >> retail;
-			cin.ignore(10000, '\n');
-			editBook.setRetailValue(retail);
-			unsavedChanges = true;
-		}
-		else if (editBookChoice == "9")
-		{
-			cout << "Saving...\n";
-			book = editBook;
-			cout << "Book successfully updated!\n";
-			unsavedChanges = false;
+
+			if (toupper(again) != 'Y')
+				editing = false;
+
+			continue;
 		}
 
-		else if (editBookChoice == "0")
+		bookInfo &book = inventory[idx]; // Real book
+		bookInfo editBook = book;        // Copy of Book for unsaved changes
+
+		while(editBookChoice != "0")
 		{
-			if(unsavedChanges)
+			clearScreen();
+			printEditBookMenu(inventory, editBookChoice, editBook);
+
+			if(editBookChoice == "1")
 			{
-				char confirm;
-				cout << "You have unsaved changes. Do you wish to proceed? (Y/N)";
-				cin >> confirm;
-				cin.ignore();
+				string title;
+   			cout << "Edit book title: ";
+   			getline(cin, title);
+    			editBook.setBookTitle(title);
+				unsavedChanges = true;
+			}
+			else if (editBookChoice == "2")
+			{
+      		string isbn;
+         	cout << "Enter ISBN: ";
+         	getline(cin, isbn);
 
-				if(toupper(confirm) == 'Y')
+				int index = findISBN(inventory, isbn);
+
+				if(index != -1 && index != idx) {
+					cout << "ISBN already exists. Overwrite? (Y/N): ";
+					char ans;
+					cin >> ans;
+					cin.ignore();
+
+					if(toupper(ans) != 'Y') {
+						cout << "Canceled.\n";
+					}
+					else { //Overwrite ISBN
+						editBook.setISBN(isbn);
+						unsavedChanges = true;
+					}
+				}
+				else { //Unique ISBN
+					editBook.setISBN(isbn);
+					unsavedChanges = true;
+				}
+			}
+
+      	else if (editBookChoice == "3")
+			{
+      		string author;
+         	cout << "Edit Author: ";
+         	getline(cin, author);
+         	editBook.setAuthor(author);
+				unsavedChanges = true;
+			}
+      	else if (editBookChoice == "4")
+			{
+      		string publisher;
+         	cout << "Edit Publisher: ";
+         	getline(cin, publisher);
+         	editBook.setPublisher(publisher);
+				unsavedChanges = true;
+			}
+      	else if (editBookChoice == "5")
+			{
+				string dateAdded;
+				cout << "Edit Date Added (mm/dd/yyyy): ";
+				getline(cin, dateAdded);
+				editBook.setDateAdded(dateAdded);
+				unsavedChanges = true;
+			}
+			else if (editBookChoice == "6")
+			{
+				int qty;
+				cout << "Edit Quantity on Hand: ";
+				cin >> qty;
+				while(!cin || qty < 0)
 				{
-					cout << "Continuing...\n";
-					editBook = bookInfo();
-					break;
+					cin.clear();
+					cin.ignore(10000, '\n');
+					cout << "Invalid input. Please enter a non-negative integer.\n";
+					cin >> qty;
+				}
+				editBook.setQtyOnHand(qty);
+				unsavedChanges = true;
+			}
+			else if (editBookChoice == "7")
+			{
+				double wholeValue;
+				cout << "Edit Wholesale Cost: ";
+				cin >> wholeValue;
+				while(!cin || wholeValue < 0.0)
+				{
+					cin.clear();
+					cin.ignore(10000, '\n');
+					cout << "Invalid input. Please enter a value greater than 0.\n";
+					cin >> wholeValue;
+				}
+				editBook.setWholeValue(wholeValue);
+				unsavedChanges = true;
+			}
+			else if (editBookChoice == "8")
+			{
+				double retail;
+				cout << "Edit Retail Price: ";
+				cin >> retail;
+				while(!cin || retail < 0)
+				{
+					cin.clear();
+					cin.ignore(10000, '\n');
+					cout << "Invalid input. Please enter a value greater than 0.\n";
+					cin >> retail;
+				}
+				cin.ignore(10000, '\n');
+				editBook.setRetailValue(retail);
+				unsavedChanges = true;
+			}
+			else if (editBookChoice == "9")
+			{
+				cout << "Saving...\n";
+				book = editBook;
+				cout << "Book successfully updated!\n";
+				unsavedChanges = false;
+				cin.get();
+			}
+
+			else if (editBookChoice == "0")
+			{
+				if(unsavedChanges)
+				{
+					char confirm;
+					cout << "You have unsaved changes. Do you wish to proceed? (Y/N)";
+					cin >> confirm;
+					cin.ignore(10000, 'n');
+
+					if(toupper(confirm) == 'Y')
+					{
+						cout << "Continuing...\n";
+						editBook = bookInfo();
+						break;
+					}
+					else
+					{
+						cout << "Returning...";
+						editBookChoice = ""; //reset user's input so we don't exit loop
+						continue;
+					}
 				}
 				else
 				{
-					cout << "Returning...";
-					editBookChoice = ""; //reset user's input so we don't exit loop
-					continue;
+
 				}
-			}
+			} //end of else if 0
+
 			else
 			{
-				cout << "Returning To Look Up Book Menu...";
-				break;
+      		cout << "Invalid choice, please select 0–9.\n";
+				cin.get();
 			}
-		} //end of else if
 
-		else
-		{
-      	cout << "Invalid choice, please select 0–9.\n";
-			cin.get();
 		}
 
-	} while (editBookChoice != "0");
+		char again;
+		cout << "Edit another? (Y/N): ";
+		cin >> again;
+		cin.ignore(10000, '\n');
+
+		if (toupper(again) != 'Y'){
+			cout << "Returning to Inventory Menu...";
+			break;
+		}
+	}
 }
 
 void deleteBook(std::vector<bookInfo>& inventory)
