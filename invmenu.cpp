@@ -338,7 +338,7 @@ int lookUpBook(vector<bookInfo>& inventory)
     if (search.empty())
     {
         cout << "Returning to Inventory Menu...\n";
-        return -1;
+        return -2; //return -2 if user enters nothing
     }
 
     // Convert input to lowercase for comparison
@@ -399,7 +399,7 @@ int lookUpBook(vector<bookInfo>& inventory)
 
         if (choice == 0)
         {
-            cout << "Canceled. Returning to Inventory Menu...\n";
+            cout << "Canceled.\n";
             return -1;
         }
                   //compare unsigned ints
@@ -582,10 +582,9 @@ void editBook(std::vector<bookInfo>& inventory)
 {
 	string editBookChoice;
 	bool unsavedChanges = false;
+	bool editing = true;
 
 	clearScreen();
-
-	bool editing = true;
 
 	while(editing)
 	{
@@ -598,16 +597,21 @@ void editBook(std::vector<bookInfo>& inventory)
 			cin >> again;
 			cin.ignore(10000, '\n');
 
-			if (toupper(again) != 'Y')
-				editing = false;
-
+			if (toupper(again) != 'Y'){
+				break;
+			}
+			clearScreen();
 			continue;
+		}
+		if (idx == -2) //user enters nothing
+		{
+			break;
 		}
 
 		bookInfo &book = inventory[idx]; // Real book
 		bookInfo editBook = book;        // Copy of Book for unsaved changes
 
-		while(editBookChoice != "0")
+		do
 		{
 			clearScreen();
 			printEditBookMenu(inventory, editBookChoice, editBook);
@@ -675,45 +679,61 @@ void editBook(std::vector<bookInfo>& inventory)
 			else if (editBookChoice == "6")
 			{
 				int qty;
-				cout << "Edit Quantity on Hand: ";
-				cin >> qty;
-				while(!cin || qty < 0)
+
+				do
 				{
-					cin.clear();
-					cin.ignore(10000, '\n');
-					cout << "Invalid input. Please enter a non-negative integer.\n";
+					cout << "Edit Quantity on Hand: ";
 					cin >> qty;
-				}
+
+					if(!cin || qty < 0)
+					{
+						cin.clear();
+						cin.ignore(10000, '\n');
+						cout << "Invalid input. Please enter a non-negative integer.\n";
+					}
+				}while(!cin || qty < 0);
+
+				cin.ignore(10000, '\n');
 				editBook.setQtyOnHand(qty);
 				unsavedChanges = true;
 			}
 			else if (editBookChoice == "7")
 			{
 				double wholeValue;
-				cout << "Edit Wholesale Cost: ";
-				cin >> wholeValue;
-				while(!cin || wholeValue < 0.0)
-				{
-					cin.clear();
-					cin.ignore(10000, '\n');
-					cout << "Invalid input. Please enter a value greater than 0.\n";
+
+				do {
+					cout << "Edit Wholesale Cost: ";
 					cin >> wholeValue;
-				}
+
+					if(!cin || wholeValue < 0.0)
+					{
+						cin.clear();
+						cin.ignore(10000, '\n');
+						cout << "Invalid input. Please enter a value greater than 0.\n";
+					}
+
+				}while(!cin || wholeValue < 0.0);
+
+				cin.ignore(10000, '\n');
 				editBook.setWholeValue(wholeValue);
 				unsavedChanges = true;
 			}
 			else if (editBookChoice == "8")
 			{
 				double retail;
-				cout << "Edit Retail Price: ";
-				cin >> retail;
-				while(!cin || retail < 0)
-				{
-					cin.clear();
-					cin.ignore(10000, '\n');
-					cout << "Invalid input. Please enter a value greater than 0.\n";
+
+				do {
+					cout << "Edit Retail Price: ";
 					cin >> retail;
-				}
+
+					if(!cin || retail < 0.0)
+					{
+						cin.clear();
+						cin.ignore(10000, '\n');
+						cout << "Invalid input. Please enter a value greater than 0.\n";
+					}
+				}while (!cin || retail < 0.0);
+
 				cin.ignore(10000, '\n');
 				editBook.setRetailValue(retail);
 				unsavedChanges = true;
@@ -734,7 +754,7 @@ void editBook(std::vector<bookInfo>& inventory)
 					char confirm;
 					cout << "You have unsaved changes. Do you wish to proceed? (Y/N)";
 					cin >> confirm;
-					cin.ignore(10000, 'n');
+					cin.ignore(10000, '\n');
 
 					if(toupper(confirm) == 'Y')
 					{
@@ -746,12 +766,11 @@ void editBook(std::vector<bookInfo>& inventory)
 					{
 						cout << "Returning...";
 						editBookChoice = ""; //reset user's input so we don't exit loop
-						continue;
 					}
 				}
 				else
 				{
-
+					break;
 				}
 			} //end of else if 0
 
@@ -761,7 +780,7 @@ void editBook(std::vector<bookInfo>& inventory)
 				cin.get();
 			}
 
-		}
+		}while(editBookChoice != "0");
 
 		char again;
 		cout << "Edit another? (Y/N): ";
@@ -769,9 +788,9 @@ void editBook(std::vector<bookInfo>& inventory)
 		cin.ignore(10000, '\n');
 
 		if (toupper(again) != 'Y'){
-			cout << "Returning to Inventory Menu...";
 			break;
 		}
+		clearScreen();
 	}
 }
 
