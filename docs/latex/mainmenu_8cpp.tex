@@ -1,0 +1,139 @@
+\doxysection{mainmenu.\+cpp File Reference}
+\hypertarget{mainmenu_8cpp}{}\label{mainmenu_8cpp}\index{mainmenu.cpp@{mainmenu.cpp}}
+{\ttfamily \#include "{}menuhelpers.\+h"{}}\newline
+{\ttfamily \#include "{}cashier.\+h"{}}\newline
+{\ttfamily \#include "{}invmenu.\+h"{}}\newline
+{\ttfamily \#include "{}reports.\+h"{}}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$limits$>$}\newline
+Include dependency graph for mainmenu.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{mainmenu_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{mainmenu_8cpp_a1f6d1b2ac1bdb9f4a1c57191bc43600b}{print\+Main\+Menu}} (string \&choice)
+\item 
+int \mbox{\hyperlink{mainmenu_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{mainmenu_8cpp_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{mainmenu_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\index{mainmenu.cpp@{mainmenu.cpp}!main@{main}}
+\index{main@{main}!mainmenu.cpp@{mainmenu.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{mainmenu_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4} 
+int main (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{mainmenu_8cpp_source_l00082}{82}} of file \mbox{\hyperlink{mainmenu_8cpp_source}{mainmenu.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00083\ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordtype}{string}\ choice;}
+\DoxyCodeLine{00085\ \ \ \ \ \ vector<bookInfo>\ inventory;}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordflow}{do}\ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{menuhelpers_8cpp_a9d7e8af417b6d543da691e9c0e2f6f9f}{clearScreen}}();}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mainmenu_8cpp_a1f6d1b2ac1bdb9f4a1c57191bc43600b}{printMainMenu}}(choice);}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (choice\ ==\ \textcolor{stringliteral}{"{}1"{}})}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{cashier_8cpp_a672c36a283c3bba798c10161476a474e}{cashier}}();}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (choice\ ==\ \textcolor{stringliteral}{"{}2"{}})}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{invmenu_8cpp_a8f80285105dee8413bc3d0ad18a356aa}{invMenu}}(inventory);}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (choice\ ==\ \textcolor{stringliteral}{"{}3"{}})}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{reports_8cpp_add61eb9612c5e49c89ccca15b8af2801}{repMenu}}();}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (choice\ ==\ \textcolor{stringliteral}{"{}4"{}})}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exiting\ program...\(\backslash\)n"{}};}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Invalid\ choice,\ please\ select\ 1–4.\(\backslash\)n"{}};}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (choice\ !=\ \textcolor{stringliteral}{"{}4"{}})\ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)nPress\ Enter\ to\ continue..."{}};}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ wait\ for\ Enter}}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ cin.get();}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \}\ \textcolor{keywordflow}{while}\ (choice\ !=\ \textcolor{stringliteral}{"{}4"{}});}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00110\ \}}
+
+\end{DoxyCode}
+\Hypertarget{mainmenu_8cpp_a1f6d1b2ac1bdb9f4a1c57191bc43600b}\index{mainmenu.cpp@{mainmenu.cpp}!printMainMenu@{printMainMenu}}
+\index{printMainMenu@{printMainMenu}!mainmenu.cpp@{mainmenu.cpp}}
+\doxysubsubsection{\texorpdfstring{printMainMenu()}{printMainMenu()}}
+{\footnotesize\ttfamily \label{mainmenu_8cpp_a1f6d1b2ac1bdb9f4a1c57191bc43600b} 
+void print\+Main\+Menu (\begin{DoxyParamCaption}\item[{string \&}]{choice}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{mainmenu_8cpp_source_l00025}{25}} of file \mbox{\hyperlink{mainmenu_8cpp_source}{mainmenu.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00026\ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{menuhelpers_8cpp_ad441b85af974ea5d8b01fa9d3799d57e}{printBorder}}();}
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{menuhelpers_8cpp_ac25cab33ecdf72253aeb41ef63fc8a7a}{printEmptyLine}}();}
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{menuhelpers_8cpp_a9db00c867ca724cf75786320f7466861}{printCenteredLine}}(\textcolor{stringliteral}{"{}Serendipity\ Booksellers"{}});}
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{menuhelpers_8cpp_a9db00c867ca724cf75786320f7466861}{printCenteredLine}}(\textcolor{stringliteral}{"{}Main\ Menu"{}});}
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{menuhelpers_8cpp_ac25cab33ecdf72253aeb41ef63fc8a7a}{printEmptyLine}}();}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{comment}{//\ options}}
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{menuhelpers_8cpp_a1531d735917f0c6a50acab9ae7ba5c83}{printLeftLine}}(\mbox{\hyperlink{menuhelpers_8h_ae9364a67e4fb110a94027bb73570bae6}{PROMPT\_START\_LENGTH}},\ \textcolor{stringliteral}{"{}1.\ Cashier\ Module"{}});}
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{menuhelpers_8cpp_a1531d735917f0c6a50acab9ae7ba5c83}{printLeftLine}}(\mbox{\hyperlink{menuhelpers_8h_ae9364a67e4fb110a94027bb73570bae6}{PROMPT\_START\_LENGTH}},\ \textcolor{stringliteral}{"{}2.\ Inventory\ Database\ Module"{}});}
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{menuhelpers_8cpp_a1531d735917f0c6a50acab9ae7ba5c83}{printLeftLine}}(\mbox{\hyperlink{menuhelpers_8h_ae9364a67e4fb110a94027bb73570bae6}{PROMPT\_START\_LENGTH}},\ \textcolor{stringliteral}{"{}3.\ Report\ Module"{}});}
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{menuhelpers_8cpp_a1531d735917f0c6a50acab9ae7ba5c83}{printLeftLine}}(\mbox{\hyperlink{menuhelpers_8h_ae9364a67e4fb110a94027bb73570bae6}{PROMPT\_START\_LENGTH}},\ \textcolor{stringliteral}{"{}4.\ Exit"{}});}
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{menuhelpers_8cpp_ac25cab33ecdf72253aeb41ef63fc8a7a}{printEmptyLine}}();}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{comment}{//\ build\ left\ portion\ of\ the\ prompt\ (indent\ +\ text)}}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{string}\ prompt\ =\ \textcolor{stringliteral}{"{}Enter\ Your\ Choice:\ "{}};}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{string}\ leftPart\ =\ string(\mbox{\hyperlink{menuhelpers_8h_ae9364a67e4fb110a94027bb73570bae6}{PROMPT\_START\_LENGTH}},\ \textcolor{charliteral}{'\ '})\ +\ prompt;}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{comment}{//\ Print\ the\ prompt\ (no\ newline)\ and\ flush\ so\ the\ user\ types\ on\ the\ same\ line.}}
+\DoxyCodeLine{00045\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}*"{}}\ <<\ leftPart\ <<\ flush;}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{comment}{//\ Read\ the\ user's\ line\ (skip\ leading\ whitespace/newline)}}
+\DoxyCodeLine{00048\ \ \ \ \ getline(cin\ >>\ ws,\ choice);}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{comment}{//\ Move\ the\ cursor\ up\ one\ line\ and\ to\ the\ start\ of\ that\ line,\ then\ rewrite\ the\ entire\ prompt\ line}}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{comment}{//\ This\ overwrites\ the\ previously-\/echoed\ input\ line\ so\ the\ right\ '*'\ can\ be\ placed\ in\ the\ correct\ column.}}
+\DoxyCodeLine{00052\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)033[A\(\backslash\)r"{}};}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{comment}{//\ Make\ sure\ the\ displayed\ input\ doesn't\ overflow\ the\ inner\ width}}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{int}\ maxInputLen\ =\ \mbox{\hyperlink{menuhelpers_8h_a0dad9ec941916fff24adb908d58ea370}{INNER\_WIDTH}}\ -\/\ (int)leftPart.length();}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordflow}{if}\ (maxInputLen\ <\ 0)\ maxInputLen\ =\ 0;}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{string}\ displayChoice\ =\ choice.substr(0,\ maxInputLen);}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{int}\ used\ =\ (int)leftPart.length()\ +\ (int)displayChoice.length();}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{int}\ spaces\ =\ \mbox{\hyperlink{menuhelpers_8h_a0dad9ec941916fff24adb908d58ea370}{INNER\_WIDTH}}\ -\/\ used;}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordflow}{if}\ (spaces\ <\ 0)\ spaces\ =\ 0;}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}*"{}}\ <<\ leftPart\ <<\ displayChoice\ <<\ string(spaces,\ \textcolor{charliteral}{'\ '})\ <<\ \textcolor{stringliteral}{"{}*"{}}\ <<\ \textcolor{charliteral}{'\(\backslash\)n'};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{comment}{//\ "{}You\ selected"{}\ line\ inside\ the\ same\ box}}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{string}\ selectedLine\ =\ \textcolor{stringliteral}{"{}You\ selected:\ "{}}\ +\ choice;}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{string}\ leftSel\ =\ string(\mbox{\hyperlink{menuhelpers_8h_ae9364a67e4fb110a94027bb73570bae6}{PROMPT\_START\_LENGTH}},\ \textcolor{charliteral}{'\ '})\ +\ selectedLine;}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{int}\ usedSel\ =\ (int)leftSel.length();}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{int}\ spacesSel\ =\ \mbox{\hyperlink{menuhelpers_8h_a0dad9ec941916fff24adb908d58ea370}{INNER\_WIDTH}}\ -\/\ usedSel;}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordflow}{if}\ (spacesSel\ <\ 0)\ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ truncate\ if\ too\ long}}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ allowed\ =\ \mbox{\hyperlink{menuhelpers_8h_a0dad9ec941916fff24adb908d58ea370}{INNER\_WIDTH}}\ -\/\ \mbox{\hyperlink{menuhelpers_8h_ae9364a67e4fb110a94027bb73570bae6}{PROMPT\_START\_LENGTH}};}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (allowed\ <\ 0)\ allowed\ =\ 0;}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ leftSel\ =\ string(\mbox{\hyperlink{menuhelpers_8h_ae9364a67e4fb110a94027bb73570bae6}{PROMPT\_START\_LENGTH}},\ \textcolor{charliteral}{'\ '})\ +\ selectedLine.substr(0,\ allowed);}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ spacesSel\ =\ \mbox{\hyperlink{menuhelpers_8h_a0dad9ec941916fff24adb908d58ea370}{INNER\_WIDTH}}\ -\/\ (int)leftSel.length();}
+\DoxyCodeLine{00076\ \ \ \ \ \}}
+\DoxyCodeLine{00077\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}*"{}}\ <<\ leftSel\ <<\ string(spacesSel,\ \textcolor{charliteral}{'\ '})\ <<\ \textcolor{stringliteral}{"{}*"{}}\ <<\ \textcolor{charliteral}{'\(\backslash\)n'};}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \mbox{\hyperlink{menuhelpers_8cpp_ad441b85af974ea5d8b01fa9d3799d57e}{printBorder}}();}
+\DoxyCodeLine{00080\ \}}
+
+\end{DoxyCode}

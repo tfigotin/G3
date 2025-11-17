@@ -1,0 +1,599 @@
+\doxysection{book\+Info Class Reference}
+\hypertarget{classbookInfo}{}\label{classbookInfo}\index{bookInfo@{bookInfo}}
+
+
+Stores all information related to a single book in the inventory.  
+
+
+
+
+{\ttfamily \#include $<$bookinfo.\+h$>$}
+
+
+
+Collaboration diagram for book\+Info\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=169pt]{classbookInfo__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classbookInfo_aa1a88f3decfd6d5f653c6fabd82fee15}{book\+Info}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor initializes empty book info. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classbookInfo_a72b59332038922b3eac607728f5123e0}{book\+Info}} (string title, string \mbox{\hyperlink{classbookInfo_a46355134e7df5032f50d9f70d3140f48}{isbn}}, string \mbox{\hyperlink{classbookInfo_afa82d5670984dd65a734e386bdb61dc7}{author}}, string \mbox{\hyperlink{classbookInfo_ad770eb479550419489e93ed484f37497}{publisher}}, string \mbox{\hyperlink{classbookInfo_a46a0b4186f4ef85b25545a7c2fba93a9}{date\+Added}}, int q\+On\+Hand, double w\+Value, double r\+Value)
+\begin{DoxyCompactList}\small\item\em Full constructor for initializing all book fields. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classbookInfo_a3085bd67c86ca234de656c6678513af8}{set\+Book\+Title}} (string title)
+\begin{DoxyCompactList}\small\item\em Sets the title of the book. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classbookInfo_ad7cb348990d45faa42e95cbea0cee069}{set\+ISBN}} (string id)
+\begin{DoxyCompactList}\small\item\em Sets the ISBN of the book. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classbookInfo_a5c0ba4d255f60d1e751f1bb9e83b5daf}{set\+Author}} (string name)
+\begin{DoxyCompactList}\small\item\em Sets the author of the book. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classbookInfo_af2b891b992a09c445a488c3f21a6f1aa}{set\+Publisher}} (string publish)
+\begin{DoxyCompactList}\small\item\em Sets the publisher of the book. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classbookInfo_a05d31b8c024e8c25f1c99b041199053e}{set\+Date\+Added}} (string date)
+\begin{DoxyCompactList}\small\item\em Sets the date the book was added. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classbookInfo_acb859bf4521b44fc95f0e882b7ec1666}{set\+Qty\+On\+Hand}} (int qty)
+\begin{DoxyCompactList}\small\item\em Sets the quantity on hand. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classbookInfo_aa7732bd20dbfb488638cca718c74fcbb}{set\+Whole\+Value}} (double cost)
+\begin{DoxyCompactList}\small\item\em Sets the wholesale cost. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classbookInfo_ab27402889a7841bd077e53d94ecbdd42}{set\+Retail\+Value}} (double price)
+\begin{DoxyCompactList}\small\item\em Sets the retail price. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classbookInfo_a8d47e8f73835fd40c8628eef105411a1}{get\+Book\+Title}} () const
+\begin{DoxyCompactList}\small\item\em Returns the book title. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classbookInfo_a280bcfb407076314f68cffc129d92556}{get\+ISBN}} () const
+\begin{DoxyCompactList}\small\item\em Returns the ISBN. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classbookInfo_a0fa2dab4150eab5062d46a06ca341fee}{get\+Author}} () const
+\begin{DoxyCompactList}\small\item\em Returns the author name. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classbookInfo_a1cc320c6f08f1d72ae8641d1ab12c66d}{get\+Publisher}} () const
+\begin{DoxyCompactList}\small\item\em Returns the publisher name. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classbookInfo_a59d36e0ab03a2e94f7d660e2458df8cc}{get\+Date\+Added}} () const
+\begin{DoxyCompactList}\small\item\em Returns the date the book was added. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classbookInfo_a5027ffd1751dcc7ed096f3e063106e2f}{get\+Qty\+On\+Hand}} () const
+\begin{DoxyCompactList}\small\item\em Returns the quantity on hand. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classbookInfo_a5d53dd74708ad49e4418b1472d7c6b5c}{get\+Whole\+Value}} () const
+\begin{DoxyCompactList}\small\item\em Returns the wholesale value. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classbookInfo_acff98c495334923e56f1be3f1d02e2d0}{get\+Retail\+Value}} () const
+\begin{DoxyCompactList}\small\item\em Returns the retail value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{classbookInfo_a3fbe56d8a9f950fb3f296ff397be4d55}{book\+Title}}
+\begin{DoxyCompactList}\small\item\em Title of the book. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classbookInfo_a46355134e7df5032f50d9f70d3140f48}{isbn}}
+\begin{DoxyCompactList}\small\item\em ISBN identifier. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classbookInfo_afa82d5670984dd65a734e386bdb61dc7}{author}}
+\begin{DoxyCompactList}\small\item\em Author name. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classbookInfo_ad770eb479550419489e93ed484f37497}{publisher}}
+\begin{DoxyCompactList}\small\item\em Publisher name. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classbookInfo_a46a0b4186f4ef85b25545a7c2fba93a9}{date\+Added}}
+\begin{DoxyCompactList}\small\item\em Date the book was added to inventory. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classbookInfo_add63015be490285349dcd78c54f8508e}{qty\+On\+Hand}}
+\begin{DoxyCompactList}\small\item\em Number of copies available. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classbookInfo_afb0fc7552a8962a47064d1ba4c701b95}{whole\+Value}}
+\begin{DoxyCompactList}\small\item\em Wholesale cost of the book. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classbookInfo_ac12b7fec1d87c7ea23a0bb68bc6f6d3c}{retail\+Value}}
+\begin{DoxyCompactList}\small\item\em Retail price of the book. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Stores all information related to a single book in the inventory. 
+
+This class holds metadata such as title, ISBN, author, publisher, pricing, stock quantity, and the date the book was added. 
+
+Definition at line \mbox{\hyperlink{bookinfo_8h_source_l00027}{27}} of file \mbox{\hyperlink{bookinfo_8h_source}{bookinfo.\+h}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classbookInfo_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classbookInfo_aa1a88f3decfd6d5f653c6fabd82fee15}\index{bookInfo@{bookInfo}!bookInfo@{bookInfo}}
+\index{bookInfo@{bookInfo}!bookInfo@{bookInfo}}
+\doxysubsubsection{\texorpdfstring{bookInfo()}{bookInfo()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classbookInfo_aa1a88f3decfd6d5f653c6fabd82fee15} 
+book\+Info\+::book\+Info (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Default constructor initializes empty book info. 
+
+
+
+Definition at line \mbox{\hyperlink{bookinfo_8cpp_source_l00020}{20}} of file \mbox{\hyperlink{bookinfo_8cpp_source}{bookinfo.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{classbookInfo_a3fbe56d8a9f950fb3f296ff397be4d55}{bookTitle}}\ =\ \textcolor{stringliteral}{"{}EMPTY"{}};}
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{classbookInfo_a46355134e7df5032f50d9f70d3140f48}{isbn}}\ =\ \textcolor{stringliteral}{"{}EMPTY"{}};}
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{classbookInfo_afa82d5670984dd65a734e386bdb61dc7}{author}}\ =\ \textcolor{stringliteral}{"{}EMPTY"{}};}
+\DoxyCodeLine{00024\ \ \ \ \ \ \mbox{\hyperlink{classbookInfo_ad770eb479550419489e93ed484f37497}{publisher}}\ =\ \textcolor{stringliteral}{"{}EMPTY"{}};}
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{classbookInfo_a46a0b4186f4ef85b25545a7c2fba93a9}{dateAdded}}\ =\ \textcolor{stringliteral}{"{}EMPTY"{}};}
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{classbookInfo_add63015be490285349dcd78c54f8508e}{qtyOnHand}}\ =\ 0;}
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{classbookInfo_afb0fc7552a8962a47064d1ba4c701b95}{wholeValue}}\ =\ 0.00;}
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{classbookInfo_ac12b7fec1d87c7ea23a0bb68bc6f6d3c}{retailValue}}\ =\ 0.00;}
+\DoxyCodeLine{00029\ \}}
+
+\end{DoxyCode}
+\Hypertarget{classbookInfo_a72b59332038922b3eac607728f5123e0}\index{bookInfo@{bookInfo}!bookInfo@{bookInfo}}
+\index{bookInfo@{bookInfo}!bookInfo@{bookInfo}}
+\doxysubsubsection{\texorpdfstring{bookInfo()}{bookInfo()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classbookInfo_a72b59332038922b3eac607728f5123e0} 
+book\+Info\+::book\+Info (\begin{DoxyParamCaption}\item[{string}]{title}{, }\item[{string}]{isbn}{, }\item[{string}]{author}{, }\item[{string}]{publisher}{, }\item[{string}]{date\+Added}{, }\item[{int}]{q\+On\+Hand}{, }\item[{double}]{w\+Value}{, }\item[{double}]{r\+Value}{}\end{DoxyParamCaption})}
+
+
+
+Full constructor for initializing all book fields. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em title} & Title of the book \\
+\hline
+{\em isbn} & ISBN code \\
+\hline
+{\em author} & Author name \\
+\hline
+{\em publisher} & Publisher name \\
+\hline
+{\em date\+Added} & Date book was added to inventory \\
+\hline
+{\em q\+On\+Hand} & Quantity available \\
+\hline
+{\em w\+Value} & Wholesale value \\
+\hline
+{\em r\+Value} & Retail value \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{bookinfo_8cpp_source_l00032}{32}} of file \mbox{\hyperlink{bookinfo_8cpp_source}{bookinfo.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{classbookInfo_a3fbe56d8a9f950fb3f296ff397be4d55}{bookTitle}}\ =\ t;}
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{classbookInfo_a46355134e7df5032f50d9f70d3140f48}{isbn}}\ =\ i;}
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{classbookInfo_afa82d5670984dd65a734e386bdb61dc7}{author}}\ =\ a;}
+\DoxyCodeLine{00037\ \ \ \ \ \ \mbox{\hyperlink{classbookInfo_ad770eb479550419489e93ed484f37497}{publisher}}\ =\ p;}
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{classbookInfo_a46a0b4186f4ef85b25545a7c2fba93a9}{dateAdded}}\ =\ d;}
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{classbookInfo_add63015be490285349dcd78c54f8508e}{qtyOnHand}}\ =\ q;}
+\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{classbookInfo_afb0fc7552a8962a47064d1ba4c701b95}{wholeValue}}\ =\ w;}
+\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{classbookInfo_ac12b7fec1d87c7ea23a0bb68bc6f6d3c}{retailValue}}\ =\ r;}
+\DoxyCodeLine{00042\ \}}
+
+\end{DoxyCode}
+
+
+\label{doc-func-members}
+\Hypertarget{classbookInfo_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classbookInfo_a0fa2dab4150eab5062d46a06ca341fee}\index{bookInfo@{bookInfo}!getAuthor@{getAuthor}}
+\index{getAuthor@{getAuthor}!bookInfo@{bookInfo}}
+\doxysubsubsection{\texorpdfstring{getAuthor()}{getAuthor()}}
+{\footnotesize\ttfamily \label{classbookInfo_a0fa2dab4150eab5062d46a06ca341fee} 
+string book\+Info\+::get\+Author (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the author name. 
+
+
+
+Definition at line \mbox{\hyperlink{bookinfo_8h_source_l00097}{97}} of file \mbox{\hyperlink{bookinfo_8h_source}{bookinfo.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00097\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classbookInfo_afa82d5670984dd65a734e386bdb61dc7}{author}};\ \}}
+
+\end{DoxyCode}
+\Hypertarget{classbookInfo_a8d47e8f73835fd40c8628eef105411a1}\index{bookInfo@{bookInfo}!getBookTitle@{getBookTitle}}
+\index{getBookTitle@{getBookTitle}!bookInfo@{bookInfo}}
+\doxysubsubsection{\texorpdfstring{getBookTitle()}{getBookTitle()}}
+{\footnotesize\ttfamily \label{classbookInfo_a8d47e8f73835fd40c8628eef105411a1} 
+string book\+Info\+::get\+Book\+Title (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the book title. 
+
+
+
+Definition at line \mbox{\hyperlink{bookinfo_8h_source_l00091}{91}} of file \mbox{\hyperlink{bookinfo_8h_source}{bookinfo.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00091\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classbookInfo_a3fbe56d8a9f950fb3f296ff397be4d55}{bookTitle}};\ \}}
+
+\end{DoxyCode}
+\Hypertarget{classbookInfo_a59d36e0ab03a2e94f7d660e2458df8cc}\index{bookInfo@{bookInfo}!getDateAdded@{getDateAdded}}
+\index{getDateAdded@{getDateAdded}!bookInfo@{bookInfo}}
+\doxysubsubsection{\texorpdfstring{getDateAdded()}{getDateAdded()}}
+{\footnotesize\ttfamily \label{classbookInfo_a59d36e0ab03a2e94f7d660e2458df8cc} 
+string book\+Info\+::get\+Date\+Added (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the date the book was added. 
+
+
+
+Definition at line \mbox{\hyperlink{bookinfo_8h_source_l00103}{103}} of file \mbox{\hyperlink{bookinfo_8h_source}{bookinfo.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00103\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classbookInfo_a46a0b4186f4ef85b25545a7c2fba93a9}{dateAdded}};\ \}}
+
+\end{DoxyCode}
+\Hypertarget{classbookInfo_a280bcfb407076314f68cffc129d92556}\index{bookInfo@{bookInfo}!getISBN@{getISBN}}
+\index{getISBN@{getISBN}!bookInfo@{bookInfo}}
+\doxysubsubsection{\texorpdfstring{getISBN()}{getISBN()}}
+{\footnotesize\ttfamily \label{classbookInfo_a280bcfb407076314f68cffc129d92556} 
+string book\+Info\+::get\+ISBN (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the ISBN. 
+
+
+
+Definition at line \mbox{\hyperlink{bookinfo_8h_source_l00094}{94}} of file \mbox{\hyperlink{bookinfo_8h_source}{bookinfo.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00094\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classbookInfo_a46355134e7df5032f50d9f70d3140f48}{isbn}};\ \}}
+
+\end{DoxyCode}
+\Hypertarget{classbookInfo_a1cc320c6f08f1d72ae8641d1ab12c66d}\index{bookInfo@{bookInfo}!getPublisher@{getPublisher}}
+\index{getPublisher@{getPublisher}!bookInfo@{bookInfo}}
+\doxysubsubsection{\texorpdfstring{getPublisher()}{getPublisher()}}
+{\footnotesize\ttfamily \label{classbookInfo_a1cc320c6f08f1d72ae8641d1ab12c66d} 
+string book\+Info\+::get\+Publisher (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the publisher name. 
+
+
+
+Definition at line \mbox{\hyperlink{bookinfo_8h_source_l00100}{100}} of file \mbox{\hyperlink{bookinfo_8h_source}{bookinfo.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00100\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classbookInfo_ad770eb479550419489e93ed484f37497}{publisher}};\ \}}
+
+\end{DoxyCode}
+\Hypertarget{classbookInfo_a5027ffd1751dcc7ed096f3e063106e2f}\index{bookInfo@{bookInfo}!getQtyOnHand@{getQtyOnHand}}
+\index{getQtyOnHand@{getQtyOnHand}!bookInfo@{bookInfo}}
+\doxysubsubsection{\texorpdfstring{getQtyOnHand()}{getQtyOnHand()}}
+{\footnotesize\ttfamily \label{classbookInfo_a5027ffd1751dcc7ed096f3e063106e2f} 
+int book\+Info\+::get\+Qty\+On\+Hand (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the quantity on hand. 
+
+
+
+Definition at line \mbox{\hyperlink{bookinfo_8h_source_l00106}{106}} of file \mbox{\hyperlink{bookinfo_8h_source}{bookinfo.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00106\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classbookInfo_add63015be490285349dcd78c54f8508e}{qtyOnHand}};\ \}}
+
+\end{DoxyCode}
+\Hypertarget{classbookInfo_acff98c495334923e56f1be3f1d02e2d0}\index{bookInfo@{bookInfo}!getRetailValue@{getRetailValue}}
+\index{getRetailValue@{getRetailValue}!bookInfo@{bookInfo}}
+\doxysubsubsection{\texorpdfstring{getRetailValue()}{getRetailValue()}}
+{\footnotesize\ttfamily \label{classbookInfo_acff98c495334923e56f1be3f1d02e2d0} 
+double book\+Info\+::get\+Retail\+Value (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the retail value. 
+
+
+
+Definition at line \mbox{\hyperlink{bookinfo_8h_source_l00112}{112}} of file \mbox{\hyperlink{bookinfo_8h_source}{bookinfo.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00112\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classbookInfo_ac12b7fec1d87c7ea23a0bb68bc6f6d3c}{retailValue}};\ \}}
+
+\end{DoxyCode}
+\Hypertarget{classbookInfo_a5d53dd74708ad49e4418b1472d7c6b5c}\index{bookInfo@{bookInfo}!getWholeValue@{getWholeValue}}
+\index{getWholeValue@{getWholeValue}!bookInfo@{bookInfo}}
+\doxysubsubsection{\texorpdfstring{getWholeValue()}{getWholeValue()}}
+{\footnotesize\ttfamily \label{classbookInfo_a5d53dd74708ad49e4418b1472d7c6b5c} 
+double book\+Info\+::get\+Whole\+Value (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the wholesale value. 
+
+
+
+Definition at line \mbox{\hyperlink{bookinfo_8h_source_l00109}{109}} of file \mbox{\hyperlink{bookinfo_8h_source}{bookinfo.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00109\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classbookInfo_afb0fc7552a8962a47064d1ba4c701b95}{wholeValue}};\ \}}
+
+\end{DoxyCode}
+\Hypertarget{classbookInfo_a5c0ba4d255f60d1e751f1bb9e83b5daf}\index{bookInfo@{bookInfo}!setAuthor@{setAuthor}}
+\index{setAuthor@{setAuthor}!bookInfo@{bookInfo}}
+\doxysubsubsection{\texorpdfstring{setAuthor()}{setAuthor()}}
+{\footnotesize\ttfamily \label{classbookInfo_a5c0ba4d255f60d1e751f1bb9e83b5daf} 
+void book\+Info\+::set\+Author (\begin{DoxyParamCaption}\item[{string}]{name}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the author of the book. 
+
+
+
+Definition at line \mbox{\hyperlink{bookinfo_8h_source_l00071}{71}} of file \mbox{\hyperlink{bookinfo_8h_source}{bookinfo.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00071\ \{\ \mbox{\hyperlink{classbookInfo_afa82d5670984dd65a734e386bdb61dc7}{author}}\ =\ name;\ \}}
+
+\end{DoxyCode}
+\Hypertarget{classbookInfo_a3085bd67c86ca234de656c6678513af8}\index{bookInfo@{bookInfo}!setBookTitle@{setBookTitle}}
+\index{setBookTitle@{setBookTitle}!bookInfo@{bookInfo}}
+\doxysubsubsection{\texorpdfstring{setBookTitle()}{setBookTitle()}}
+{\footnotesize\ttfamily \label{classbookInfo_a3085bd67c86ca234de656c6678513af8} 
+void book\+Info\+::set\+Book\+Title (\begin{DoxyParamCaption}\item[{string}]{title}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the title of the book. 
+
+
+
+Definition at line \mbox{\hyperlink{bookinfo_8h_source_l00065}{65}} of file \mbox{\hyperlink{bookinfo_8h_source}{bookinfo.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00065\ \{\ \mbox{\hyperlink{classbookInfo_a3fbe56d8a9f950fb3f296ff397be4d55}{bookTitle}}\ =\ title;\ \}}
+
+\end{DoxyCode}
+\Hypertarget{classbookInfo_a05d31b8c024e8c25f1c99b041199053e}\index{bookInfo@{bookInfo}!setDateAdded@{setDateAdded}}
+\index{setDateAdded@{setDateAdded}!bookInfo@{bookInfo}}
+\doxysubsubsection{\texorpdfstring{setDateAdded()}{setDateAdded()}}
+{\footnotesize\ttfamily \label{classbookInfo_a05d31b8c024e8c25f1c99b041199053e} 
+void book\+Info\+::set\+Date\+Added (\begin{DoxyParamCaption}\item[{string}]{date}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the date the book was added. 
+
+
+
+Definition at line \mbox{\hyperlink{bookinfo_8h_source_l00077}{77}} of file \mbox{\hyperlink{bookinfo_8h_source}{bookinfo.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00077\ \{\ \mbox{\hyperlink{classbookInfo_a46a0b4186f4ef85b25545a7c2fba93a9}{dateAdded}}\ =\ date;\ \}}
+
+\end{DoxyCode}
+\Hypertarget{classbookInfo_ad7cb348990d45faa42e95cbea0cee069}\index{bookInfo@{bookInfo}!setISBN@{setISBN}}
+\index{setISBN@{setISBN}!bookInfo@{bookInfo}}
+\doxysubsubsection{\texorpdfstring{setISBN()}{setISBN()}}
+{\footnotesize\ttfamily \label{classbookInfo_ad7cb348990d45faa42e95cbea0cee069} 
+void book\+Info\+::set\+ISBN (\begin{DoxyParamCaption}\item[{string}]{id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the ISBN of the book. 
+
+
+
+Definition at line \mbox{\hyperlink{bookinfo_8h_source_l00068}{68}} of file \mbox{\hyperlink{bookinfo_8h_source}{bookinfo.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00068\ \{\ \mbox{\hyperlink{classbookInfo_a46355134e7df5032f50d9f70d3140f48}{isbn}}\ =\ id;\ \}}
+
+\end{DoxyCode}
+\Hypertarget{classbookInfo_af2b891b992a09c445a488c3f21a6f1aa}\index{bookInfo@{bookInfo}!setPublisher@{setPublisher}}
+\index{setPublisher@{setPublisher}!bookInfo@{bookInfo}}
+\doxysubsubsection{\texorpdfstring{setPublisher()}{setPublisher()}}
+{\footnotesize\ttfamily \label{classbookInfo_af2b891b992a09c445a488c3f21a6f1aa} 
+void book\+Info\+::set\+Publisher (\begin{DoxyParamCaption}\item[{string}]{publish}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the publisher of the book. 
+
+
+
+Definition at line \mbox{\hyperlink{bookinfo_8h_source_l00074}{74}} of file \mbox{\hyperlink{bookinfo_8h_source}{bookinfo.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00074\ \{\ \mbox{\hyperlink{classbookInfo_ad770eb479550419489e93ed484f37497}{publisher}}\ =\ publish;\ \}}
+
+\end{DoxyCode}
+\Hypertarget{classbookInfo_acb859bf4521b44fc95f0e882b7ec1666}\index{bookInfo@{bookInfo}!setQtyOnHand@{setQtyOnHand}}
+\index{setQtyOnHand@{setQtyOnHand}!bookInfo@{bookInfo}}
+\doxysubsubsection{\texorpdfstring{setQtyOnHand()}{setQtyOnHand()}}
+{\footnotesize\ttfamily \label{classbookInfo_acb859bf4521b44fc95f0e882b7ec1666} 
+void book\+Info\+::set\+Qty\+On\+Hand (\begin{DoxyParamCaption}\item[{int}]{qty}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the quantity on hand. 
+
+
+
+Definition at line \mbox{\hyperlink{bookinfo_8h_source_l00080}{80}} of file \mbox{\hyperlink{bookinfo_8h_source}{bookinfo.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00080\ \{\ \mbox{\hyperlink{classbookInfo_add63015be490285349dcd78c54f8508e}{qtyOnHand}}\ =\ qty;\ \}}
+
+\end{DoxyCode}
+\Hypertarget{classbookInfo_ab27402889a7841bd077e53d94ecbdd42}\index{bookInfo@{bookInfo}!setRetailValue@{setRetailValue}}
+\index{setRetailValue@{setRetailValue}!bookInfo@{bookInfo}}
+\doxysubsubsection{\texorpdfstring{setRetailValue()}{setRetailValue()}}
+{\footnotesize\ttfamily \label{classbookInfo_ab27402889a7841bd077e53d94ecbdd42} 
+void book\+Info\+::set\+Retail\+Value (\begin{DoxyParamCaption}\item[{double}]{price}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the retail price. 
+
+
+
+Definition at line \mbox{\hyperlink{bookinfo_8h_source_l00086}{86}} of file \mbox{\hyperlink{bookinfo_8h_source}{bookinfo.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00086\ \{\ \mbox{\hyperlink{classbookInfo_ac12b7fec1d87c7ea23a0bb68bc6f6d3c}{retailValue}}\ =\ price;\ \}}
+
+\end{DoxyCode}
+\Hypertarget{classbookInfo_aa7732bd20dbfb488638cca718c74fcbb}\index{bookInfo@{bookInfo}!setWholeValue@{setWholeValue}}
+\index{setWholeValue@{setWholeValue}!bookInfo@{bookInfo}}
+\doxysubsubsection{\texorpdfstring{setWholeValue()}{setWholeValue()}}
+{\footnotesize\ttfamily \label{classbookInfo_aa7732bd20dbfb488638cca718c74fcbb} 
+void book\+Info\+::set\+Whole\+Value (\begin{DoxyParamCaption}\item[{double}]{cost}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the wholesale cost. 
+
+
+
+Definition at line \mbox{\hyperlink{bookinfo_8h_source_l00083}{83}} of file \mbox{\hyperlink{bookinfo_8h_source}{bookinfo.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00083\ \{\ \mbox{\hyperlink{classbookInfo_afb0fc7552a8962a47064d1ba4c701b95}{wholeValue}}\ =\ cost;\ \}}
+
+\end{DoxyCode}
+
+
+\label{doc-variable-members}
+\Hypertarget{classbookInfo_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classbookInfo_afa82d5670984dd65a734e386bdb61dc7}\index{bookInfo@{bookInfo}!author@{author}}
+\index{author@{author}!bookInfo@{bookInfo}}
+\doxysubsubsection{\texorpdfstring{author}{author}}
+{\footnotesize\ttfamily \label{classbookInfo_afa82d5670984dd65a734e386bdb61dc7} 
+string book\+Info\+::author\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Author name. 
+
+
+
+Definition at line \mbox{\hyperlink{bookinfo_8h_source_l00031}{31}} of file \mbox{\hyperlink{bookinfo_8h_source}{bookinfo.\+h}}.
+
+\Hypertarget{classbookInfo_a3fbe56d8a9f950fb3f296ff397be4d55}\index{bookInfo@{bookInfo}!bookTitle@{bookTitle}}
+\index{bookTitle@{bookTitle}!bookInfo@{bookInfo}}
+\doxysubsubsection{\texorpdfstring{bookTitle}{bookTitle}}
+{\footnotesize\ttfamily \label{classbookInfo_a3fbe56d8a9f950fb3f296ff397be4d55} 
+string book\+Info\+::book\+Title\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Title of the book. 
+
+
+
+Definition at line \mbox{\hyperlink{bookinfo_8h_source_l00029}{29}} of file \mbox{\hyperlink{bookinfo_8h_source}{bookinfo.\+h}}.
+
+\Hypertarget{classbookInfo_a46a0b4186f4ef85b25545a7c2fba93a9}\index{bookInfo@{bookInfo}!dateAdded@{dateAdded}}
+\index{dateAdded@{dateAdded}!bookInfo@{bookInfo}}
+\doxysubsubsection{\texorpdfstring{dateAdded}{dateAdded}}
+{\footnotesize\ttfamily \label{classbookInfo_a46a0b4186f4ef85b25545a7c2fba93a9} 
+string book\+Info\+::date\+Added\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Date the book was added to inventory. 
+
+
+
+Definition at line \mbox{\hyperlink{bookinfo_8h_source_l00033}{33}} of file \mbox{\hyperlink{bookinfo_8h_source}{bookinfo.\+h}}.
+
+\Hypertarget{classbookInfo_a46355134e7df5032f50d9f70d3140f48}\index{bookInfo@{bookInfo}!isbn@{isbn}}
+\index{isbn@{isbn}!bookInfo@{bookInfo}}
+\doxysubsubsection{\texorpdfstring{isbn}{isbn}}
+{\footnotesize\ttfamily \label{classbookInfo_a46355134e7df5032f50d9f70d3140f48} 
+string book\+Info\+::isbn\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+ISBN identifier. 
+
+
+
+Definition at line \mbox{\hyperlink{bookinfo_8h_source_l00030}{30}} of file \mbox{\hyperlink{bookinfo_8h_source}{bookinfo.\+h}}.
+
+\Hypertarget{classbookInfo_ad770eb479550419489e93ed484f37497}\index{bookInfo@{bookInfo}!publisher@{publisher}}
+\index{publisher@{publisher}!bookInfo@{bookInfo}}
+\doxysubsubsection{\texorpdfstring{publisher}{publisher}}
+{\footnotesize\ttfamily \label{classbookInfo_ad770eb479550419489e93ed484f37497} 
+string book\+Info\+::publisher\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Publisher name. 
+
+
+
+Definition at line \mbox{\hyperlink{bookinfo_8h_source_l00032}{32}} of file \mbox{\hyperlink{bookinfo_8h_source}{bookinfo.\+h}}.
+
+\Hypertarget{classbookInfo_add63015be490285349dcd78c54f8508e}\index{bookInfo@{bookInfo}!qtyOnHand@{qtyOnHand}}
+\index{qtyOnHand@{qtyOnHand}!bookInfo@{bookInfo}}
+\doxysubsubsection{\texorpdfstring{qtyOnHand}{qtyOnHand}}
+{\footnotesize\ttfamily \label{classbookInfo_add63015be490285349dcd78c54f8508e} 
+int book\+Info\+::qty\+On\+Hand\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Number of copies available. 
+
+
+
+Definition at line \mbox{\hyperlink{bookinfo_8h_source_l00034}{34}} of file \mbox{\hyperlink{bookinfo_8h_source}{bookinfo.\+h}}.
+
+\Hypertarget{classbookInfo_ac12b7fec1d87c7ea23a0bb68bc6f6d3c}\index{bookInfo@{bookInfo}!retailValue@{retailValue}}
+\index{retailValue@{retailValue}!bookInfo@{bookInfo}}
+\doxysubsubsection{\texorpdfstring{retailValue}{retailValue}}
+{\footnotesize\ttfamily \label{classbookInfo_ac12b7fec1d87c7ea23a0bb68bc6f6d3c} 
+double book\+Info\+::retail\+Value\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Retail price of the book. 
+
+
+
+Definition at line \mbox{\hyperlink{bookinfo_8h_source_l00036}{36}} of file \mbox{\hyperlink{bookinfo_8h_source}{bookinfo.\+h}}.
+
+\Hypertarget{classbookInfo_afb0fc7552a8962a47064d1ba4c701b95}\index{bookInfo@{bookInfo}!wholeValue@{wholeValue}}
+\index{wholeValue@{wholeValue}!bookInfo@{bookInfo}}
+\doxysubsubsection{\texorpdfstring{wholeValue}{wholeValue}}
+{\footnotesize\ttfamily \label{classbookInfo_afb0fc7552a8962a47064d1ba4c701b95} 
+double book\+Info\+::whole\+Value\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Wholesale cost of the book. 
+
+
+
+Definition at line \mbox{\hyperlink{bookinfo_8h_source_l00035}{35}} of file \mbox{\hyperlink{bookinfo_8h_source}{bookinfo.\+h}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{bookinfo_8h}{bookinfo.\+h}}\item 
+\mbox{\hyperlink{bookinfo_8cpp}{bookinfo.\+cpp}}\end{DoxyCompactItemize}

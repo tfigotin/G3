@@ -1,0 +1,80 @@
+\doxysection{menuhelpers.\+cpp}
+\hypertarget{menuhelpers_8cpp_source}{}\label{menuhelpers_8cpp_source}\mbox{\hyperlink{menuhelpers_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00001}00001\ \textcolor{comment}{/****************************************************************}}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00002}00002\ \textcolor{comment}{\ *\ CS1B\ -\/\ G3\ :\ Inventory\ Submenus\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00003}00003\ \textcolor{comment}{\ *\ Partner\ A\ :\ Tamar\ Figotin\ (A00328312)\ -\/\ role:\ driver\ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00004}00004\ \textcolor{comment}{\ *\ Partner\ B\ :\ Luke\ Leibee\ \ \ (1248406)\ -\/\ role:\ function\ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00005}00005\ \textcolor{comment}{\ *\ Due\ Date\ \ :\ 2025-\/09-\/07\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00006}00006\ \textcolor{comment}{\ *\ Purpose\ \ \ :\ Practice\ making\ a\ multi-\/file\ C++\ program\ with\ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00007}00007\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ menus,\ input\ checks,\ and\ a\ simple\ cashier\ slip.\ \ *}}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00008}00008\ \textcolor{comment}{\ *\ Build\ \ \ \ \ :\ g++\ -\/std=c++17\ -\/Wall\ -\/Wextra\ -\/o\ main\ mainmenu.cpp*}}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00009}00009\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ bookinfo.cpp\ cashier.cpp\ invmenu.cpp\ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00010}00010\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ lookUpBook.cpp\ menuhelpers.cpp\ reports.cpp\ \ \ \ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00011}00011\ \textcolor{comment}{\ ****************************************************************/}}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00014}00014\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{menuhelpers_8h}{menuhelpers.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00015}00015\ \textcolor{preprocessor}{\#include\ <iomanip>}}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00017}\mbox{\hyperlink{menuhelpers_8cpp_a9d7e8af417b6d543da691e9c0e2f6f9f}{00017}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{menuhelpers_8cpp_a9d7e8af417b6d543da691e9c0e2f6f9f}{clearScreen}}()\ \{}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00018}00018\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)033[H\(\backslash\)033[J"{}};}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00019}00019\ \}}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00021}\mbox{\hyperlink{menuhelpers_8cpp_ad441b85af974ea5d8b01fa9d3799d57e}{00021}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{menuhelpers_8cpp_ad441b85af974ea5d8b01fa9d3799d57e}{printBorder}}()\ \{}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00022}00022\ \ \ \ \ cout\ <<\ string(\mbox{\hyperlink{menuhelpers_8h_a3e1f2841c198ba3c518087422856402d}{COLUMN\_WIDTH}},\ \textcolor{charliteral}{'*'})\ <<\ \textcolor{charliteral}{'\(\backslash\)n'};}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00023}00023\ \}}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00025}\mbox{\hyperlink{menuhelpers_8cpp_ac25cab33ecdf72253aeb41ef63fc8a7a}{00025}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{menuhelpers_8cpp_ac25cab33ecdf72253aeb41ef63fc8a7a}{printEmptyLine}}()\ \{}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00026}00026\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}*"{}}\ <<\ string(\mbox{\hyperlink{menuhelpers_8h_a0dad9ec941916fff24adb908d58ea370}{INNER\_WIDTH}},\ \textcolor{charliteral}{'\ '})\ <<\ \textcolor{stringliteral}{"{}*\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00027}00027\ \}}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00029}\mbox{\hyperlink{menuhelpers_8cpp_a9db00c867ca724cf75786320f7466861}{00029}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{menuhelpers_8cpp_a9db00c867ca724cf75786320f7466861}{printCenteredLine}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&s)\ \{}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00030}00030\ \ \ \ \ \textcolor{keywordtype}{int}\ left\ \ =\ max(0,\ (\mbox{\hyperlink{menuhelpers_8h_a0dad9ec941916fff24adb908d58ea370}{INNER\_WIDTH}}\ -\/\ (\textcolor{keywordtype}{int})s.length())\ /\ 2);}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00031}00031\ \ \ \ \ \textcolor{keywordtype}{int}\ right\ =\ \mbox{\hyperlink{menuhelpers_8h_a0dad9ec941916fff24adb908d58ea370}{INNER\_WIDTH}}\ -\/\ left\ -\/\ (int)s.length();}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00032}00032\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}*"{}}\ <<\ string(left,\ \textcolor{charliteral}{'\ '})\ <<\ s\ <<\ string(right,\ \textcolor{charliteral}{'\ '})\ <<\ \textcolor{stringliteral}{"{}*\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00033}00033\ \}}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00035}\mbox{\hyperlink{menuhelpers_8cpp_a1531d735917f0c6a50acab9ae7ba5c83}{00035}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{menuhelpers_8cpp_a1531d735917f0c6a50acab9ae7ba5c83}{printLeftLine}}(\textcolor{keywordtype}{int}\ indent,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&s)\ \{}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00036}00036\ \ \ \ \ \textcolor{keywordtype}{string}\ line\ =\ string(indent,\ \textcolor{charliteral}{'\ '})\ +\ s;}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00037}00037\ \ \ \ \ \textcolor{keywordtype}{int}\ right\ \ \ =\ max(0,\ \mbox{\hyperlink{menuhelpers_8h_a0dad9ec941916fff24adb908d58ea370}{INNER\_WIDTH}}\ -\/\ (\textcolor{keywordtype}{int})line.length());}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00038}00038\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}*"{}}\ <<\ line\ <<\ string(right,\ \textcolor{charliteral}{'\ '})\ <<\ \textcolor{stringliteral}{"{}*\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00039}00039\ \}}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00041}\mbox{\hyperlink{menuhelpers_8cpp_a189b6d3c2c3e6d073e9c202f1b0f8bda}{00041}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{menuhelpers_8cpp_a189b6d3c2c3e6d073e9c202f1b0f8bda}{printAddBookArray}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&s,\ \textcolor{keywordtype}{int}\ i,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&value)\ \{\ \textcolor{comment}{//\ function\ for\ string}}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00042}00042\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}*\ <"{}}\ <<\ i\ <<\ \textcolor{stringliteral}{"{}>\ "{}}\ <<\ setw(30)\ <<\ s;}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00044}00044\ \ \ \ \ \textcolor{keywordflow}{if}(i\ !=\ 0\ \&\&\ i\ !=\ \ 9)\ \textcolor{comment}{//\ 0\ \&\ 9\ do\ not\ have\ pending\ values}}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00045}00045\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00046}00046\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ displayValue\ =\ value;\ \textcolor{comment}{//\ make\ copy\ of\ value\ to\ truncate}}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00047}00047\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ WIDTH\ =\ 28;}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00049}00049\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (displayValue.length()\ >\ WIDTH)}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ displayValue\ =\ displayValue.substr(0,\ WIDTH\ -\/\ 3)\ +\ \textcolor{stringliteral}{"{}..."{}};}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00052}00052\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\ >\ -\/-\/"{}}\ <<\ setw(28)\ <<\ displayValue\ <<\ \textcolor{stringliteral}{"{}*"{}};}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00053}00053\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00055}00055\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00056}00056\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00057}00057\ \ \ \ \ \ \ \ \ cout\ <<\ right\ <<\ setw(34)\ <<\ \textcolor{stringliteral}{"{}*"{}};}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00058}00058\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00060}00060\ \ \ \ \ cout\ <<\ endl\ <<\ left;}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00061}00061\ \}}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00063}\mbox{\hyperlink{menuhelpers_8cpp_a090f82cfde37a065339c72381d3e5a43}{00063}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{menuhelpers_8cpp_a189b6d3c2c3e6d073e9c202f1b0f8bda}{printAddBookArray}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&s,\ \textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{double}\ \&valueDouble)\ \{\ \ \ \textcolor{comment}{//function\ for\ double}}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00064}00064\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}*\ <"{}}\ <<\ i\ <<\ \textcolor{stringliteral}{"{}>\ "{}}\ <<\ setw(30)\ <<\ s;}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00065}00065\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\ >\ -\/-\/\$"{}}\ <<\ setw(6)\ <<\ fixed\ <<\ setprecision(2)\ <<\ valueDouble\ <<\ right\ <<\ setw(22)\ <<\ \textcolor{stringliteral}{"{}*"{}};}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00067}00067\ \ \ \ \ cout\ <<\ endl\ <<\ left\ <<\ setprecision(6);}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00068}00068\ \}}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00070}\mbox{\hyperlink{menuhelpers_8cpp_a82be60accd041fb36e846eac6494cde8}{00070}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{menuhelpers_8cpp_a189b6d3c2c3e6d073e9c202f1b0f8bda}{printAddBookArray}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&s,\ \textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{int}\ \&valueInt)\ \{\ \textcolor{comment}{//function\ for\ int}}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00071}00071\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}*\ <"{}}\ <<\ i\ <<\ \textcolor{stringliteral}{"{}>\ "{}}\ <<\ setw(30)\ <<\ s;}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00072}00072\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\ >\ -\/-\/"{}}\ <<\ setw(5)\ <<\ valueInt\ <<\ right\ <<\ setw(24)\ <<\ \textcolor{stringliteral}{"{}*"{}};}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00074}00074\ \ \ \ \ cout\ <<\ endl\ <<\ left;}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8cpp_source_l00075}00075\ \}}
+
+\end{DoxyCode}

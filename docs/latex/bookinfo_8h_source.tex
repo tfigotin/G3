@@ -1,0 +1,84 @@
+\doxysection{bookinfo.\+h}
+\hypertarget{bookinfo_8h_source}{}\label{bookinfo_8h_source}\mbox{\hyperlink{bookinfo_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00001}00001\ \textcolor{comment}{/****************************************************************}}
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00002}00002\ \textcolor{comment}{\ *\ CS1B\ -\/\ G3\ :\ Inventory\ Submenus\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00003}00003\ \textcolor{comment}{\ *\ Partner\ A\ :\ Tamar\ Figotin\ (A00328312)\ -\/\ role:\ driver\ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00004}00004\ \textcolor{comment}{\ *\ Partner\ B\ :\ Luke\ Leibee\ \ \ (1248406)\ -\/\ role:\ function\ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00005}00005\ \textcolor{comment}{\ *\ Due\ Date\ \ :\ 2025-\/09-\/07\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00006}00006\ \textcolor{comment}{\ *\ Purpose\ \ \ :\ Practice\ making\ a\ multi-\/file\ C++\ program\ with\ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00007}00007\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ menus,\ input\ checks,\ and\ a\ simple\ cashier\ slip.\ \ *}}
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00008}00008\ \textcolor{comment}{\ *\ Build\ \ \ \ \ :\ g++\ -\/std=c++17\ -\/Wall\ -\/Wextra\ -\/o\ main\ mainmenu.cpp*}}
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00009}00009\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ bookinfo.cpp\ cashier.cpp\ invmenu.cpp\ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00010}00010\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ lookUpBook.cpp\ menuhelpers.cpp\ reports.cpp\ \ \ \ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00011}00011\ \textcolor{comment}{\ ****************************************************************/}}
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00013}00013\ \textcolor{preprocessor}{\#ifndef\ BOOKINFO\_H}}
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00014}00014\ \textcolor{preprocessor}{\#define\ BOOKINFO\_H}}
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00016}00016\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00018}00018\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00027}\mbox{\hyperlink{classbookInfo}{00027}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classbookInfo_aa1a88f3decfd6d5f653c6fabd82fee15}{bookInfo}}\ \{}
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00028}00028\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00029}\mbox{\hyperlink{classbookInfo_a3fbe56d8a9f950fb3f296ff397be4d55}{00029}}\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classbookInfo_a3fbe56d8a9f950fb3f296ff397be4d55}{bookTitle}};\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00030}\mbox{\hyperlink{classbookInfo_a46355134e7df5032f50d9f70d3140f48}{00030}}\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classbookInfo_a46355134e7df5032f50d9f70d3140f48}{isbn}};\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00031}\mbox{\hyperlink{classbookInfo_afa82d5670984dd65a734e386bdb61dc7}{00031}}\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classbookInfo_afa82d5670984dd65a734e386bdb61dc7}{author}};\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00032}\mbox{\hyperlink{classbookInfo_ad770eb479550419489e93ed484f37497}{00032}}\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classbookInfo_ad770eb479550419489e93ed484f37497}{publisher}};\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00033}\mbox{\hyperlink{classbookInfo_a46a0b4186f4ef85b25545a7c2fba93a9}{00033}}\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classbookInfo_a46a0b4186f4ef85b25545a7c2fba93a9}{dateAdded}};\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00034}\mbox{\hyperlink{classbookInfo_add63015be490285349dcd78c54f8508e}{00034}}\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classbookInfo_add63015be490285349dcd78c54f8508e}{qtyOnHand}};\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00035}\mbox{\hyperlink{classbookInfo_afb0fc7552a8962a47064d1ba4c701b95}{00035}}\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classbookInfo_afb0fc7552a8962a47064d1ba4c701b95}{wholeValue}};\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00036}\mbox{\hyperlink{classbookInfo_ac12b7fec1d87c7ea23a0bb68bc6f6d3c}{00036}}\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classbookInfo_ac12b7fec1d87c7ea23a0bb68bc6f6d3c}{retailValue}};\ \ \ }
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00038}00038\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00040}00040\ \textcolor{comment}{\ \ \ \ /******************\ Constructors\ ********************/}}
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00045}00045\ \ \ \ \ \mbox{\hyperlink{classbookInfo_aa1a88f3decfd6d5f653c6fabd82fee15}{bookInfo}}();}
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00059}00059\ \ \ \ \ \mbox{\hyperlink{classbookInfo_aa1a88f3decfd6d5f653c6fabd82fee15}{bookInfo}}(\textcolor{keywordtype}{string}\ title,\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classbookInfo_a46355134e7df5032f50d9f70d3140f48}{isbn}},\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classbookInfo_afa82d5670984dd65a734e386bdb61dc7}{author}},\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classbookInfo_ad770eb479550419489e93ed484f37497}{publisher}},}
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classbookInfo_a46a0b4186f4ef85b25545a7c2fba93a9}{dateAdded}},\ \textcolor{keywordtype}{int}\ qOnHand,\ \textcolor{keywordtype}{double}\ wValue,\ \textcolor{keywordtype}{double}\ rValue);}
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00062}00062\ \textcolor{comment}{\ \ \ \ /********************\ Setters\ ***********************/}}
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00065}\mbox{\hyperlink{classbookInfo_a3085bd67c86ca234de656c6678513af8}{00065}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classbookInfo_a3085bd67c86ca234de656c6678513af8}{setBookTitle}}(\textcolor{keywordtype}{string}\ title)\ \{\ \mbox{\hyperlink{classbookInfo_a3fbe56d8a9f950fb3f296ff397be4d55}{bookTitle}}\ =\ title;\ \}}
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00068}\mbox{\hyperlink{classbookInfo_ad7cb348990d45faa42e95cbea0cee069}{00068}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classbookInfo_ad7cb348990d45faa42e95cbea0cee069}{setISBN}}(\textcolor{keywordtype}{string}\ \textcolor{keywordtype}{id})\ \{\ \mbox{\hyperlink{classbookInfo_a46355134e7df5032f50d9f70d3140f48}{isbn}}\ =\ id;\ \}}
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00071}\mbox{\hyperlink{classbookInfo_a5c0ba4d255f60d1e751f1bb9e83b5daf}{00071}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classbookInfo_a5c0ba4d255f60d1e751f1bb9e83b5daf}{setAuthor}}(\textcolor{keywordtype}{string}\ name)\ \{\ \mbox{\hyperlink{classbookInfo_afa82d5670984dd65a734e386bdb61dc7}{author}}\ =\ name;\ \}}
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00074}\mbox{\hyperlink{classbookInfo_af2b891b992a09c445a488c3f21a6f1aa}{00074}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classbookInfo_af2b891b992a09c445a488c3f21a6f1aa}{setPublisher}}(\textcolor{keywordtype}{string}\ publish)\ \{\ \mbox{\hyperlink{classbookInfo_ad770eb479550419489e93ed484f37497}{publisher}}\ =\ publish;\ \}}
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00075}00075\ }
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00077}\mbox{\hyperlink{classbookInfo_a05d31b8c024e8c25f1c99b041199053e}{00077}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classbookInfo_a05d31b8c024e8c25f1c99b041199053e}{setDateAdded}}(\textcolor{keywordtype}{string}\ date)\ \{\ \mbox{\hyperlink{classbookInfo_a46a0b4186f4ef85b25545a7c2fba93a9}{dateAdded}}\ =\ date;\ \}}
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00080}\mbox{\hyperlink{classbookInfo_acb859bf4521b44fc95f0e882b7ec1666}{00080}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classbookInfo_acb859bf4521b44fc95f0e882b7ec1666}{setQtyOnHand}}(\textcolor{keywordtype}{int}\ qty)\ \{\ \mbox{\hyperlink{classbookInfo_add63015be490285349dcd78c54f8508e}{qtyOnHand}}\ =\ qty;\ \}}
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00083}\mbox{\hyperlink{classbookInfo_aa7732bd20dbfb488638cca718c74fcbb}{00083}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classbookInfo_aa7732bd20dbfb488638cca718c74fcbb}{setWholeValue}}(\textcolor{keywordtype}{double}\ cost)\ \{\ \mbox{\hyperlink{classbookInfo_afb0fc7552a8962a47064d1ba4c701b95}{wholeValue}}\ =\ cost;\ \}}
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00086}\mbox{\hyperlink{classbookInfo_ab27402889a7841bd077e53d94ecbdd42}{00086}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classbookInfo_ab27402889a7841bd077e53d94ecbdd42}{setRetailValue}}(\textcolor{keywordtype}{double}\ price)\ \{\ \mbox{\hyperlink{classbookInfo_ac12b7fec1d87c7ea23a0bb68bc6f6d3c}{retailValue}}\ =\ price;\ \}}
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00088}00088\ \textcolor{comment}{\ \ \ \ /********************\ Getters\ ********************/}}
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00091}\mbox{\hyperlink{classbookInfo_a8d47e8f73835fd40c8628eef105411a1}{00091}}\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classbookInfo_a8d47e8f73835fd40c8628eef105411a1}{getBookTitle}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classbookInfo_a3fbe56d8a9f950fb3f296ff397be4d55}{bookTitle}};\ \}}
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00094}\mbox{\hyperlink{classbookInfo_a280bcfb407076314f68cffc129d92556}{00094}}\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classbookInfo_a280bcfb407076314f68cffc129d92556}{getISBN}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classbookInfo_a46355134e7df5032f50d9f70d3140f48}{isbn}};\ \}}
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00097}\mbox{\hyperlink{classbookInfo_a0fa2dab4150eab5062d46a06ca341fee}{00097}}\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classbookInfo_a0fa2dab4150eab5062d46a06ca341fee}{getAuthor}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classbookInfo_afa82d5670984dd65a734e386bdb61dc7}{author}};\ \}}
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00100}\mbox{\hyperlink{classbookInfo_a1cc320c6f08f1d72ae8641d1ab12c66d}{00100}}\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classbookInfo_a1cc320c6f08f1d72ae8641d1ab12c66d}{getPublisher}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classbookInfo_ad770eb479550419489e93ed484f37497}{publisher}};\ \}}
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00101}00101\ }
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00103}\mbox{\hyperlink{classbookInfo_a59d36e0ab03a2e94f7d660e2458df8cc}{00103}}\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classbookInfo_a59d36e0ab03a2e94f7d660e2458df8cc}{getDateAdded}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classbookInfo_a46a0b4186f4ef85b25545a7c2fba93a9}{dateAdded}};\ \}}
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00104}00104\ }
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00106}\mbox{\hyperlink{classbookInfo_a5027ffd1751dcc7ed096f3e063106e2f}{00106}}\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classbookInfo_a5027ffd1751dcc7ed096f3e063106e2f}{getQtyOnHand}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classbookInfo_add63015be490285349dcd78c54f8508e}{qtyOnHand}};\ \}}
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00109}\mbox{\hyperlink{classbookInfo_a5d53dd74708ad49e4418b1472d7c6b5c}{00109}}\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classbookInfo_a5d53dd74708ad49e4418b1472d7c6b5c}{getWholeValue}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classbookInfo_afb0fc7552a8962a47064d1ba4c701b95}{wholeValue}};\ \}}
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00110}00110\ }
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00112}\mbox{\hyperlink{classbookInfo_acff98c495334923e56f1be3f1d02e2d0}{00112}}\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classbookInfo_acff98c495334923e56f1be3f1d02e2d0}{getRetailValue}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classbookInfo_ac12b7fec1d87c7ea23a0bb68bc6f6d3c}{retailValue}};\ \}}
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00113}00113\ \};}
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00120}00120\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{bookinfo_8h_ac393b31072d610810301af209fda32c5}{displayBookInfo}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classbookInfo}{bookInfo}}\ \&book);}
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00121}00121\ }
+\DoxyCodeLine{\Hypertarget{bookinfo_8h_source_l00122}00122\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

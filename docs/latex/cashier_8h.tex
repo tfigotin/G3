@@ -1,0 +1,307 @@
+\doxysection{cashier.\+h File Reference}
+\hypertarget{cashier_8h}{}\label{cashier_8h}\index{cashier.h@{cashier.h}}
+{\ttfamily \#include $<$string$>$}\newline
+Include dependency graph for cashier.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=136pt]{cashier_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=244pt]{cashier_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{cashier_8h_a672c36a283c3bba798c10161476a474e}{cashier}} ()
+\item 
+void \mbox{\hyperlink{cashier_8h_a20c242b17267396b7072fa27594b3083}{print\+Top\+Border}} ()
+\item 
+void \mbox{\hyperlink{cashier_8h_af1e4f2c6e612e819ca21df2eda248fcc}{print\+Bottom\+Border}} ()
+\item 
+void \mbox{\hyperlink{cashier_8h_a4513e1c48e63404165fc8f90f8d85019}{print\+Line}} (const string \&text)
+\item 
+void \mbox{\hyperlink{cashier_8h_a4b6f46f3d60aea56b757b7c2928e0dc7}{print\+Receipt\+Top}} ()
+\item 
+void \mbox{\hyperlink{cashier_8h_a5f0340bfffb1ce1555a20a9d805fe413}{print\+Receipt\+Bottom}} ()
+\item 
+void \mbox{\hyperlink{cashier_8h_ab93fa01bba9ff694722106d25a592172}{print\+Receipt\+Line}} (const string \&text)
+\item 
+string \mbox{\hyperlink{cashier_8h_a6f83743dfcf160c66be28e8ac4ac6ca2}{truncate}} (const string \&s, size\+\_\+t width)
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{cashier_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{cashier_8h_a672c36a283c3bba798c10161476a474e}\index{cashier.h@{cashier.h}!cashier@{cashier}}
+\index{cashier@{cashier}!cashier.h@{cashier.h}}
+\doxysubsubsection{\texorpdfstring{cashier()}{cashier()}}
+{\footnotesize\ttfamily \label{cashier_8h_a672c36a283c3bba798c10161476a474e} 
+void cashier (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{cashier_8cpp_source_l00064}{64}} of file \mbox{\hyperlink{cashier_8cpp_source}{cashier.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \textcolor{keywordtype}{string}\ date,\ isbn,\ title;}
+\DoxyCodeLine{00067\ \ \ \ \ \ \textcolor{keywordtype}{int}\ quantity;}
+\DoxyCodeLine{00068\ \ \ \ \ \ \textcolor{keywordtype}{double}\ price;}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \textcolor{comment}{//Clear\ Screen\ from\ main\ menu}}
+\DoxyCodeLine{00071\ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)033[2J\(\backslash\)033[1;1H"{}};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \textcolor{comment}{//\ Collect\ input\ first\ (prompts\ are\ simple\ console\ prompts)}}
+\DoxyCodeLine{00074\ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Date:\ "{}};}
+\DoxyCodeLine{00075\ \ \ \ \ \ getline(cin,\ date);}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Quantity\ of\ Book:\ "{}};}
+\DoxyCodeLine{00078\ \ \ \ \ \ \textcolor{keywordflow}{while}\ (!(cin\ >>\ quantity))\ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ cin.clear();}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ cin.ignore(numeric\_limits<streamsize>::max(),\ \textcolor{charliteral}{'\(\backslash\)n'});}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Please\ enter\ a\ valid\ number\ for\ quantity:\ "{}};}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00083\ \ \ \ \ \ cin.ignore(numeric\_limits<streamsize>::max(),\ \textcolor{charliteral}{'\(\backslash\)n'});}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}ISBN:\ "{}};}
+\DoxyCodeLine{00086\ \ \ \ \ \ getline(cin,\ isbn);}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Title:\ "{}};}
+\DoxyCodeLine{00089\ \ \ \ \ \ getline(cin,\ title);}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Price:\ \$"{}};}
+\DoxyCodeLine{00092\ \ \ \ \ \ \textcolor{keywordflow}{while}\ (!(cin\ >>\ price))\ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ cin.clear();}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ cin.ignore(numeric\_limits<streamsize>::max(),\ \textcolor{charliteral}{'\(\backslash\)n'});}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Please\ enter\ a\ valid\ price\ (e.g.\ 12.95):\ "{}};}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00097\ \ \ \ \ \ cin.ignore(numeric\_limits<streamsize>::max(),\ \textcolor{charliteral}{'\(\backslash\)n'});}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \textcolor{comment}{//\ Now\ print\ the\ nicely\ formatted\ box\ with\ all\ values}}
+\DoxyCodeLine{00100\ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)033[2J\(\backslash\)033[1;1H"{}};\ \textcolor{comment}{//\ clear\ the\ screen}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \mbox{\hyperlink{cashier_8cpp_a20c242b17267396b7072fa27594b3083}{printTopBorder}}();}
+\DoxyCodeLine{00102\ \ \ \ \ \ \mbox{\hyperlink{cashier_8cpp_a4513e1c48e63404165fc8f90f8d85019}{printLine}}(\textcolor{stringliteral}{"{}Serendipity\ Booksellers"{}});}
+\DoxyCodeLine{00103\ \ \ \ \ \ \mbox{\hyperlink{cashier_8cpp_a4513e1c48e63404165fc8f90f8d85019}{printLine}}(\textcolor{stringliteral}{"{}Cashier\ Module"{}});}
+\DoxyCodeLine{00104\ \ \ \ \ \ \mbox{\hyperlink{cashier_8cpp_a4513e1c48e63404165fc8f90f8d85019}{printLine}}(\textcolor{stringliteral}{"{}"{}});\ \textcolor{comment}{//\ blank\ line}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \ \mbox{\hyperlink{cashier_8cpp_a4513e1c48e63404165fc8f90f8d85019}{printLine}}(\textcolor{stringliteral}{"{}Date:\ "{}}\ +\ date);}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \ \textcolor{comment}{//\ convert\ quantity\ to\ string}}
+\DoxyCodeLine{00109\ \ \ \ \ \ \mbox{\hyperlink{cashier_8cpp_a4513e1c48e63404165fc8f90f8d85019}{printLine}}(\textcolor{stringliteral}{"{}Quantity\ of\ Book:\ "{}}\ +\ to\_string(quantity));}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \ \mbox{\hyperlink{cashier_8cpp_a4513e1c48e63404165fc8f90f8d85019}{printLine}}(\textcolor{stringliteral}{"{}ISBN:\ "{}}\ +\ isbn);}
+\DoxyCodeLine{00112\ \ \ \ \ \ \mbox{\hyperlink{cashier_8cpp_a4513e1c48e63404165fc8f90f8d85019}{printLine}}(\textcolor{stringliteral}{"{}Title:\ "{}}\ +\ \mbox{\hyperlink{cashier_8cpp_a6f83743dfcf160c66be28e8ac4ac6ca2}{truncate}}(title,\ \mbox{\hyperlink{cashier_8cpp_a6638ea7e5179427fcb3dfbfdb77ed470}{CONTENT\_PAD}}\ -\/\ 7));}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ \ \textcolor{comment}{//\ format\ price\ to\ two\ decimals}}
+\DoxyCodeLine{00115\ \ \ \ \ \ ostringstream\ oss;}
+\DoxyCodeLine{00116\ \ \ \ \ \ oss\ <<\ fixed\ <<\ setprecision(2)\ <<\ price;}
+\DoxyCodeLine{00117\ \ \ \ \ \ \mbox{\hyperlink{cashier_8cpp_a4513e1c48e63404165fc8f90f8d85019}{printLine}}(\textcolor{stringliteral}{"{}Price:\ \$"{}}\ +\ oss.str());}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ \ \mbox{\hyperlink{cashier_8cpp_af1e4f2c6e612e819ca21df2eda248fcc}{printBottomBorder}}();}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{comment}{//\ Pause\ before\ checkout}}
+\DoxyCodeLine{00122\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Please\ press\ Enter\ to\ checkout..."{}};}
+\DoxyCodeLine{00123\ \ \ \ \ cin.ignore(numeric\_limits<streamsize>::max(),\ \textcolor{charliteral}{'\(\backslash\)n'});}
+\DoxyCodeLine{00124\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)033[2J\(\backslash\)033[1;1H"{}};\ \textcolor{comment}{//\ clear\ the\ screen}}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ Calculations\ -\/-\/-\/}}
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keywordtype}{float}\ subtotal\ =\ quantity\ *\ price;}
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keywordtype}{float}\ tax\ =\ subtotal\ *\ 0.06;}
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keywordtype}{float}\ total\ =\ subtotal\ +\ tax;}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ cout\ <<\ fixed\ <<\ showpoint\ <<\ setprecision(2);}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ Receipt\ -\/-\/-\/}}
+\DoxyCodeLine{00134\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)033[2J\(\backslash\)033[1;1H"{}};\ \textcolor{comment}{//\ clear\ screen}}
+\DoxyCodeLine{00135\ \ \ \ \ \mbox{\hyperlink{cashier_8cpp_a4b6f46f3d60aea56b757b7c2928e0dc7}{printReceiptTop}}();}
+\DoxyCodeLine{00136\ \ \ \ \ \mbox{\hyperlink{cashier_8cpp_ab93fa01bba9ff694722106d25a592172}{printReceiptLine}}(\textcolor{stringliteral}{"{}Serendipity\ Book\ Sellers"{}});}
+\DoxyCodeLine{00137\ \ \ \ \ \mbox{\hyperlink{cashier_8cpp_ab93fa01bba9ff694722106d25a592172}{printReceiptLine}}(\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00138\ \ \ \ \ \mbox{\hyperlink{cashier_8cpp_ab93fa01bba9ff694722106d25a592172}{printReceiptLine}}(\textcolor{stringliteral}{"{}Date:\ "{}}\ +\ date);}
+\DoxyCodeLine{00139\ \ \ \ \ \mbox{\hyperlink{cashier_8cpp_ab93fa01bba9ff694722106d25a592172}{printReceiptLine}}(\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{comment}{//\ Header\ row}}
+\DoxyCodeLine{00142\ \ \ \ \ ostringstream\ header;}
+\DoxyCodeLine{00143\ \ \ \ \ header\ <<\ left\ <<\ setw(5)\ <<\ \textcolor{stringliteral}{"{}Qty"{}}}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ <<\ setw(15)\ <<\ \textcolor{stringliteral}{"{}ISBN"{}}}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ <<\ setw(25)\ <<\ \textcolor{stringliteral}{"{}Title"{}}}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ <<\ right\ <<\ setw(8)\ <<\ \textcolor{stringliteral}{"{}Price"{}}}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ <<\ setw(10)\ <<\ \textcolor{stringliteral}{"{}Total"{}};}
+\DoxyCodeLine{00148\ \ \ \ \ \mbox{\hyperlink{cashier_8cpp_ab93fa01bba9ff694722106d25a592172}{printReceiptLine}}(header.str());}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{comment}{//\ Horizontal\ separator}}
+\DoxyCodeLine{00151\ \ \ \ \ \mbox{\hyperlink{cashier_8cpp_ab93fa01bba9ff694722106d25a592172}{printReceiptLine}}(\textcolor{keywordtype}{string}(\mbox{\hyperlink{cashier_8cpp_a5d1c4de3bcdd22fde9fb926baab37172}{RECEIPT\_CONTENT}},\ \textcolor{charliteral}{'\_'}));}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{comment}{//\ Line\ item\ row}}
+\DoxyCodeLine{00154\ \ \ \ \ ostringstream\ item;}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{comment}{//\ format\ price\ and\ subtotal\ with\ \$\ prefix}}
+\DoxyCodeLine{00157\ \ \ \ \ ostringstream\ priceStream,\ subtotalStream;}
+\DoxyCodeLine{00158\ \ \ \ \ priceStream\ <<\ \textcolor{stringliteral}{"{}\$"{}}\ <<\ fixed\ <<\ setprecision(2)\ <<\ price;}
+\DoxyCodeLine{00159\ \ \ \ \ subtotalStream\ <<\ \textcolor{stringliteral}{"{}\$"{}}\ <<\ fixed\ <<\ setprecision(2)\ <<\ subtotal;}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ \ \ item\ <<\ left\ \ <<\ setw(5)\ \ <<\ quantity}
+\DoxyCodeLine{00162\ \ \ \ \ \ <<\ setw(15)\ <<\ isbn}
+\DoxyCodeLine{00163\ \ \ \ \ \ <<\ setw(25)\ <<\ \mbox{\hyperlink{cashier_8cpp_a6f83743dfcf160c66be28e8ac4ac6ca2}{truncate}}(title,\ 25)}
+\DoxyCodeLine{00164\ \ \ \ \ \ <<\ right\ <<\ setw(8)\ \ <<\ priceStream.str()}
+\DoxyCodeLine{00165\ \ \ \ \ \ <<\ setw(10)\ <<\ subtotalStream.str();}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \ \ \ \ \mbox{\hyperlink{cashier_8cpp_ab93fa01bba9ff694722106d25a592172}{printReceiptLine}}(item.str());}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \ \ \ \ \mbox{\hyperlink{cashier_8cpp_ab93fa01bba9ff694722106d25a592172}{printReceiptLine}}(\textcolor{stringliteral}{"{}"{}});\ \textcolor{comment}{//\ blank\ line\ before\ totals}}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{comment}{//\ Totals}}
+\DoxyCodeLine{00172\ \ \ \ \ ostringstream\ sub,\ taxline,\ tot;}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \ \ \ \ \textcolor{comment}{//\ labels\ on\ the\ left,\ values\ aligned\ with\ Total\ column}}
+\DoxyCodeLine{00175\ \ \ \ \ sub\ \ \ \ \ <<\ right\ <<\ setw(56)\ <<\ \textcolor{stringliteral}{"{}Subtotal"{}}}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ setw(7)\ <<\ (\textcolor{stringliteral}{"{}\$"{}}\ +\ (ostringstream()\ <<\ fixed\ <<\ setprecision(2)\ <<\ subtotal).str());}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \ \ \ \ taxline\ <<\ right\ <<\ setw(56)\ <<\ \textcolor{stringliteral}{"{}Tax"{}}}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ <<\ setw(7)\ <<\ (\textcolor{stringliteral}{"{}\$"{}}\ +\ (ostringstream()\ <<\ fixed\ <<\ setprecision(2)\ <<\ tax).str());}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \ \ \ \ tot\ \ \ \ \ <<\ right\ <<\ setw(56)\ <<\ \textcolor{stringliteral}{"{}Total"{}}}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ <<\ setw(7)\ <<\ (\textcolor{stringliteral}{"{}\$"{}}\ +\ (ostringstream()\ <<\ fixed\ <<\ setprecision(2)\ <<\ total).str());}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \ \ \ \ \mbox{\hyperlink{cashier_8cpp_ab93fa01bba9ff694722106d25a592172}{printReceiptLine}}(sub.str());}
+\DoxyCodeLine{00185\ \ \ \ \ \mbox{\hyperlink{cashier_8cpp_ab93fa01bba9ff694722106d25a592172}{printReceiptLine}}(taxline.str());}
+\DoxyCodeLine{00186\ \ \ \ \ \mbox{\hyperlink{cashier_8cpp_ab93fa01bba9ff694722106d25a592172}{printReceiptLine}}(tot.str());}
+\DoxyCodeLine{00187\ \ \ \ \ \mbox{\hyperlink{cashier_8cpp_ab93fa01bba9ff694722106d25a592172}{printReceiptLine}}(\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{comment}{//\ Closing\ message}}
+\DoxyCodeLine{00190\ \ \ \ \ \mbox{\hyperlink{cashier_8cpp_ab93fa01bba9ff694722106d25a592172}{printReceiptLine}}(\textcolor{stringliteral}{"{}Thank\ You\ for\ Shopping\ at\ Serendipity!"{}});}
+\DoxyCodeLine{00191\ \ \ \ \ \mbox{\hyperlink{cashier_8cpp_a5f0340bfffb1ce1555a20a9d805fe413}{printReceiptBottom}}();}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00193\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{cashier_8h_af1e4f2c6e612e819ca21df2eda248fcc}\index{cashier.h@{cashier.h}!printBottomBorder@{printBottomBorder}}
+\index{printBottomBorder@{printBottomBorder}!cashier.h@{cashier.h}}
+\doxysubsubsection{\texorpdfstring{printBottomBorder()}{printBottomBorder()}}
+{\footnotesize\ttfamily \label{cashier_8h_af1e4f2c6e612e819ca21df2eda248fcc} 
+void print\+Bottom\+Border (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{cashier_8cpp_source_l00032}{32}} of file \mbox{\hyperlink{cashier_8cpp_source}{cashier.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}+"{}}\ <<\ string(\mbox{\hyperlink{cashier_8cpp_a64b1f830323fe71e00b0d2ee20896803}{TOTAL\_WIDTH}}\ -\/\ 2,\ \textcolor{charliteral}{'-\/'})\ <<\ \textcolor{stringliteral}{"{}+"{}}\ <<\ endl;}
+\DoxyCodeLine{00034\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{cashier_8h_a4513e1c48e63404165fc8f90f8d85019}\index{cashier.h@{cashier.h}!printLine@{printLine}}
+\index{printLine@{printLine}!cashier.h@{cashier.h}}
+\doxysubsubsection{\texorpdfstring{printLine()}{printLine()}}
+{\footnotesize\ttfamily \label{cashier_8h_a4513e1c48e63404165fc8f90f8d85019} 
+void print\+Line (\begin{DoxyParamCaption}\item[{const string \&}]{text}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{cashier_8cpp_source_l00037}{37}} of file \mbox{\hyperlink{cashier_8cpp_source}{cashier.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}|\ "{}}\ <<\ left\ <<\ setw(\mbox{\hyperlink{cashier_8cpp_a6638ea7e5179427fcb3dfbfdb77ed470}{CONTENT\_PAD}})\ <<\ text\ <<\ \textcolor{stringliteral}{"{}\ |"{}}\ <<\ endl;}
+\DoxyCodeLine{00039\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{cashier_8h_a5f0340bfffb1ce1555a20a9d805fe413}\index{cashier.h@{cashier.h}!printReceiptBottom@{printReceiptBottom}}
+\index{printReceiptBottom@{printReceiptBottom}!cashier.h@{cashier.h}}
+\doxysubsubsection{\texorpdfstring{printReceiptBottom()}{printReceiptBottom()}}
+{\footnotesize\ttfamily \label{cashier_8h_a5f0340bfffb1ce1555a20a9d805fe413} 
+void print\+Receipt\+Bottom (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{cashier_8cpp_source_l00048}{48}} of file \mbox{\hyperlink{cashier_8cpp_source}{cashier.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}+"{}}\ <<\ string(\mbox{\hyperlink{cashier_8cpp_a9d0d1c8de233987f3d4ef25a2b431403}{RECEIPT\_WIDTH}}\ -\/\ 2,\ \textcolor{charliteral}{'-\/'})\ <<\ \textcolor{stringliteral}{"{}+"{}}\ <<\ endl;}
+\DoxyCodeLine{00050\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{cashier_8h_ab93fa01bba9ff694722106d25a592172}\index{cashier.h@{cashier.h}!printReceiptLine@{printReceiptLine}}
+\index{printReceiptLine@{printReceiptLine}!cashier.h@{cashier.h}}
+\doxysubsubsection{\texorpdfstring{printReceiptLine()}{printReceiptLine()}}
+{\footnotesize\ttfamily \label{cashier_8h_ab93fa01bba9ff694722106d25a592172} 
+void print\+Receipt\+Line (\begin{DoxyParamCaption}\item[{const string \&}]{text}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{cashier_8cpp_source_l00051}{51}} of file \mbox{\hyperlink{cashier_8cpp_source}{cashier.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}|\ "{}}\ <<\ left\ <<\ setw(\mbox{\hyperlink{cashier_8cpp_a5d1c4de3bcdd22fde9fb926baab37172}{RECEIPT\_CONTENT}})\ <<\ text\ <<\ \textcolor{stringliteral}{"{}\ |"{}}\ <<\ endl;}
+\DoxyCodeLine{00053\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{cashier_8h_a4b6f46f3d60aea56b757b7c2928e0dc7}\index{cashier.h@{cashier.h}!printReceiptTop@{printReceiptTop}}
+\index{printReceiptTop@{printReceiptTop}!cashier.h@{cashier.h}}
+\doxysubsubsection{\texorpdfstring{printReceiptTop()}{printReceiptTop()}}
+{\footnotesize\ttfamily \label{cashier_8h_a4b6f46f3d60aea56b757b7c2928e0dc7} 
+void print\+Receipt\+Top (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{cashier_8cpp_source_l00045}{45}} of file \mbox{\hyperlink{cashier_8cpp_source}{cashier.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}+"{}}\ <<\ string(\mbox{\hyperlink{cashier_8cpp_a9d0d1c8de233987f3d4ef25a2b431403}{RECEIPT\_WIDTH}}\ -\/\ 2,\ \textcolor{charliteral}{'-\/'})\ <<\ \textcolor{stringliteral}{"{}+"{}}\ <<\ endl;}
+\DoxyCodeLine{00047\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{cashier_8h_a20c242b17267396b7072fa27594b3083}\index{cashier.h@{cashier.h}!printTopBorder@{printTopBorder}}
+\index{printTopBorder@{printTopBorder}!cashier.h@{cashier.h}}
+\doxysubsubsection{\texorpdfstring{printTopBorder()}{printTopBorder()}}
+{\footnotesize\ttfamily \label{cashier_8h_a20c242b17267396b7072fa27594b3083} 
+void print\+Top\+Border (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{cashier_8cpp_source_l00027}{27}} of file \mbox{\hyperlink{cashier_8cpp_source}{cashier.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}+"{}}\ <<\ string(\mbox{\hyperlink{cashier_8cpp_a64b1f830323fe71e00b0d2ee20896803}{TOTAL\_WIDTH}}\ -\/\ 2,\ \textcolor{charliteral}{'-\/'})\ <<\ \textcolor{stringliteral}{"{}+"{}}\ <<\ endl;}
+\DoxyCodeLine{00029\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{cashier_8h_a6f83743dfcf160c66be28e8ac4ac6ca2}\index{cashier.h@{cashier.h}!truncate@{truncate}}
+\index{truncate@{truncate}!cashier.h@{cashier.h}}
+\doxysubsubsection{\texorpdfstring{truncate()}{truncate()}}
+{\footnotesize\ttfamily \label{cashier_8h_a6f83743dfcf160c66be28e8ac4ac6ca2} 
+string truncate (\begin{DoxyParamCaption}\item[{const string \&}]{s}{, }\item[{size\+\_\+t}]{width}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{cashier_8cpp_source_l00056}{56}} of file \mbox{\hyperlink{cashier_8cpp_source}{cashier.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordflow}{if}\ (s.size()\ <=\ width)}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ s;}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ s.substr(0,\ width\ -\/\ 3)\ +\ \textcolor{stringliteral}{"{}..."{}};\ \textcolor{comment}{//\ add\ ellipsis}}
+\DoxyCodeLine{00061\ \ \ \ \ \}}
+
+\end{DoxyCode}

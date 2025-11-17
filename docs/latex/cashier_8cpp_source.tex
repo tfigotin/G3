@@ -1,0 +1,202 @@
+\doxysection{cashier.\+cpp}
+\hypertarget{cashier_8cpp_source}{}\label{cashier_8cpp_source}\mbox{\hyperlink{cashier_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00001}00001\ \textcolor{comment}{/****************************************************************}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00002}00002\ \textcolor{comment}{\ *\ CS1B\ -\/\ G3\ :\ Inventory\ Submenus\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00003}00003\ \textcolor{comment}{\ *\ Partner\ A\ :\ Tamar\ Figotin\ (A00328312)\ -\/\ role:\ driver\ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00004}00004\ \textcolor{comment}{\ *\ Partner\ B\ :\ Luke\ Leibee\ \ \ (1248406)\ -\/\ role:\ function\ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00005}00005\ \textcolor{comment}{\ *\ Due\ Date\ \ :\ 2025-\/09-\/07\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00006}00006\ \textcolor{comment}{\ *\ Purpose\ \ \ :\ Practice\ making\ a\ multi-\/file\ C++\ program\ with\ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00007}00007\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ menus,\ input\ checks,\ and\ a\ simple\ cashier\ slip.\ \ *}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00008}00008\ \textcolor{comment}{\ *\ Build\ \ \ \ \ :\ g++\ -\/std=c++17\ -\/Wall\ -\/Wextra\ -\/o\ main\ mainmenu.cpp*}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00009}00009\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ bookinfo.cpp\ cashier.cpp\ invmenu.cpp\ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00010}00010\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ lookUpBook.cpp\ menuhelpers.cpp\ reports.cpp\ \ \ \ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00011}00011\ \textcolor{comment}{\ ****************************************************************/}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00013}00013\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{cashier_8h}{cashier.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00014}00014\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00015}00015\ \textcolor{preprocessor}{\#include\ <iomanip>}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00016}00016\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00017}00017\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00018}00018\ \textcolor{preprocessor}{\#include\ <limits>}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00020}00020\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00022}00022\ \ \ \ \ \textcolor{comment}{//\ Summary\ Box\ Helpers}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00023}\mbox{\hyperlink{cashier_8cpp_a64b1f830323fe71e00b0d2ee20896803}{00023}}\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{cashier_8cpp_a64b1f830323fe71e00b0d2ee20896803}{TOTAL\_WIDTH}}\ =\ 59;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ total\ characters\ including\ the\ two\ '+'\ corners}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00024}\mbox{\hyperlink{cashier_8cpp_a6638ea7e5179427fcb3dfbfdb77ed470}{00024}}\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{cashier_8cpp_a6638ea7e5179427fcb3dfbfdb77ed470}{CONTENT\_PAD}}\ =\ \mbox{\hyperlink{cashier_8cpp_a64b1f830323fe71e00b0d2ee20896803}{TOTAL\_WIDTH}}\ -\/\ 4;\ \ \ \textcolor{comment}{//\ characters\ available\ for\ text\ between\ "{}|\ "{}\ and\ "{}\ |"{}}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00026}00026\ \ \ \ \ \textcolor{comment}{//\ Print\ top\ border}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00027}\mbox{\hyperlink{cashier_8cpp_a20c242b17267396b7072fa27594b3083}{00027}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{cashier_8cpp_a20c242b17267396b7072fa27594b3083}{printTopBorder}}()\ \{}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00028}00028\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}+"{}}\ <<\ string(\mbox{\hyperlink{cashier_8cpp_a64b1f830323fe71e00b0d2ee20896803}{TOTAL\_WIDTH}}\ -\/\ 2,\ \textcolor{charliteral}{'-\/'})\ <<\ \textcolor{stringliteral}{"{}+"{}}\ <<\ endl;}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00029}00029\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00031}00031\ \ \ \ \ \textcolor{comment}{//\ Print\ bottom\ border}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00032}\mbox{\hyperlink{cashier_8cpp_af1e4f2c6e612e819ca21df2eda248fcc}{00032}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{cashier_8cpp_af1e4f2c6e612e819ca21df2eda248fcc}{printBottomBorder}}()\ \{}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00033}00033\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}+"{}}\ <<\ string(\mbox{\hyperlink{cashier_8cpp_a64b1f830323fe71e00b0d2ee20896803}{TOTAL\_WIDTH}}\ -\/\ 2,\ \textcolor{charliteral}{'-\/'})\ <<\ \textcolor{stringliteral}{"{}+"{}}\ <<\ endl;}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00034}00034\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00036}00036\ \ \ \ \ \textcolor{comment}{//\ Print\ one\ content\ line\ (text\ will\ be\ left-\/aligned\ and\ padded\ to\ fill\ the\ box)}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00037}\mbox{\hyperlink{cashier_8cpp_a4513e1c48e63404165fc8f90f8d85019}{00037}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{cashier_8cpp_a4513e1c48e63404165fc8f90f8d85019}{printLine}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&text)\ \{}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00038}00038\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}|\ "{}}\ <<\ left\ <<\ setw(\mbox{\hyperlink{cashier_8cpp_a6638ea7e5179427fcb3dfbfdb77ed470}{CONTENT\_PAD}})\ <<\ text\ <<\ \textcolor{stringliteral}{"{}\ |"{}}\ <<\ endl;}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00039}00039\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00041}00041\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ Receipt\ box\ helpers\ (width\ =\ 70)\ -\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00042}\mbox{\hyperlink{cashier_8cpp_a9d0d1c8de233987f3d4ef25a2b431403}{00042}}\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{cashier_8cpp_a9d0d1c8de233987f3d4ef25a2b431403}{RECEIPT\_WIDTH}}\ =\ 70;}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00043}\mbox{\hyperlink{cashier_8cpp_a5d1c4de3bcdd22fde9fb926baab37172}{00043}}\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{cashier_8cpp_a5d1c4de3bcdd22fde9fb926baab37172}{RECEIPT\_CONTENT}}\ =\ \mbox{\hyperlink{cashier_8cpp_a9d0d1c8de233987f3d4ef25a2b431403}{RECEIPT\_WIDTH}}\ -\/\ 4;}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00045}\mbox{\hyperlink{cashier_8cpp_a4b6f46f3d60aea56b757b7c2928e0dc7}{00045}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{cashier_8cpp_a4b6f46f3d60aea56b757b7c2928e0dc7}{printReceiptTop}}()\ \{}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00046}00046\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}+"{}}\ <<\ string(\mbox{\hyperlink{cashier_8cpp_a9d0d1c8de233987f3d4ef25a2b431403}{RECEIPT\_WIDTH}}\ -\/\ 2,\ \textcolor{charliteral}{'-\/'})\ <<\ \textcolor{stringliteral}{"{}+"{}}\ <<\ endl;}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00047}00047\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00048}\mbox{\hyperlink{cashier_8cpp_a5f0340bfffb1ce1555a20a9d805fe413}{00048}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{cashier_8cpp_a5f0340bfffb1ce1555a20a9d805fe413}{printReceiptBottom}}()\ \{}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00049}00049\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}+"{}}\ <<\ string(\mbox{\hyperlink{cashier_8cpp_a9d0d1c8de233987f3d4ef25a2b431403}{RECEIPT\_WIDTH}}\ -\/\ 2,\ \textcolor{charliteral}{'-\/'})\ <<\ \textcolor{stringliteral}{"{}+"{}}\ <<\ endl;}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00050}00050\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00051}\mbox{\hyperlink{cashier_8cpp_ab93fa01bba9ff694722106d25a592172}{00051}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{cashier_8cpp_ab93fa01bba9ff694722106d25a592172}{printReceiptLine}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&text)\ \{}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00052}00052\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}|\ "{}}\ <<\ left\ <<\ setw(\mbox{\hyperlink{cashier_8cpp_a5d1c4de3bcdd22fde9fb926baab37172}{RECEIPT\_CONTENT}})\ <<\ text\ <<\ \textcolor{stringliteral}{"{}\ |"{}}\ <<\ endl;}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00053}00053\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00055}00055\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ Helper\ to\ truncate\ text\ to\ fit\ a\ column\ -\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00056}\mbox{\hyperlink{cashier_8cpp_a6f83743dfcf160c66be28e8ac4ac6ca2}{00056}}\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{cashier_8cpp_a6f83743dfcf160c66be28e8ac4ac6ca2}{truncate}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&s,\ \textcolor{keywordtype}{size\_t}\ width)\ \{}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00057}00057\ \ \ \ \ \textcolor{keywordflow}{if}\ (s.size()\ <=\ width)}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00058}00058\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ s;}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00059}00059\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00060}00060\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ s.substr(0,\ width\ -\/\ 3)\ +\ \textcolor{stringliteral}{"{}..."{}};\ \textcolor{comment}{//\ add\ ellipsis}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00061}00061\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00063}00063\ \ \ \ \ \textcolor{comment}{//\ Cashier\ function}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00064}\mbox{\hyperlink{cashier_8cpp_a672c36a283c3bba798c10161476a474e}{00064}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{cashier_8cpp_a672c36a283c3bba798c10161476a474e}{cashier}}()\ \{}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00066}00066\ \ \ \ \ \ \textcolor{keywordtype}{string}\ date,\ isbn,\ title;}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00067}00067\ \ \ \ \ \ \textcolor{keywordtype}{int}\ quantity;}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00068}00068\ \ \ \ \ \ \textcolor{keywordtype}{double}\ price;}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00070}00070\ \ \ \ \ \ \textcolor{comment}{//Clear\ Screen\ from\ main\ menu}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00071}00071\ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)033[2J\(\backslash\)033[1;1H"{}};}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00073}00073\ \ \ \ \ \ \textcolor{comment}{//\ Collect\ input\ first\ (prompts\ are\ simple\ console\ prompts)}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00074}00074\ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Date:\ "{}};}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00075}00075\ \ \ \ \ \ getline(cin,\ date);}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00076}00076\ }
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00077}00077\ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Quantity\ of\ Book:\ "{}};}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00078}00078\ \ \ \ \ \ \textcolor{keywordflow}{while}\ (!(cin\ >>\ quantity))\ \{}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00079}00079\ \ \ \ \ \ \ \ \ \ cin.clear();}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00080}00080\ \ \ \ \ \ \ \ \ \ cin.ignore(numeric\_limits<streamsize>::max(),\ \textcolor{charliteral}{'\(\backslash\)n'});}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00081}00081\ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Please\ enter\ a\ valid\ number\ for\ quantity:\ "{}};}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00082}00082\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00083}00083\ \ \ \ \ \ cin.ignore(numeric\_limits<streamsize>::max(),\ \textcolor{charliteral}{'\(\backslash\)n'});}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00085}00085\ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}ISBN:\ "{}};}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00086}00086\ \ \ \ \ \ getline(cin,\ isbn);}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00088}00088\ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Title:\ "{}};}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00089}00089\ \ \ \ \ \ getline(cin,\ title);}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00091}00091\ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Price:\ \$"{}};}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00092}00092\ \ \ \ \ \ \textcolor{keywordflow}{while}\ (!(cin\ >>\ price))\ \{}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00093}00093\ \ \ \ \ \ \ \ \ \ cin.clear();}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00094}00094\ \ \ \ \ \ \ \ \ \ cin.ignore(numeric\_limits<streamsize>::max(),\ \textcolor{charliteral}{'\(\backslash\)n'});}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00095}00095\ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Please\ enter\ a\ valid\ price\ (e.g.\ 12.95):\ "{}};}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00096}00096\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00097}00097\ \ \ \ \ \ cin.ignore(numeric\_limits<streamsize>::max(),\ \textcolor{charliteral}{'\(\backslash\)n'});}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00099}00099\ \ \ \ \ \ \textcolor{comment}{//\ Now\ print\ the\ nicely\ formatted\ box\ with\ all\ values}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00100}00100\ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)033[2J\(\backslash\)033[1;1H"{}};\ \textcolor{comment}{//\ clear\ the\ screen}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00101}00101\ \ \ \ \ \ \mbox{\hyperlink{cashier_8cpp_a20c242b17267396b7072fa27594b3083}{printTopBorder}}();}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00102}00102\ \ \ \ \ \ \mbox{\hyperlink{cashier_8cpp_a4513e1c48e63404165fc8f90f8d85019}{printLine}}(\textcolor{stringliteral}{"{}Serendipity\ Booksellers"{}});}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00103}00103\ \ \ \ \ \ \mbox{\hyperlink{cashier_8cpp_a4513e1c48e63404165fc8f90f8d85019}{printLine}}(\textcolor{stringliteral}{"{}Cashier\ Module"{}});}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00104}00104\ \ \ \ \ \ \mbox{\hyperlink{cashier_8cpp_a4513e1c48e63404165fc8f90f8d85019}{printLine}}(\textcolor{stringliteral}{"{}"{}});\ \textcolor{comment}{//\ blank\ line}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00106}00106\ \ \ \ \ \ \mbox{\hyperlink{cashier_8cpp_a4513e1c48e63404165fc8f90f8d85019}{printLine}}(\textcolor{stringliteral}{"{}Date:\ "{}}\ +\ date);}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00108}00108\ \ \ \ \ \ \textcolor{comment}{//\ convert\ quantity\ to\ string}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00109}00109\ \ \ \ \ \ \mbox{\hyperlink{cashier_8cpp_a4513e1c48e63404165fc8f90f8d85019}{printLine}}(\textcolor{stringliteral}{"{}Quantity\ of\ Book:\ "{}}\ +\ to\_string(quantity));}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00110}00110\ }
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00111}00111\ \ \ \ \ \ \mbox{\hyperlink{cashier_8cpp_a4513e1c48e63404165fc8f90f8d85019}{printLine}}(\textcolor{stringliteral}{"{}ISBN:\ "{}}\ +\ isbn);}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00112}00112\ \ \ \ \ \ \mbox{\hyperlink{cashier_8cpp_a4513e1c48e63404165fc8f90f8d85019}{printLine}}(\textcolor{stringliteral}{"{}Title:\ "{}}\ +\ \mbox{\hyperlink{cashier_8cpp_a6f83743dfcf160c66be28e8ac4ac6ca2}{truncate}}(title,\ \mbox{\hyperlink{cashier_8cpp_a6638ea7e5179427fcb3dfbfdb77ed470}{CONTENT\_PAD}}\ -\/\ 7));}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00113}00113\ }
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00114}00114\ \ \ \ \ \ \textcolor{comment}{//\ format\ price\ to\ two\ decimals}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00115}00115\ \ \ \ \ \ ostringstream\ oss;}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00116}00116\ \ \ \ \ \ oss\ <<\ fixed\ <<\ setprecision(2)\ <<\ price;}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00117}00117\ \ \ \ \ \ \mbox{\hyperlink{cashier_8cpp_a4513e1c48e63404165fc8f90f8d85019}{printLine}}(\textcolor{stringliteral}{"{}Price:\ \$"{}}\ +\ oss.str());}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00118}00118\ }
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00119}00119\ \ \ \ \ \ \mbox{\hyperlink{cashier_8cpp_af1e4f2c6e612e819ca21df2eda248fcc}{printBottomBorder}}();}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00120}00120\ }
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00121}00121\ \ \ \ \ \textcolor{comment}{//\ Pause\ before\ checkout}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00122}00122\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Please\ press\ Enter\ to\ checkout..."{}};}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00123}00123\ \ \ \ \ cin.ignore(numeric\_limits<streamsize>::max(),\ \textcolor{charliteral}{'\(\backslash\)n'});}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00124}00124\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)033[2J\(\backslash\)033[1;1H"{}};\ \textcolor{comment}{//\ clear\ the\ screen}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00125}00125\ }
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00126}00126\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ Calculations\ -\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00127}00127\ \ \ \ \ \textcolor{keywordtype}{float}\ subtotal\ =\ quantity\ *\ price;}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00128}00128\ \ \ \ \ \textcolor{keywordtype}{float}\ tax\ =\ subtotal\ *\ 0.06;}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00129}00129\ \ \ \ \ \textcolor{keywordtype}{float}\ total\ =\ subtotal\ +\ tax;}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00130}00130\ }
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00131}00131\ \ \ \ \ cout\ <<\ fixed\ <<\ showpoint\ <<\ setprecision(2);}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00132}00132\ }
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00133}00133\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ Receipt\ -\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00134}00134\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)033[2J\(\backslash\)033[1;1H"{}};\ \textcolor{comment}{//\ clear\ screen}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00135}00135\ \ \ \ \ \mbox{\hyperlink{cashier_8cpp_a4b6f46f3d60aea56b757b7c2928e0dc7}{printReceiptTop}}();}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00136}00136\ \ \ \ \ \mbox{\hyperlink{cashier_8cpp_ab93fa01bba9ff694722106d25a592172}{printReceiptLine}}(\textcolor{stringliteral}{"{}Serendipity\ Book\ Sellers"{}});}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00137}00137\ \ \ \ \ \mbox{\hyperlink{cashier_8cpp_ab93fa01bba9ff694722106d25a592172}{printReceiptLine}}(\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00138}00138\ \ \ \ \ \mbox{\hyperlink{cashier_8cpp_ab93fa01bba9ff694722106d25a592172}{printReceiptLine}}(\textcolor{stringliteral}{"{}Date:\ "{}}\ +\ date);}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00139}00139\ \ \ \ \ \mbox{\hyperlink{cashier_8cpp_ab93fa01bba9ff694722106d25a592172}{printReceiptLine}}(\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00140}00140\ }
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00141}00141\ \ \ \ \ \textcolor{comment}{//\ Header\ row}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00142}00142\ \ \ \ \ ostringstream\ header;}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00143}00143\ \ \ \ \ header\ <<\ left\ <<\ setw(5)\ <<\ \textcolor{stringliteral}{"{}Qty"{}}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ <<\ setw(15)\ <<\ \textcolor{stringliteral}{"{}ISBN"{}}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ <<\ setw(25)\ <<\ \textcolor{stringliteral}{"{}Title"{}}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ <<\ right\ <<\ setw(8)\ <<\ \textcolor{stringliteral}{"{}Price"{}}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ <<\ setw(10)\ <<\ \textcolor{stringliteral}{"{}Total"{}};}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00148}00148\ \ \ \ \ \mbox{\hyperlink{cashier_8cpp_ab93fa01bba9ff694722106d25a592172}{printReceiptLine}}(header.str());}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00149}00149\ }
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00150}00150\ \ \ \ \ \textcolor{comment}{//\ Horizontal\ separator}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00151}00151\ \ \ \ \ \mbox{\hyperlink{cashier_8cpp_ab93fa01bba9ff694722106d25a592172}{printReceiptLine}}(\textcolor{keywordtype}{string}(\mbox{\hyperlink{cashier_8cpp_a5d1c4de3bcdd22fde9fb926baab37172}{RECEIPT\_CONTENT}},\ \textcolor{charliteral}{'\_'}));}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00152}00152\ }
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00153}00153\ \ \ \ \ \textcolor{comment}{//\ Line\ item\ row}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00154}00154\ \ \ \ \ ostringstream\ item;}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00155}00155\ }
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00156}00156\ \ \ \ \ \textcolor{comment}{//\ format\ price\ and\ subtotal\ with\ \$\ prefix}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00157}00157\ \ \ \ \ ostringstream\ priceStream,\ subtotalStream;}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00158}00158\ \ \ \ \ priceStream\ <<\ \textcolor{stringliteral}{"{}\$"{}}\ <<\ fixed\ <<\ setprecision(2)\ <<\ price;}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00159}00159\ \ \ \ \ subtotalStream\ <<\ \textcolor{stringliteral}{"{}\$"{}}\ <<\ fixed\ <<\ setprecision(2)\ <<\ subtotal;}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00160}00160\ }
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00161}00161\ \ \ \ \ item\ <<\ left\ \ <<\ setw(5)\ \ <<\ quantity}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00162}00162\ \ \ \ \ \ <<\ setw(15)\ <<\ isbn}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00163}00163\ \ \ \ \ \ <<\ setw(25)\ <<\ \mbox{\hyperlink{cashier_8cpp_a6f83743dfcf160c66be28e8ac4ac6ca2}{truncate}}(title,\ 25)}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00164}00164\ \ \ \ \ \ <<\ right\ <<\ setw(8)\ \ <<\ priceStream.str()}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00165}00165\ \ \ \ \ \ <<\ setw(10)\ <<\ subtotalStream.str();}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00166}00166\ }
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00167}00167\ \ \ \ \ \mbox{\hyperlink{cashier_8cpp_ab93fa01bba9ff694722106d25a592172}{printReceiptLine}}(item.str());}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00168}00168\ }
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00169}00169\ \ \ \ \ \mbox{\hyperlink{cashier_8cpp_ab93fa01bba9ff694722106d25a592172}{printReceiptLine}}(\textcolor{stringliteral}{"{}"{}});\ \textcolor{comment}{//\ blank\ line\ before\ totals}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00170}00170\ }
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00171}00171\ \ \ \ \ \textcolor{comment}{//\ Totals}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00172}00172\ \ \ \ \ ostringstream\ sub,\ taxline,\ tot;}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00173}00173\ }
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00174}00174\ \ \ \ \ \textcolor{comment}{//\ labels\ on\ the\ left,\ values\ aligned\ with\ Total\ column}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00175}00175\ \ \ \ \ sub\ \ \ \ \ <<\ right\ <<\ setw(56)\ <<\ \textcolor{stringliteral}{"{}Subtotal"{}}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ setw(7)\ <<\ (\textcolor{stringliteral}{"{}\$"{}}\ +\ (ostringstream()\ <<\ fixed\ <<\ setprecision(2)\ <<\ subtotal).str());}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00177}00177\ }
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00178}00178\ \ \ \ \ taxline\ <<\ right\ <<\ setw(56)\ <<\ \textcolor{stringliteral}{"{}Tax"{}}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ <<\ setw(7)\ <<\ (\textcolor{stringliteral}{"{}\$"{}}\ +\ (ostringstream()\ <<\ fixed\ <<\ setprecision(2)\ <<\ tax).str());}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00180}00180\ }
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00181}00181\ \ \ \ \ tot\ \ \ \ \ <<\ right\ <<\ setw(56)\ <<\ \textcolor{stringliteral}{"{}Total"{}}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ <<\ setw(7)\ <<\ (\textcolor{stringliteral}{"{}\$"{}}\ +\ (ostringstream()\ <<\ fixed\ <<\ setprecision(2)\ <<\ total).str());}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00183}00183\ }
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00184}00184\ \ \ \ \ \mbox{\hyperlink{cashier_8cpp_ab93fa01bba9ff694722106d25a592172}{printReceiptLine}}(sub.str());}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00185}00185\ \ \ \ \ \mbox{\hyperlink{cashier_8cpp_ab93fa01bba9ff694722106d25a592172}{printReceiptLine}}(taxline.str());}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00186}00186\ \ \ \ \ \mbox{\hyperlink{cashier_8cpp_ab93fa01bba9ff694722106d25a592172}{printReceiptLine}}(tot.str());}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00187}00187\ \ \ \ \ \mbox{\hyperlink{cashier_8cpp_ab93fa01bba9ff694722106d25a592172}{printReceiptLine}}(\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00188}00188\ }
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00189}00189\ \ \ \ \ \textcolor{comment}{//\ Closing\ message}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00190}00190\ \ \ \ \ \mbox{\hyperlink{cashier_8cpp_ab93fa01bba9ff694722106d25a592172}{printReceiptLine}}(\textcolor{stringliteral}{"{}Thank\ You\ for\ Shopping\ at\ Serendipity!"{}});}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00191}00191\ \ \ \ \ \mbox{\hyperlink{cashier_8cpp_a5f0340bfffb1ce1555a20a9d805fe413}{printReceiptBottom}}();}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00192}00192\ }
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00193}00193\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00194}00194\ }
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00195}00195\ }
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00196}00196\ }
+\DoxyCodeLine{\Hypertarget{cashier_8cpp_source_l00197}00197\ }
+
+\end{DoxyCode}

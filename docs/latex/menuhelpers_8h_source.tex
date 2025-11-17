@@ -1,0 +1,49 @@
+\doxysection{menuhelpers.\+h}
+\hypertarget{menuhelpers_8h_source}{}\label{menuhelpers_8h_source}\mbox{\hyperlink{menuhelpers_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8h_source_l00001}00001\ \textcolor{comment}{/****************************************************************}}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8h_source_l00002}00002\ \textcolor{comment}{\ *\ CS1B\ -\/\ G3\ :\ Inventory\ Submenus\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8h_source_l00003}00003\ \textcolor{comment}{\ *\ Partner\ A\ :\ Tamar\ Figotin\ (A00328312)\ -\/\ role:\ driver\ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8h_source_l00004}00004\ \textcolor{comment}{\ *\ Partner\ B\ :\ Luke\ Leibee\ \ \ (1248406)\ -\/\ role:\ function\ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8h_source_l00005}00005\ \textcolor{comment}{\ *\ Due\ Date\ \ :\ 2025-\/09-\/07\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8h_source_l00006}00006\ \textcolor{comment}{\ *\ Purpose\ \ \ :\ Practice\ making\ a\ multi-\/file\ C++\ program\ with\ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8h_source_l00007}00007\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ menus,\ input\ checks,\ and\ a\ simple\ cashier\ slip.\ \ *}}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8h_source_l00008}00008\ \textcolor{comment}{\ *\ Build\ \ \ \ \ :\ g++\ -\/std=c++17\ -\/Wall\ -\/Wextra\ -\/o\ main\ mainmenu.cpp*}}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8h_source_l00009}00009\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ bookinfo.cpp\ cashier.cpp\ invmenu.cpp\ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8h_source_l00010}00010\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ lookUpBook.cpp\ menuhelpers.cpp\ reports.cpp\ \ \ \ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8h_source_l00011}00011\ \textcolor{comment}{\ ****************************************************************/}}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8h_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{menuhelpers_8h_source_l00013}00013\ \textcolor{preprocessor}{\#ifndef\ MENUHELPERS\_H}}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8h_source_l00014}00014\ \textcolor{preprocessor}{\#define\ MENUHELPERS\_H}}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8h_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{menuhelpers_8h_source_l00016}00016\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8h_source_l00017}00017\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8h_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{menuhelpers_8h_source_l00019}00019\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8h_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{menuhelpers_8h_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{menuhelpers_8h_source_l00027}\mbox{\hyperlink{menuhelpers_8h_a3e1f2841c198ba3c518087422856402d}{00027}}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{menuhelpers_8h_a3e1f2841c198ba3c518087422856402d}{COLUMN\_WIDTH}}\ =\ 70;}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8h_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{menuhelpers_8h_source_l00030}\mbox{\hyperlink{menuhelpers_8h_a0dad9ec941916fff24adb908d58ea370}{00030}}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{menuhelpers_8h_a0dad9ec941916fff24adb908d58ea370}{INNER\_WIDTH}}\ \ =\ \mbox{\hyperlink{menuhelpers_8h_a3e1f2841c198ba3c518087422856402d}{COLUMN\_WIDTH}}\ -\/\ 2;}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8h_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{menuhelpers_8h_source_l00033}\mbox{\hyperlink{menuhelpers_8h_ae9364a67e4fb110a94027bb73570bae6}{00033}}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{menuhelpers_8h_ae9364a67e4fb110a94027bb73570bae6}{PROMPT\_START\_LENGTH}}\ =\ 5;}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8h_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{menuhelpers_8h_source_l00040}00040\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{menuhelpers_8h_a9d7e8af417b6d543da691e9c0e2f6f9f}{clearScreen}}();}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8h_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{menuhelpers_8h_source_l00045}00045\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{menuhelpers_8h_ad441b85af974ea5d8b01fa9d3799d57e}{printBorder}}();}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8h_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{menuhelpers_8h_source_l00050}00050\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{menuhelpers_8h_ac25cab33ecdf72253aeb41ef63fc8a7a}{printEmptyLine}}();}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8h_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{menuhelpers_8h_source_l00056}00056\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{menuhelpers_8h_a9db00c867ca724cf75786320f7466861}{printCenteredLine}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&s);}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8h_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{menuhelpers_8h_source_l00063}00063\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{menuhelpers_8h_a1531d735917f0c6a50acab9ae7ba5c83}{printLeftLine}}(\textcolor{keywordtype}{int}\ indent,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&s);}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8h_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{menuhelpers_8h_source_l00071}00071\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{menuhelpers_8h_a189b6d3c2c3e6d073e9c202f1b0f8bda}{printAddBookArray}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&s,\ \textcolor{keywordtype}{int}\ i,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&value);}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8h_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{menuhelpers_8h_source_l00079}00079\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{menuhelpers_8h_a189b6d3c2c3e6d073e9c202f1b0f8bda}{printAddBookArray}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&s,\ \textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{double}\ \&valueDouble);}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8h_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{menuhelpers_8h_source_l00087}00087\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{menuhelpers_8h_a189b6d3c2c3e6d073e9c202f1b0f8bda}{printAddBookArray}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&s,\ \textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{int}\ \&valueInt);}
+\DoxyCodeLine{\Hypertarget{menuhelpers_8h_source_l00088}00088\ }
+\DoxyCodeLine{\Hypertarget{menuhelpers_8h_source_l00089}00089\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}
