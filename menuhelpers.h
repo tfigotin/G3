@@ -18,21 +18,72 @@
 
 using namespace std;
 
-// layout constants
+/**
+ * @file menuhelpers.h
+ * @brief Provides helper functions for printing formatted menus and UI layout.
+ */
+
+/** @brief Total width of menu display border. */
 const int COLUMN_WIDTH = 70;
+
+/** @brief Inner usable width (excluding border characters). */
 const int INNER_WIDTH  = COLUMN_WIDTH - 2;
+
+/** @brief Indentation where prompts begin. */
 const int PROMPT_START_LENGTH = 5;
 
-// clear screen
+/**
+ * @brief Clears the console screen.
+ *
+ * Platform-independent wrapper used throughout menu displays.
+ */
 void clearScreen();
 
-// helpers
+/**
+ * @brief Prints a full horizontal border line.
+ */
 void printBorder();
+
+/**
+ * @brief Prints an empty bordered line (blank inside).
+ */
 void printEmptyLine();
+
+/**
+ * @brief Prints a centered line of text within the menu borders.
+ * @param s The string to center and display.
+ */
 void printCenteredLine(const string &s);
+
+/**
+ * @brief Prints a left-aligned line with indentation inside the menu borders.
+ * @param indent Number of spaces before the text.
+ * @param s The text to print.
+ */
 void printLeftLine(int indent, const string &s);
+
+/**
+ * @brief Prints an indexed "add book" line for string values.
+ * @param s Label text.
+ * @param i Index number.
+ * @param value The string value to display.
+ */
 void printAddBookArray(const string &s, int i, const string &value);
+
+/**
+ * @brief Prints an indexed "add book" line for double values.
+ * @param s Label text.
+ * @param i Index number.
+ * @param valueDouble Reference to the double value to display.
+ */
 void printAddBookArray(const string &s, int i, double &valueDouble);
+
+/**
+ * @brief Prints an indexed "add book" line for integer values.
+ * @param s Label text.
+ * @param i Index number.
+ * @param valueInt Reference to the int value to display.
+ */
 void printAddBookArray(const string&s, int i, int &valueInt);
 
 #endif

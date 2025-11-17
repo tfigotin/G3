@@ -15,16 +15,46 @@
 #include <vector>
 #include "bookinfo.h"
 
-// Inventory menu function
+/**
+ * @brief Displays the inventory menu and handles user selections.
+ *
+ * This function provides the main interface for managing the inventory of books.
+ *
+ * @param inventory Reference to a vector of bookInfo objects representing
+ *                  the current inventory.
+ */
 void invMenu(std::vector<bookInfo>& inventory);
 
-// Stub functions
-//void lookUpBook();
+/**
+ * @brief Adds a new book to the inventory.
+ *
+ * @param inventory Reference to the vector of bookInfo objects where the
+ *                  new book will be added.
+ */
 void addBook(std::vector<bookInfo>& inventory);
+
+/**
+ * @brief Edits the information of an existing book in the inventory.
+ *
+ * @param inventory Reference to the vector of bookInfo objects containing
+ *                  the book to be edited.
+ */
 void editBook(std::vector<bookInfo>& inventory);
+
+/**
+ * @brief Deletes a book from the inventory.
+ *
+ * @param inventory Reference to the vector of bookInfo objects from which
+ *                  a book will be removed.
+ */
 void deleteBook(std::vector<bookInfo>& inventory);
 
-// Look Up Book
+/**
+ * @brief Searches the inventory for a book based on user input.
+ *
+ * @param inventory Reference to the vector of bookInfo objects to search through.
+ * @return The index of the found book, or -1 if not found.
+ */
 int lookUpBook(std::vector<bookInfo> &inventory);
 
 #endif
