@@ -192,7 +192,7 @@ void printAddBookMenu(vector<bookInfo> &inventory, string &addBookChoice, bookIn
 
 
 //Print Edit Book Menu
-void printEditBookMenu(vector<bookInfo> &inventory, string &editBookChoice, bookInfo &editBook)
+void printEditBookMenu(std::vector<bookInfo>&, string &editBookChoice, bookInfo &editBook)
 	{
 	 const int MENU_SIZE = 10;
     string addBookArr[MENU_SIZE] = {"Return to Inventory Menu", "Edit Book Title", "Edit ISBN", "Edit Author", "Edit Publisher", "Edit Date Added (mm/dd/yyyy)",
@@ -317,7 +317,7 @@ void invMenu(std::vector<bookInfo>& inventory)
 
 }
 
-// Function definitions
+
 int lookUpBook(vector<bookInfo>& inventory)
 {
     cout << "\n==================== Look Up Book ====================\n";

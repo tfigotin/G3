@@ -38,14 +38,18 @@ void addBook(std::vector<bookInfo>& inventory);
  *
  * @param inventory Reference to the vector of bookInfo objects containing
  *                  the book to be edited.
+ * @pre inventory must contain at least one book.
+ * @post The fields of a book in the invenotry may change.
  */
 void editBook(std::vector<bookInfo>& inventory);
 
 /**
- * @brief Deletes a book from the inventory.
+ * @brief Delete a book from the inventory.
  *
  * @param inventory Reference to the vector of bookInfo objects from which
  *                  a book will be removed.
+ * @post inventory.size() is reduced by 1.
+
  */
 void deleteBook(std::vector<bookInfo>& inventory);
 
@@ -53,7 +57,7 @@ void deleteBook(std::vector<bookInfo>& inventory);
  * @brief Searches the inventory for a book based on user input.
  *
  * @param inventory Reference to the vector of bookInfo objects to search through.
- * @return The index of the found book, or -1 if not found.
+ * @return The index of the found book, -1 if not found, or -2 if user input is empty.
  */
 int lookUpBook(std::vector<bookInfo> &inventory);
 
