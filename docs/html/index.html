@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.15.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>G4 Serendipity - Tamar Figotin &amp; Luke Leibee: Main Page</title>
+<title>G4 Serendipity - Tamar Figotin &amp; Luke Leibee: Serendipity Booksellers – Inventory &amp; POS System</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -87,10 +87,126 @@ $(function(){initNavTree('index.html','',''); });
 </div>
 </div>
 
-<div class="header">
-  <div class="headertitle"><div class="title">G4 Serendipity - Tamar Figotin &amp; Luke Leibee Documentation</div></div>
+<div><div class="header">
+  <div class="headertitle"><div class="title">Serendipity Booksellers – Inventory &amp; POS System </div></div>
 </div><!--header-->
 <div class="contents">
+<div class="textblock"><h1 class="doxsection"><a class="anchor" id="overview_sec"></a>
+Project Overview</h1>
+<p>Serendipity Booksellers is a small bookstore located in a shopping mall. The manager requested a point-of-sale (POS) software package that makes the computer function as both a cash register and an inventory database.</p>
+<p>This project is developed incrementally across multiple chapters, eventually forming a complete, multi-module C++ application.</p>
+<p>The software performs the following major tasks:</p><ul>
+<li>Calculate the total of a sale, including sales tax</li>
+<li>Subtract purchased books from the inventory database</li>
+<li>Add, change, delete, and look up books in inventory</li>
+<li>Display various inventory and sales reports</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="modules_sec"></a>
+Program Modules</h1>
+<p>The program is organized into three main modules:</p>
+<ul>
+<li><b>Cashier Module</b> <br  />
+ Acts as a cash register: collects purchases, computes totals and tax, and deducts quantities from the inventory.</li>
+<li><b>Inventory Database Module</b> <br  />
+ Stores and manages all book records. Supports:<ul>
+<li>Lookup (partial title or ISBN) <br  />
+</li>
+<li>Add new books <br  />
+</li>
+<li>Edit existing book data <br  />
+</li>
+<li>Delete books (with compaction) <br  />
+</li>
+<li>Display individual book information</li>
+</ul>
+</li>
+<li><b>Report Module</b> <br  />
+ Generates the following reports:<ul>
+<li>Complete inventory list <br  />
+</li>
+<li>Wholesale value report <br  />
+</li>
+<li>Retail value report <br  />
+</li>
+<li>Books sorted by quantity <br  />
+</li>
+<li>Books sorted by wholesale cost <br  />
+</li>
+<li>Books sorted by date added <br  />
+</li>
+</ul>
+</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="data_sec"></a>
+Book Record Structure</h1>
+<p>Each book in the inventory stores the following fields:</p><ul>
+<li>ISBN (string) <br  />
+</li>
+<li>Title <br  />
+</li>
+<li>Author <br  />
+</li>
+<li>Publisher <br  />
+</li>
+<li>Date Added <br  />
+</li>
+<li>Quantity on Hand <br  />
+</li>
+<li>Wholesale Cost <br  />
+</li>
+<li>Retail Price <br  />
+</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="g4_sec"></a>
+G4 Update — Inventory Edit &amp; Delete (This Lab)</h1>
+<p>In this milestone, you implemented:</p>
+<ul>
+<li><b>Edit Book</b> <br  />
+ Menu-driven modification of any field <br  />
+ Includes validation and optional duplicate ISBN checks <br  />
+ Cancel/Save behavior is required <br  />
+</li>
+<li><b>Delete Book</b> <br  />
+ Uses lookUpBook(...) to find a record <br  />
+ Confirms deletion <br  />
+ Removes the book and compacts the inventory <br  />
+</li>
+<li><b>Doxygen Documentation</b> <br  />
+ Added class/function comments and a main project page <br  />
+</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="behavior_sec"></a>
+Required Behaviors</h1>
+<ul>
+<li>Search is partial and case-insensitive <br  />
+</li>
+<li>Quantities ≥ 0 <br  />
+</li>
+<li>Wholesale/Retail ≥ 0.0 <br  />
+</li>
+<li>ISBN stored as string to preserve leading zeros <br  />
+</li>
+<li>Menus must support cancel without corrupting data <br  />
+</li>
+<li>No global inventory; pass containers by reference <br  />
+</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="build_sec"></a>
+Build Instructions</h1>
+<p>Build with: </p><div class="fragment"><div class="line">g++ -std=c++20 -Wall -Wextra -o main \</div>
+<div class="line">   mainmenu.cpp bookinfo.cpp <a class="code hl_function" href="cashier_8cpp.html#a672c36a283c3bba798c10161476a474e">cashier</a>.cpp \</div>
+<div class="line">   invmenu.cpp menuhelpers.cpp reports.cpp</div>
+<div class="ttc" id="acashier_8cpp_html_a672c36a283c3bba798c10161476a474e"><div class="ttname"><a href="cashier_8cpp.html#a672c36a283c3bba798c10161476a474e">cashier</a></div><div class="ttdeci">void cashier()</div><div class="ttdef"><b>Definition</b> <a href="cashier_8cpp_source.html#l00064">cashier.cpp:64</a></div></div>
+</div><!-- fragment --><p>Run: </p><div class="fragment"><div class="line">./<a class="code hl_function" href="mainmenu_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a></div>
+<div class="ttc" id="amainmenu_8cpp_html_ae66f6b31b5ad750f1fe042a706a4e3d4"><div class="ttname"><a href="mainmenu_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a></div><div class="ttdeci">int main()</div><div class="ttdef"><b>Definition</b> <a href="mainmenu_8cpp_source.html#l00082">mainmenu.cpp:82</a></div></div>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="team_sec"></a>
+Team</h1>
+<ul>
+<li>Tamar Figotin <br  />
+</li>
+<li>Luke Leibee </li>
+</ul>
+</div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"></a>
 </div><!-- contents -->
 </div><!-- doc-content -->

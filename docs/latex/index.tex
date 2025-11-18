@@ -1,0 +1,123 @@
+\chapter{Serendipity Booksellers – Inventory \& POS System }
+\hypertarget{index}{}\label{index}\index{Serendipity Booksellers – Inventory \& POS System@{Serendipity Booksellers – Inventory \& POS System}}
+\hypertarget{index_overview_sec}{}\doxysection{\texorpdfstring{Project Overview}{Project Overview}}\label{index_overview_sec}
+Serendipity Booksellers is a small bookstore located in a shopping mall. The manager requested a point-\/of-\/sale (POS) software package that makes the computer function as both a cash register and an inventory database.
+
+This project is developed incrementally across multiple chapters, eventually forming a complete, multi-\/module C++ application.
+
+The software performs the following major tasks\+:
+\begin{DoxyItemize}
+\item Calculate the total of a sale, including sales tax
+\item Subtract purchased books from the inventory database
+\item Add, change, delete, and look up books in inventory
+\item Display various inventory and sales reports
+\end{DoxyItemize}\hypertarget{index_modules_sec}{}\doxysection{\texorpdfstring{Program Modules}{Program Modules}}\label{index_modules_sec}
+The program is organized into three main modules\+:
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Cashier Module}} ~\newline
+ Acts as a cash register\+: collects purchases, computes totals and tax, and deducts quantities from the inventory.
+\item {\bfseries{Inventory Database Module}} ~\newline
+ Stores and manages all book records. Supports\+:
+\begin{DoxyItemize}
+\item Lookup (partial title or ISBN) ~\newline
+
+\item Add new books ~\newline
+
+\item Edit existing book data ~\newline
+
+\item Delete books (with compaction) ~\newline
+
+\item Display individual book information
+\end{DoxyItemize}
+\item {\bfseries{Report Module}} ~\newline
+ Generates the following reports\+:
+\begin{DoxyItemize}
+\item Complete inventory list ~\newline
+
+\item Wholesale value report ~\newline
+
+\item Retail value report ~\newline
+
+\item Books sorted by quantity ~\newline
+
+\item Books sorted by wholesale cost ~\newline
+
+\item Books sorted by date added ~\newline
+
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{index_data_sec}{}\doxysection{\texorpdfstring{Book Record Structure}{Book Record Structure}}\label{index_data_sec}
+Each book in the inventory stores the following fields\+:
+\begin{DoxyItemize}
+\item ISBN (string) ~\newline
+
+\item Title ~\newline
+
+\item Author ~\newline
+
+\item Publisher ~\newline
+
+\item Date Added ~\newline
+
+\item Quantity on Hand ~\newline
+
+\item Wholesale Cost ~\newline
+
+\item Retail Price ~\newline
+
+\end{DoxyItemize}\hypertarget{index_g4_sec}{}\doxysection{\texorpdfstring{G4 Update — Inventory Edit \& Delete (This Lab)}{G4 Update — Inventory Edit \& Delete (This Lab)}}\label{index_g4_sec}
+In this milestone, you implemented\+:
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Edit Book}} ~\newline
+ Menu-\/driven modification of any field ~\newline
+ Includes validation and optional duplicate ISBN checks ~\newline
+ Cancel/\+Save behavior is required ~\newline
+
+\item {\bfseries{Delete Book}} ~\newline
+ Uses look\+Up\+Book(...) to find a record ~\newline
+ Confirms deletion ~\newline
+ Removes the book and compacts the inventory ~\newline
+
+\item {\bfseries{Doxygen Documentation}} ~\newline
+ Added class/function comments and a main project page ~\newline
+
+\end{DoxyItemize}\hypertarget{index_behavior_sec}{}\doxysection{\texorpdfstring{Required Behaviors}{Required Behaviors}}\label{index_behavior_sec}
+
+\begin{DoxyItemize}
+\item Search is partial and case-\/insensitive ~\newline
+
+\item Quantities ≥ 0 ~\newline
+
+\item Wholesale/\+Retail ≥ 0.\+0 ~\newline
+
+\item ISBN stored as string to preserve leading zeros ~\newline
+
+\item Menus must support cancel without corrupting data ~\newline
+
+\item No global inventory; pass containers by reference ~\newline
+
+\end{DoxyItemize}\hypertarget{index_build_sec}{}\doxysection{\texorpdfstring{Build Instructions}{Build Instructions}}\label{index_build_sec}
+Build with\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{g++\ -\/std=c++20\ -\/Wall\ -\/Wextra\ -\/o\ main\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ mainmenu.cpp\ bookinfo.cpp\ \mbox{\hyperlink{cashier_8cpp_a672c36a283c3bba798c10161476a474e}{cashier}}.cpp\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ invmenu.cpp\ menuhelpers.cpp\ reports.cpp}
+
+\end{DoxyCode}
+
+
+Run\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./\mbox{\hyperlink{mainmenu_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}}}
+
+\end{DoxyCode}
+\hypertarget{index_team_sec}{}\doxysection{\texorpdfstring{Team}{Team}}\label{index_team_sec}
+
+\begin{DoxyItemize}
+\item Tamar Figotin ~\newline
+
+\item Luke Leibee 
+\end{DoxyItemize}

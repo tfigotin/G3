@@ -7,7 +7,7 @@ var invmenu_8cpp =
     [ "invMenu", "invmenu_8cpp.html#a8f80285105dee8413bc3d0ad18a356aa", null ],
     [ "lookUpBook", "invmenu_8cpp.html#abb4825ded5761da76458077702c12c84", null ],
     [ "printAddBookMenu", "invmenu_8cpp.html#a39885c974713a061a5ffe0a56c74c6d2", null ],
-    [ "printEditBookMenu", "invmenu_8cpp.html#ab094017766407327c20c683ab3b7ded8", null ],
+    [ "printEditBookMenu", "invmenu_8cpp.html#a7a141d685372c627e00cd34d55f7e70b", null ],
     [ "printInvMenu", "invmenu_8cpp.html#acd849a7ab16ac73715dfdb9dbe3c9e1a", null ],
     [ "MAX_BOOKS", "invmenu_8cpp.html#a157bab47d86f09ddd37c1a6fbec8e8a3", null ]
 ];

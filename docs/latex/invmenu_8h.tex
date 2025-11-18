@@ -26,7 +26,7 @@ void \mbox{\hyperlink{invmenu_8h_a2b56775d24d00133bda900fa4b3c2609}{add\+Book}} 
 void \mbox{\hyperlink{invmenu_8h_a4a0c7d5dfad6920cbe03d997c510efd3}{edit\+Book}} (std\+::vector$<$ \mbox{\hyperlink{classbookInfo}{book\+Info}} $>$ \&inventory)
 \begin{DoxyCompactList}\small\item\em Edits the information of an existing book in the inventory. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{invmenu_8h_aa559d1e3eeb55a7c9771ad100702e211}{delete\+Book}} (std\+::vector$<$ \mbox{\hyperlink{classbookInfo}{book\+Info}} $>$ \&inventory)
-\begin{DoxyCompactList}\small\item\em Deletes a book from the inventory. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Delete a book from the inventory. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{invmenu_8h_a958f19176d85463e3c9766a02fee4cc1}{look\+Up\+Book}} (std\+::vector$<$ \mbox{\hyperlink{classbookInfo}{book\+Info}} $>$ \&inventory)
 \begin{DoxyCompactList}\small\item\em Searches the inventory for a book based on user input. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
@@ -224,13 +224,16 @@ void delete\+Book (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperl
 
 
 
-Deletes a book from the inventory. 
+Delete a book from the inventory. 
 
 
 \begin{DoxyParams}{Parameters}
 {\em inventory} & Reference to the vector of \doxylink{classbookInfo}{book\+Info} objects from which a book will be removed. \\
 \hline
 \end{DoxyParams}
+\begin{DoxyPostcond}{Postcondition}
+inventory.\+size() is reduced by 1. 
+\end{DoxyPostcond}
 
 
 Definition at line \mbox{\hyperlink{invmenu_8cpp_source_l00797}{797}} of file \mbox{\hyperlink{invmenu_8cpp_source}{invmenu.\+cpp}}.
@@ -304,6 +307,12 @@ Edits the information of an existing book in the inventory.
 {\em inventory} & Reference to the vector of \doxylink{classbookInfo}{book\+Info} objects containing the book to be edited. \\
 \hline
 \end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+inventory must contain at least one book. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+The fields of a book in the invenotry may change. 
+\end{DoxyPostcond}
 
 
 Definition at line \mbox{\hyperlink{invmenu_8cpp_source_l00581}{581}} of file \mbox{\hyperlink{invmenu_8cpp_source}{invmenu.\+cpp}}.
@@ -345,7 +354,7 @@ Definition at line \mbox{\hyperlink{invmenu_8cpp_source_l00581}{581}} of file \m
 \DoxyCodeLine{00614\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}}
 \DoxyCodeLine{00615\ \ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{00616\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{menuhelpers_8cpp_a9d7e8af417b6d543da691e9c0e2f6f9f}{clearScreen}}();}
-\DoxyCodeLine{00617\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{invmenu_8cpp_ab094017766407327c20c683ab3b7ded8}{printEditBookMenu}}(inventory,\ editBookChoice,\ \mbox{\hyperlink{invmenu_8cpp_a4a0c7d5dfad6920cbe03d997c510efd3}{editBook}});}
+\DoxyCodeLine{00617\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{invmenu_8cpp_a7a141d685372c627e00cd34d55f7e70b}{printEditBookMenu}}(inventory,\ editBookChoice,\ \mbox{\hyperlink{invmenu_8cpp_a4a0c7d5dfad6920cbe03d997c510efd3}{editBook}});}
 \DoxyCodeLine{00618\ }
 \DoxyCodeLine{00619\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(editBookChoice\ ==\ \textcolor{stringliteral}{"{}1"{}})}
 \DoxyCodeLine{00620\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
@@ -598,5 +607,5 @@ Searches the inventory for a book based on user input.
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-The index of the found book, or -\/1 if not found. 
+The index of the found book, -\/1 if not found, or -\/2 if user input is empty. 
 \end{DoxyReturn}

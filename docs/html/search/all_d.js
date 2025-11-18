@@ -1,11 +1,11 @@
 var searchData=
 [
-  ['setauthor_0',['setAuthor',['../classbookInfo.html#a5c0ba4d255f60d1e751f1bb9e83b5daf',1,'bookInfo']]],
-  ['setbooktitle_1',['setBookTitle',['../classbookInfo.html#a3085bd67c86ca234de656c6678513af8',1,'bookInfo']]],
-  ['setdateadded_2',['setDateAdded',['../classbookInfo.html#a05d31b8c024e8c25f1c99b041199053e',1,'bookInfo']]],
-  ['setisbn_3',['setISBN',['../classbookInfo.html#ad7cb348990d45faa42e95cbea0cee069',1,'bookInfo']]],
-  ['setpublisher_4',['setPublisher',['../classbookInfo.html#af2b891b992a09c445a488c3f21a6f1aa',1,'bookInfo']]],
-  ['setqtyonhand_5',['setQtyOnHand',['../classbookInfo.html#acb859bf4521b44fc95f0e882b7ec1666',1,'bookInfo']]],
-  ['setretailvalue_6',['setRetailValue',['../classbookInfo.html#ab27402889a7841bd077e53d94ecbdd42',1,'bookInfo']]],
-  ['setwholevalue_7',['setWholeValue',['../classbookInfo.html#aa7732bd20dbfb488638cca718c74fcbb',1,'bookInfo']]]
+  ['receipt_5fcontent_0',['RECEIPT_CONTENT',['../cashier_8cpp.html#a5d1c4de3bcdd22fde9fb926baab37172',1,'cashier.cpp']]],
+  ['receipt_5fwidth_1',['RECEIPT_WIDTH',['../cashier_8cpp.html#a9d0d1c8de233987f3d4ef25a2b431403',1,'cashier.cpp']]],
+  ['record_20structure_2',['Book Record Structure',['../index.html#data_sec',1,'']]],
+  ['repmenu_3',['repMenu',['../reports_8cpp.html#add61eb9612c5e49c89ccca15b8af2801',1,'repMenu():&#160;reports.cpp'],['../reports_8h.html#add61eb9612c5e49c89ccca15b8af2801',1,'repMenu():&#160;reports.cpp']]],
+  ['reports_2ecpp_4',['reports.cpp',['../reports_8cpp.html',1,'']]],
+  ['reports_2eh_5',['reports.h',['../reports_8h.html',1,'']]],
+  ['required_20behaviors_6',['Required Behaviors',['../index.html#behavior_sec',1,'']]],
+  ['retailvalue_7',['retailValue',['../classbookInfo.html#ac12b7fec1d87c7ea23a0bb68bc6f6d3c',1,'bookInfo']]]
 ];

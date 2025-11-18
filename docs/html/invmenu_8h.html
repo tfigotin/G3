@@ -115,7 +115,7 @@ Functions</h2></td></tr>
 <tr class="memitem:a4a0c7d5dfad6920cbe03d997c510efd3" id="r_a4a0c7d5dfad6920cbe03d997c510efd3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4a0c7d5dfad6920cbe03d997c510efd3">editBook</a> (std::vector&lt; <a class="el" href="classbookInfo.html">bookInfo</a> &gt; &amp;inventory)</td></tr>
 <tr class="memdesc:a4a0c7d5dfad6920cbe03d997c510efd3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Edits the information of an existing book in the inventory.  <br /></td></tr>
 <tr class="memitem:aa559d1e3eeb55a7c9771ad100702e211" id="r_aa559d1e3eeb55a7c9771ad100702e211"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa559d1e3eeb55a7c9771ad100702e211">deleteBook</a> (std::vector&lt; <a class="el" href="classbookInfo.html">bookInfo</a> &gt; &amp;inventory)</td></tr>
-<tr class="memdesc:aa559d1e3eeb55a7c9771ad100702e211"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes a book from the inventory.  <br /></td></tr>
+<tr class="memdesc:aa559d1e3eeb55a7c9771ad100702e211"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete a book from the inventory.  <br /></td></tr>
 <tr class="memitem:a958f19176d85463e3c9766a02fee4cc1" id="r_a958f19176d85463e3c9766a02fee4cc1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a958f19176d85463e3c9766a02fee4cc1">lookUpBook</a> (std::vector&lt; <a class="el" href="classbookInfo.html">bookInfo</a> &gt; &amp;inventory)</td></tr>
 <tr class="memdesc:a958f19176d85463e3c9766a02fee4cc1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Searches the inventory for a book based on user input.  <br /></td></tr>
 </table>
@@ -333,13 +333,14 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Deletes a book from the inventory. </p>
+<p>Delete a book from the inventory. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">inventory</td><td>Reference to the vector of <a class="el" href="classbookInfo.html" title="Stores all information related to a single book in the inventory.">bookInfo</a> objects from which a book will be removed. </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section post"><dt>Postcondition</dt><dd>inventory.size() is reduced by 1. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="invmenu_8cpp_source.html#l00797">797</a> of file <a class="el" href="invmenu_8cpp_source.html">invmenu.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  798</span>{</div>
@@ -418,6 +419,8 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section pre"><dt>Precondition</dt><dd>inventory must contain at least one book. </dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>The fields of a book in the invenotry may change. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="invmenu_8cpp_source.html#l00581">581</a> of file <a class="el" href="invmenu_8cpp_source.html">invmenu.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  582</span>{</div>
@@ -455,7 +458,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  614</span>        <span class="keywordflow">do</span></div>
 <div class="line"><span class="lineno">  615</span>        {</div>
 <div class="line"><span class="lineno">  616</span>            <a class="code hl_function" href="menuhelpers_8cpp.html#a9d7e8af417b6d543da691e9c0e2f6f9f">clearScreen</a>();</div>
-<div class="line"><span class="lineno">  617</span>            <a class="code hl_function" href="invmenu_8cpp.html#ab094017766407327c20c683ab3b7ded8">printEditBookMenu</a>(inventory, editBookChoice, <a class="code hl_function" href="invmenu_8cpp.html#a4a0c7d5dfad6920cbe03d997c510efd3">editBook</a>);</div>
+<div class="line"><span class="lineno">  617</span>            <a class="code hl_function" href="invmenu_8cpp.html#a7a141d685372c627e00cd34d55f7e70b">printEditBookMenu</a>(inventory, editBookChoice, <a class="code hl_function" href="invmenu_8cpp.html#a4a0c7d5dfad6920cbe03d997c510efd3">editBook</a>);</div>
 <div class="line"><span class="lineno">  618</span> </div>
 <div class="line"><span class="lineno">  619</span>            <span class="keywordflow">if</span>(editBookChoice == <span class="stringliteral">&quot;1&quot;</span>)</div>
 <div class="line"><span class="lineno">  620</span>            {</div>
@@ -636,7 +639,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  795</span>}</div>
 <div class="ttc" id="ainvmenu_8cpp_html_a348350d38d9131811334b022ec772227"><div class="ttname"><a href="invmenu_8cpp.html#a348350d38d9131811334b022ec772227">findISBN</a></div><div class="ttdeci">int findISBN(const vector&lt; bookInfo &gt; &amp;inventory, const string &amp;isbn)</div><div class="ttdef"><b>Definition</b> <a href="invmenu_8cpp_source.html#l00026">invmenu.cpp:26</a></div></div>
 <div class="ttc" id="ainvmenu_8cpp_html_a4a0c7d5dfad6920cbe03d997c510efd3"><div class="ttname"><a href="invmenu_8cpp.html#a4a0c7d5dfad6920cbe03d997c510efd3">editBook</a></div><div class="ttdeci">void editBook(std::vector&lt; bookInfo &gt; &amp;inventory)</div><div class="ttdoc">Edits the information of an existing book in the inventory.</div><div class="ttdef"><b>Definition</b> <a href="invmenu_8cpp_source.html#l00581">invmenu.cpp:581</a></div></div>
-<div class="ttc" id="ainvmenu_8cpp_html_ab094017766407327c20c683ab3b7ded8"><div class="ttname"><a href="invmenu_8cpp.html#ab094017766407327c20c683ab3b7ded8">printEditBookMenu</a></div><div class="ttdeci">void printEditBookMenu(vector&lt; bookInfo &gt; &amp;inventory, string &amp;editBookChoice, bookInfo &amp;editBook)</div><div class="ttdef"><b>Definition</b> <a href="invmenu_8cpp_source.html#l00195">invmenu.cpp:195</a></div></div>
+<div class="ttc" id="ainvmenu_8cpp_html_a7a141d685372c627e00cd34d55f7e70b"><div class="ttname"><a href="invmenu_8cpp.html#a7a141d685372c627e00cd34d55f7e70b">printEditBookMenu</a></div><div class="ttdeci">void printEditBookMenu(std::vector&lt; bookInfo &gt; &amp;, string &amp;editBookChoice, bookInfo &amp;editBook)</div><div class="ttdef"><b>Definition</b> <a href="invmenu_8cpp_source.html#l00195">invmenu.cpp:195</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -697,7 +700,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  317</span> </div>
 <div class="line"><span class="lineno">  318</span>}</div>
 <div class="ttc" id="ainvmenu_8cpp_html_a2b56775d24d00133bda900fa4b3c2609"><div class="ttname"><a href="invmenu_8cpp.html#a2b56775d24d00133bda900fa4b3c2609">addBook</a></div><div class="ttdeci">void addBook(std::vector&lt; bookInfo &gt; &amp;inventory)</div><div class="ttdoc">Adds a new book to the inventory.</div><div class="ttdef"><b>Definition</b> <a href="invmenu_8cpp_source.html#l00420">invmenu.cpp:420</a></div></div>
-<div class="ttc" id="ainvmenu_8cpp_html_aa559d1e3eeb55a7c9771ad100702e211"><div class="ttname"><a href="invmenu_8cpp.html#aa559d1e3eeb55a7c9771ad100702e211">deleteBook</a></div><div class="ttdeci">void deleteBook(std::vector&lt; bookInfo &gt; &amp;inventory)</div><div class="ttdoc">Deletes a book from the inventory.</div><div class="ttdef"><b>Definition</b> <a href="invmenu_8cpp_source.html#l00797">invmenu.cpp:797</a></div></div>
+<div class="ttc" id="ainvmenu_8cpp_html_aa559d1e3eeb55a7c9771ad100702e211"><div class="ttname"><a href="invmenu_8cpp.html#aa559d1e3eeb55a7c9771ad100702e211">deleteBook</a></div><div class="ttdeci">void deleteBook(std::vector&lt; bookInfo &gt; &amp;inventory)</div><div class="ttdoc">Delete a book from the inventory.</div><div class="ttdef"><b>Definition</b> <a href="invmenu_8cpp_source.html#l00797">invmenu.cpp:797</a></div></div>
 <div class="ttc" id="ainvmenu_8cpp_html_acd849a7ab16ac73715dfdb9dbe3c9e1a"><div class="ttname"><a href="invmenu_8cpp.html#acd849a7ab16ac73715dfdb9dbe3c9e1a">printInvMenu</a></div><div class="ttdeci">void printInvMenu(string &amp;invChoice)</div><div class="ttdef"><b>Definition</b> <a href="invmenu_8cpp_source.html#l00036">invmenu.cpp:36</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -724,7 +727,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The index of the found book, or -1 if not found. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The index of the found book, -1 if not found, or -2 if user input is empty. </dd></dl>
 
 </div>
 </div>

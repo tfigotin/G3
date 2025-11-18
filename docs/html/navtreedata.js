@@ -25,6 +25,7 @@
 var NAVTREE =
 [
   [ "G4 Serendipity - Tamar Figotin & Luke Leibee", "index.html", [
+    [ "Serendipity Booksellers – Inventory &amp; POS System", "index.html", "index" ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],

@@ -24,7 +24,7 @@ void \mbox{\hyperlink{invmenu_8cpp_acd849a7ab16ac73715dfdb9dbe3c9e1a}{print\+Inv
 \item 
 void \mbox{\hyperlink{invmenu_8cpp_a39885c974713a061a5ffe0a56c74c6d2}{print\+Add\+Book\+Menu}} (vector$<$ \mbox{\hyperlink{classbookInfo}{book\+Info}} $>$ \&inventory, string \&add\+Book\+Choice, \mbox{\hyperlink{classbookInfo}{book\+Info}} \&new\+Book)
 \item 
-void \mbox{\hyperlink{invmenu_8cpp_ab094017766407327c20c683ab3b7ded8}{print\+Edit\+Book\+Menu}} (vector$<$ \mbox{\hyperlink{classbookInfo}{book\+Info}} $>$ \&inventory, string \&edit\+Book\+Choice, \mbox{\hyperlink{classbookInfo}{book\+Info}} \&\mbox{\hyperlink{invmenu_8cpp_a4a0c7d5dfad6920cbe03d997c510efd3}{edit\+Book}})
+void \mbox{\hyperlink{invmenu_8cpp_a7a141d685372c627e00cd34d55f7e70b}{print\+Edit\+Book\+Menu}} (std\+::vector$<$ \mbox{\hyperlink{classbookInfo}{book\+Info}} $>$ \&, string \&edit\+Book\+Choice, \mbox{\hyperlink{classbookInfo}{book\+Info}} \&\mbox{\hyperlink{invmenu_8cpp_a4a0c7d5dfad6920cbe03d997c510efd3}{edit\+Book}})
 \item 
 void \mbox{\hyperlink{invmenu_8cpp_a8f80285105dee8413bc3d0ad18a356aa}{inv\+Menu}} (std\+::vector$<$ \mbox{\hyperlink{classbookInfo}{book\+Info}} $>$ \&inventory)
 \begin{DoxyCompactList}\small\item\em Displays the inventory menu and handles user selections. \end{DoxyCompactList}\item 
@@ -35,7 +35,7 @@ void \mbox{\hyperlink{invmenu_8cpp_a2b56775d24d00133bda900fa4b3c2609}{add\+Book}
 void \mbox{\hyperlink{invmenu_8cpp_a4a0c7d5dfad6920cbe03d997c510efd3}{edit\+Book}} (std\+::vector$<$ \mbox{\hyperlink{classbookInfo}{book\+Info}} $>$ \&inventory)
 \begin{DoxyCompactList}\small\item\em Edits the information of an existing book in the inventory. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{invmenu_8cpp_aa559d1e3eeb55a7c9771ad100702e211}{delete\+Book}} (std\+::vector$<$ \mbox{\hyperlink{classbookInfo}{book\+Info}} $>$ \&inventory)
-\begin{DoxyCompactList}\small\item\em Deletes a book from the inventory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Delete a book from the inventory. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
@@ -236,13 +236,16 @@ void delete\+Book (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperl
 
 
 
-Deletes a book from the inventory. 
+Delete a book from the inventory. 
 
 
 \begin{DoxyParams}{Parameters}
 {\em inventory} & Reference to the vector of \doxylink{classbookInfo}{book\+Info} objects from which a book will be removed. \\
 \hline
 \end{DoxyParams}
+\begin{DoxyPostcond}{Postcondition}
+inventory.\+size() is reduced by 1. 
+\end{DoxyPostcond}
 
 
 Definition at line \mbox{\hyperlink{invmenu_8cpp_source_l00797}{797}} of file \mbox{\hyperlink{invmenu_8cpp_source}{invmenu.\+cpp}}.
@@ -316,6 +319,12 @@ Edits the information of an existing book in the inventory.
 {\em inventory} & Reference to the vector of \doxylink{classbookInfo}{book\+Info} objects containing the book to be edited. \\
 \hline
 \end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+inventory must contain at least one book. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+The fields of a book in the invenotry may change. 
+\end{DoxyPostcond}
 
 
 Definition at line \mbox{\hyperlink{invmenu_8cpp_source_l00581}{581}} of file \mbox{\hyperlink{invmenu_8cpp_source}{invmenu.\+cpp}}.
@@ -357,7 +366,7 @@ Definition at line \mbox{\hyperlink{invmenu_8cpp_source_l00581}{581}} of file \m
 \DoxyCodeLine{00614\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}}
 \DoxyCodeLine{00615\ \ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{00616\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{menuhelpers_8cpp_a9d7e8af417b6d543da691e9c0e2f6f9f}{clearScreen}}();}
-\DoxyCodeLine{00617\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{invmenu_8cpp_ab094017766407327c20c683ab3b7ded8}{printEditBookMenu}}(inventory,\ editBookChoice,\ \mbox{\hyperlink{invmenu_8cpp_a4a0c7d5dfad6920cbe03d997c510efd3}{editBook}});}
+\DoxyCodeLine{00617\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{invmenu_8cpp_a7a141d685372c627e00cd34d55f7e70b}{printEditBookMenu}}(inventory,\ editBookChoice,\ \mbox{\hyperlink{invmenu_8cpp_a4a0c7d5dfad6920cbe03d997c510efd3}{editBook}});}
 \DoxyCodeLine{00618\ }
 \DoxyCodeLine{00619\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(editBookChoice\ ==\ \textcolor{stringliteral}{"{}1"{}})}
 \DoxyCodeLine{00620\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
@@ -836,11 +845,11 @@ Definition at line \mbox{\hyperlink{invmenu_8cpp_source_l00095}{95}} of file \mb
 \DoxyCodeLine{00191\ \}}
 
 \end{DoxyCode}
-\Hypertarget{invmenu_8cpp_ab094017766407327c20c683ab3b7ded8}\index{invmenu.cpp@{invmenu.cpp}!printEditBookMenu@{printEditBookMenu}}
+\Hypertarget{invmenu_8cpp_a7a141d685372c627e00cd34d55f7e70b}\index{invmenu.cpp@{invmenu.cpp}!printEditBookMenu@{printEditBookMenu}}
 \index{printEditBookMenu@{printEditBookMenu}!invmenu.cpp@{invmenu.cpp}}
 \doxysubsubsection{\texorpdfstring{printEditBookMenu()}{printEditBookMenu()}}
-{\footnotesize\ttfamily \label{invmenu_8cpp_ab094017766407327c20c683ab3b7ded8} 
-void print\+Edit\+Book\+Menu (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{classbookInfo}{book\+Info}} $>$ \&}]{inventory}{, }\item[{string \&}]{edit\+Book\+Choice}{, }\item[{\mbox{\hyperlink{classbookInfo}{book\+Info}} \&}]{edit\+Book}{}\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{invmenu_8cpp_a7a141d685372c627e00cd34d55f7e70b} 
+void print\+Edit\+Book\+Menu (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classbookInfo}{book\+Info}} $>$ \&}]{}{, }\item[{string \&}]{edit\+Book\+Choice}{, }\item[{\mbox{\hyperlink{classbookInfo}{book\+Info}} \&}]{edit\+Book}{}\end{DoxyParamCaption})}
 
 
 
