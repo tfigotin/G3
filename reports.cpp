@@ -4,7 +4,7 @@
  * Partner B : Luke Leibee   (1248406) - role: function         *
  * Due Date  : 2025-09-07                                       *
  * Purpose   : Practice making a multi-file C++ program with    *
- *             menus, input checks, and a simple cashier slip.  *
+ *             menus, input checks, and a simple cashier slip. *
  ****************************************************************/
 #include "menuhelpers.h"
 #include "reports.h"
@@ -14,11 +14,12 @@
 #include <limits>
 #include <vector>
 #include <algorithm>
+#include <iomanip>
 
 using namespace std;
 
 /***************************************************************
- * Helper: draw a section header (replacing printHeader)
+ * Helper: draw a section header
  ***************************************************************/
 static void drawHeader(const string &title)
 {
@@ -30,7 +31,7 @@ static void drawHeader(const string &title)
 }
 
 /***************************************************************
- * Print Menu
+ * Print Reports Menu
  ***************************************************************/
 void printRepMenu(string &repChoice)
 {
@@ -88,7 +89,7 @@ void printRepMenu(string &repChoice)
 /***************************************************************
  * Main Reports Menu
  ***************************************************************/
-void repMenu()
+void repMenu(vector<bookInfo>& inventory)
 {
     string repChoice;
 
@@ -96,12 +97,12 @@ void repMenu()
         clearScreen();
         printRepMenu(repChoice);
 
-        if (repChoice == "1")          invListing();
-        else if (repChoice == "2")     invWholesale();
-        else if (repChoice == "3")     invRetail();
-        else if (repChoice == "4")     quantList();
-        else if (repChoice == "5")     costList();
-        else if (repChoice == "6")     ageList();
+        if (repChoice == "1")          invListing(inventory);
+        else if (repChoice == "2")     invWholesale(inventory);
+        else if (repChoice == "3")     invRetail(inventory);
+        else if (repChoice == "4")     quantList(inventory);
+        else if (repChoice == "5")     costList(inventory);
+        else if (repChoice == "6")     ageList(inventory);
         else if (repChoice == "7")     cout << "Returning...";
         else                           cout << "Invalid choice, select 1–7.\n";
 
@@ -116,7 +117,7 @@ void repMenu()
 /***************************************************************
  * 1. Inventory Listing
  ***************************************************************/
-void invListing()
+void invListing(const vector<bookInfo>& inventory)
 {
     drawHeader("Inventory Listing");
 
@@ -137,7 +138,7 @@ void invListing()
 /***************************************************************
  * 2. Wholesale Value
  ***************************************************************/
-void invWholesale()
+void invWholesale(const vector<bookInfo>& inventory)
 {
     drawHeader("Inventory Wholesale Value");
 
@@ -149,7 +150,7 @@ void invWholesale()
         displayBookInfo(book);
     }
 
-    cout << "\nTotal Wholesale Value: $" << total;
+    cout << "\nTotal Wholesale Value: $" << fixed << setprecision(2) << total;
     cout << "\n\nPress Enter to return...";
 
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -158,7 +159,7 @@ void invWholesale()
 /***************************************************************
  * 3. Retail Value
  ***************************************************************/
-void invRetail()
+void invRetail(const vector<bookInfo>& inventory)
 {
     drawHeader("Inventory Retail Value");
 
@@ -170,7 +171,7 @@ void invRetail()
         displayBookInfo(book);
     }
 
-    cout << "\nTotal Retail Value: $" << total;
+    cout << "\nTotal Retail Value: $" << fixed << setprecision(2) << total;
     cout << "\n\nPress Enter to return...";
 
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -179,7 +180,7 @@ void invRetail()
 /***************************************************************
  * 4. Quantity Listing
  ***************************************************************/
-void quantList()
+void quantList(const vector<bookInfo>& inventory)
 {
     drawHeader("Listing by Quantity");
 
@@ -200,7 +201,7 @@ void quantList()
 /***************************************************************
  * 5. Cost Listing
  ***************************************************************/
-void costList()
+void costList(const vector<bookInfo>& inventory)
 {
     drawHeader("Listing by Wholesale Cost");
 
@@ -221,7 +222,7 @@ void costList()
 /***************************************************************
  * 6. Age Listing
  ***************************************************************/
-void ageList()
+void ageList(const vector<bookInfo>& inventory)
 {
     drawHeader("Listing by Age (Oldest → Newest)");
 

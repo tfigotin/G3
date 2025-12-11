@@ -13,15 +13,37 @@
 #ifndef REPORTS_H
 #define REPORTS_H
 
-// Reports menu function
-void repMenu();
+#pragma once
 
-// Stub functions
-void invListing();
-void invWholesale();
-void invRetail();
-void quantList();
-void costList();
-void ageList();
+#include "bookinfo.h"
+#include <vector>
+#include <string>
+
+using std::vector;
+using std::string;
+
+// Reports Menu
+void printRepMenu(string &repChoice);
+
+// Main Reports Menu
+void repMenu(vector<bookInfo>& inventory);
+
+// 1. Inventory Listing
+void invListing(const vector<bookInfo>& inventory);
+
+// 2. Inventory Wholesale Value
+void invWholesale(const vector<bookInfo>& inventory);
+
+// 3. Inventory Retail Value
+void invRetail(const vector<bookInfo>& inventory);
+
+// 4. Listing by Quantity
+void quantList(const vector<bookInfo>& inventory);
+
+// 5. Listing by Cost
+void costList(const vector<bookInfo>& inventory);
+
+// 6. Listing by Age
+void ageList(const vector<bookInfo>& inventory);
 
 #endif

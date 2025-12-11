@@ -94,7 +94,7 @@ int main()
         else if (choice == "2")
             invMenu(inventory);
         else if (choice == "3")
-            repMenu();
+            repMenu(inventory);
         else if (choice == "4")
             cout << "Exiting program...\n";
         else
