@@ -119,8 +119,8 @@ void repMenu(vector<bookInfo>& inventory)
  ***************************************************************/
 void invListing(const vector<bookInfo>& inventory)
 {
-    drawHeader("Inventory Listing");
-
+    clearScreen();
+	 drawHeader("Inventory Listing");
     vector<bookInfo> temp = inventory;
 
     sort(temp.begin(), temp.end(),
@@ -140,6 +140,7 @@ void invListing(const vector<bookInfo>& inventory)
  ***************************************************************/
 void invWholesale(const vector<bookInfo>& inventory)
 {
+    clearScreen();
     drawHeader("Inventory Wholesale Value");
 
     double total = 0.0;
@@ -161,6 +162,7 @@ void invWholesale(const vector<bookInfo>& inventory)
  ***************************************************************/
 void invRetail(const vector<bookInfo>& inventory)
 {
+    clearScreen();
     drawHeader("Inventory Retail Value");
 
     double total = 0.0;
@@ -182,6 +184,7 @@ void invRetail(const vector<bookInfo>& inventory)
  ***************************************************************/
 void quantList(const vector<bookInfo>& inventory)
 {
+    clearScreen();
     drawHeader("Listing by Quantity");
 
     vector<bookInfo> temp = inventory;
@@ -203,6 +206,7 @@ void quantList(const vector<bookInfo>& inventory)
  ***************************************************************/
 void costList(const vector<bookInfo>& inventory)
 {
+    clearScreen();
     drawHeader("Listing by Wholesale Cost");
 
     vector<bookInfo> temp = inventory;
@@ -224,6 +228,7 @@ void costList(const vector<bookInfo>& inventory)
  ***************************************************************/
 void ageList(const vector<bookInfo>& inventory)
 {
+    clearScreen();
     drawHeader("Listing by Age (Oldest → Newest)");
 
     vector<bookInfo> temp = inventory;
