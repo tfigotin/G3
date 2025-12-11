@@ -15,7 +15,9 @@
 #include <iomanip>
 
 void clearScreen() {
-    cout << "\033[H\033[J";
+    // Clear entire screen (2J) AND move cursor home (H)
+    std::cout << "\033[2J\033[H";
+    std::cout.flush(); // Ensure the command executes immediately
 }
 
 void printBorder() {

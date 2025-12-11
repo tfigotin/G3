@@ -15,17 +15,30 @@
 #include <vector>
 #include <algorithm>
 #include <iomanip>
+#include <ctime>
 
 using namespace std;
 
 /***************************************************************
- * Helper: draw a section header
+ * Helper: draw a section header with current date
  ***************************************************************/
 static void drawHeader(const string &title)
 {
+	// Get current date
+    time_t now = time(0);
+    tm* ltm = localtime(&now);
+
+    int month = ltm->tm_mon + 1;   // tm_mon is 0-11
+    int day   = ltm->tm_mday;      // 1-31
+    int year  = 1900 + ltm->tm_year;
+
+    char dateStr[11];
+    snprintf(dateStr, sizeof(dateStr), "%02d/%02d/%d", month, day, year);
+
+    // Print header with date
     printBorder();
     printEmptyLine();
-    printCenteredLine(title);
+    printCenteredLine(title + " — " + string(dateStr));
     printEmptyLine();
     printBorder();
 }
@@ -128,9 +141,20 @@ void invListing(const vector<bookInfo>& inventory)
              return a.getBookTitle() < b.getBookTitle();
          });
 
-    for (const auto &book : temp)
-        displayBookInfo(book);
+ // Paginate every 20 books
+ int count = 0;
+ for (const auto &book : temp) {
+    displayBookInfo(book);  // or displayBookReport(book) if you need all fields
+    count++;
 
+    // Pause every 20 books
+    if (count % 20 == 0 && count != temp.size()) {
+        cout << "\nPress Enter to continue...";
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        clearScreen();                     // Optional: clears previous page
+        drawHeader("Inventory Listing");   // Redraw header for next page
+     }
+  }
     cout << "\nPress Enter to return...";
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
@@ -144,12 +168,47 @@ void invWholesale(const vector<bookInfo>& inventory)
     drawHeader("Inventory Wholesale Value");
 
     double total = 0.0;
+	 int count = 0;
+
+    // Print column headers
+    cout << left << setw(35) << "Title"
+         << setw(18) << "ISBN"
+         << setw(8)  << "Qty"
+         << setw(10) << "Wholesale"
+         << '\n';
+    cout << string(71, '-') << '\n';
 
     for (const auto &book : inventory)
     {
+        string title = book.getBookTitle();
+        if (title.length() > 33) title = title.substr(0, 33) + ".."; // truncate long titles
+
+        cout << left << setw(35) << title
+             << setw(18) << book.getISBN()
+             << setw(8)  << book.getQtyOnHand()
+             << setw(10) << fixed << setprecision(2) << book.getWholeValue()
+             << '\n';
+
         total += book.getWholeValue() * book.getQtyOnHand();
-        displayBookInfo(book);
+        count++;
+
+        if (count % 10 == 0 && count != inventory.size())
+        {
+            cout << "\nPress Enter to continue...";
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            clearScreen();
+            drawHeader("Inventory Wholesale Value");
+
+            // Reprint column headers on new page
+            cout << left << setw(35) << "Title"
+                 << setw(18) << "ISBN"
+                 << setw(8)  << "Qty"
+                 << setw(10) << "Wholesale"
+                 << '\n';
+            cout << string(71, '-') << '\n';
+        }
     }
+
 
     cout << "\nTotal Wholesale Value: $" << fixed << setprecision(2) << total;
     cout << "\n\nPress Enter to return...";
@@ -166,12 +225,48 @@ void invRetail(const vector<bookInfo>& inventory)
     drawHeader("Inventory Retail Value");
 
     double total = 0.0;
+    int count = 0;
+
+    // Print column headers
+    cout << left << setw(35) << "Title"
+         << setw(18) << "ISBN"
+         << setw(8)  << "Qty"
+         << setw(10) << "Retail"
+         << '\n';
+    cout << string(71, '-') << '\n';
 
     for (const auto &book : inventory)
     {
+        string title = book.getBookTitle();
+        if (title.length() > 33) title = title.substr(0, 33) + ".."; // truncate long titles
+
+        cout << left << setw(35) << title
+             << setw(18) << book.getISBN()
+             << setw(8)  << book.getQtyOnHand()
+             << setw(10) << fixed << setprecision(2) << book.getRetailValue()
+             << '\n';
+
         total += book.getRetailValue() * book.getQtyOnHand();
-        displayBookInfo(book);
+        count++;
+
+        // Pause every 10 books
+        if (count % 10 == 0 && count != inventory.size())
+        {
+            cout << "\nPress Enter to continue...";
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            clearScreen();
+            drawHeader("Inventory Retail Value");
+
+            // Reprint column headers for new page
+            cout << left << setw(35) << "Title"
+                 << setw(18) << "ISBN"
+                 << setw(8)  << "Qty"
+                 << setw(10) << "Retail"
+                 << '\n';
+            cout << string(71, '-') << '\n';
+        }
     }
+
 
     cout << "\nTotal Retail Value: $" << fixed << setprecision(2) << total;
     cout << "\n\nPress Enter to return...";

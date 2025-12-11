@@ -26,7 +26,7 @@ vector<bookInfo> inventory;
 // Resulting choice returned in 'choice'.
 void printMainMenu(string &choice)
 {
-    printBorder();
+	 printBorder();
     printEmptyLine();
     printCenteredLine("Serendipity Booksellers");
     printCenteredLine("Main Menu");
@@ -85,6 +85,9 @@ int main()
 {
     string choice;
 	 vector<bookInfo> inventory;
+
+	 clearScreen();
+
     do {
         clearScreen();
         printMainMenu(choice);
