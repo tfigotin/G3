@@ -19,6 +19,8 @@
 #include <limits>
 using namespace std;
 
+// GLOBAL inventory accessible from reports.cpp, invmenu.cpp, etc.
+vector<bookInfo> inventory;
 
 // Print menu, read input (user types), then overwrite the prompt line so right '*' aligns.
 // Resulting choice returned in 'choice'.
