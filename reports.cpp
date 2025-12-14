@@ -9,6 +9,7 @@
 #include "menuhelpers.h"
 #include "reports.h"
 #include "bookinfo.h"
+#include "inventoryList.h"
 #include <iostream>
 #include <string>
 #include <limits>
@@ -16,8 +17,22 @@
 #include <algorithm>
 #include <iomanip>
 #include <ctime>
+#include <sstream>
 
 using namespace std;
+
+
+//helper to change to vector
+static vector<bookNode*> toVector(const InventoryList& inventory)
+{
+    vector<bookNode*> v;
+    v.reserve(inventory.size());
+
+    for (bookNode* cur = inventory.getHead(); cur; cur = cur->next)
+        v.push_back(cur);
+
+    return v;
+}
 
 /***************************************************************
  * Helper: draw a section header with current date
@@ -32,8 +47,14 @@ static void drawHeader(const string &title)
     int day   = ltm->tm_mday;      // 1-31
     int year  = 1900 + ltm->tm_year;
 
-    char dateStr[11];
-    snprintf(dateStr, sizeof(dateStr), "%02d/%02d/%d", month, day, year);
+    //char dateStr[11];
+    //snprintf(dateStr, sizeof(dateStr), "%02d/%02d/%d", month, day, year);
+
+	 ostringstream oss;
+	 oss << setfill('0') << setw(2) << month << '/'
+        << setw(2) << day << '/'
+        << year;
+    string dateStr = oss.str();
 
     // Print header with date
     printBorder();
@@ -102,7 +123,7 @@ void printRepMenu(string &repChoice)
 /***************************************************************
  * Main Reports Menu
  ***************************************************************/
-void repMenu(vector<bookInfo>& inventory)
+void repMenu(InventoryList& inventory)
 {
     string repChoice;
 
@@ -130,25 +151,26 @@ void repMenu(vector<bookInfo>& inventory)
 /***************************************************************
  * 1. Inventory Listing
  ***************************************************************/
-void invListing(const vector<bookInfo>& inventory)
+void invListing(InventoryList& inventory)
 {
     clearScreen();
 	 drawHeader("Inventory Listing");
-    vector<bookInfo> temp = inventory;
+
+    auto temp = toVector(inventory);
 
     sort(temp.begin(), temp.end(),
-         [](const bookInfo& a, const bookInfo& b) {
-             return a.getBookTitle() < b.getBookTitle();
+         [](const bookNode* a, const bookNode* b) {
+             return a->book.getBookTitle() < b->book.getBookTitle();
          });
 
  // Paginate every 20 books
  int count = 0;
- for (const auto &book : temp) {
-    displayBookInfo(book);  // or displayBookReport(book) if you need all fields
+ for (const auto* node : temp) {
+    displayBookInfo(node->book);  // or displayBookReport(book) if you need all fields
     count++;
 
     // Pause every 20 books
-    if (count % 20 == 0 && count != temp.size()) {
+    if (count % 20 == 0 && count != static_cast<int>(temp.size())) {
         cout << "\nPress Enter to continue...";
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         clearScreen();                     // Optional: clears previous page
@@ -162,10 +184,12 @@ void invListing(const vector<bookInfo>& inventory)
 /***************************************************************
  * 2. Wholesale Value
  ***************************************************************/
-void invWholesale(const vector<bookInfo>& inventory)
+void invWholesale(InventoryList& inventory)
 {
     clearScreen();
     drawHeader("Inventory Wholesale Value");
+
+	 auto temp = toVector(inventory);
 
     double total = 0.0;
 	 int count = 0;
@@ -178,8 +202,10 @@ void invWholesale(const vector<bookInfo>& inventory)
          << '\n';
     cout << string(71, '-') << '\n';
 
-    for (const auto &book : inventory)
+    for (const auto* node : temp)
     {
+		  const bookInfo& book = node->book;
+
         string title = book.getBookTitle();
         if (title.length() > 33) title = title.substr(0, 33) + ".."; // truncate long titles
 
@@ -219,10 +245,12 @@ void invWholesale(const vector<bookInfo>& inventory)
 /***************************************************************
  * 3. Retail Value
  ***************************************************************/
-void invRetail(const vector<bookInfo>& inventory)
+void invRetail(InventoryList& inventory)
 {
     clearScreen();
     drawHeader("Inventory Retail Value");
+
+	 auto temp = toVector(inventory);
 
     double total = 0.0;
     int count = 0;
@@ -235,8 +263,10 @@ void invRetail(const vector<bookInfo>& inventory)
          << '\n';
     cout << string(71, '-') << '\n';
 
-    for (const auto &book : inventory)
+    for (const auto* node : temp)
     {
+		  const bookInfo& book = node->book;
+
         string title = book.getBookTitle();
         if (title.length() > 33) title = title.substr(0, 33) + ".."; // truncate long titles
 
@@ -277,20 +307,20 @@ void invRetail(const vector<bookInfo>& inventory)
 /***************************************************************
  * 4. Quantity Listing
  ***************************************************************/
-void quantList(const vector<bookInfo>& inventory)
+void quantList(InventoryList& inventory)
 {
     clearScreen();
     drawHeader("Listing by Quantity");
 
-    vector<bookInfo> temp = inventory;
+	 auto temp = toVector(inventory);
 
     sort(temp.begin(), temp.end(),
-         [](const bookInfo &a, const bookInfo &b) {
-             return a.getQtyOnHand() > b.getQtyOnHand();
+         [](const bookNode* a, const bookNode* b) {
+             return a->book.getQtyOnHand() > b->book.getQtyOnHand();
          });
 
-    for (const auto &book : temp)
-        displayBookInfo(book);
+    for (const auto* node : temp)
+        displayBookInfo(node->book);
 
     cout << "\nPress Enter to return...";
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -299,20 +329,20 @@ void quantList(const vector<bookInfo>& inventory)
 /***************************************************************
  * 5. Cost Listing
  ***************************************************************/
-void costList(const vector<bookInfo>& inventory)
+void costList(InventoryList& inventory)
 {
     clearScreen();
     drawHeader("Listing by Wholesale Cost");
 
-    vector<bookInfo> temp = inventory;
+    auto temp = toVector(inventory);
 
     sort(temp.begin(), temp.end(),
-         [](const bookInfo &a, const bookInfo &b) {
-             return a.getWholeValue() > b.getWholeValue();
+         [](const bookNode* a, const bookNode* b) {
+             return a->book.getWholeValue() > b->book.getWholeValue();
          });
 
-    for (const auto &book : temp)
-        displayBookInfo(book);
+    for (const auto* node : temp)
+        displayBookInfo(node->book);
 
     cout << "\nPress Enter to return...";
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -321,20 +351,20 @@ void costList(const vector<bookInfo>& inventory)
 /***************************************************************
  * 6. Age Listing
  ***************************************************************/
-void ageList(const vector<bookInfo>& inventory)
+void ageList(InventoryList& inventory)
 {
     clearScreen();
     drawHeader("Listing by Age (Oldest → Newest)");
 
-    vector<bookInfo> temp = inventory;
+    auto temp = toVector(inventory);
 
     sort(temp.begin(), temp.end(),
-         [](const bookInfo &a, const bookInfo &b) {
-             return a.getDateAdded() < b.getDateAdded();
+         [](const bookNode* a, const bookNode* b) {
+             return a->book.getDateAdded() < b->book.getDateAdded();
          });
 
-    for (const auto &book : temp)
-        displayBookInfo(book);
+    for (const auto* node : temp)
+        displayBookInfo(node->book);
 
     cout << "\nPress Enter to return...";
     cin.ignore(numeric_limits<streamsize>::max(), '\n');

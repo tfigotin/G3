@@ -14,6 +14,7 @@
 using namespace std;
 
 #include "bookinfo.h"
+#include "inventoryList.h"
 
 
 /******************** Default Constructor ********************/
@@ -39,6 +40,17 @@ bookInfo::bookInfo(string t, string i, string a, string p,  string d,
     qtyOnHand = q;
     wholeValue = w;
     retailValue = r;
+}
+
+/******************** Operator Overload ********************/
+bool bookInfo::operator<(const bookInfo& rhs) const
+{
+    switch (InventoryList::sortCode)
+    {
+        case 0: return bookTitle < rhs.bookTitle;
+        case 1: return isbn < rhs.isbn;
+        default: return bookTitle < rhs.bookTitle;
+    }
 }
 
 void displayBookInfo(const bookInfo &book)

@@ -12,7 +12,7 @@
 #ifndef INVMENU_H
 #define INVMENU_H
 
-#include <vector>
+#include "inventoryList.h"
 #include "bookinfo.h"
 
 /**
@@ -20,46 +20,49 @@
  *
  * This function provides the main interface for managing the inventory of books.
  *
- * @param inventory Reference to a vector of bookInfo objects representing
+ * @param inventory Reference to an InventoryList of bookInfo objects representing
  *                  the current inventory.
  */
-void invMenu(std::vector<bookInfo>& inventory);
+void invMenu(InventoryList& inventory);
 
 /**
  * @brief Adds a new book to the inventory.
  *
- * @param inventory Reference to the vector of bookInfo objects where the
+ * @param inventory Reference to the linked list of bookInfo objects where the
  *                  new book will be added.
  */
-void addBook(std::vector<bookInfo>& inventory);
+void addBook(InventoryList& inventory);
 
 /**
  * @brief Edits the information of an existing book in the inventory.
  *
- * @param inventory Reference to the vector of bookInfo objects containing
+ * @param inventory Reference to the InventoryList of bookInfo objects containing
  *                  the book to be edited.
  * @pre inventory must contain at least one book.
  * @post The fields of a book in the invenotry may change.
  */
-void editBook(std::vector<bookInfo>& inventory);
+void editBook(InventoryList& inventory);
 
 /**
  * @brief Delete a book from the inventory.
  *
- * @param inventory Reference to the vector of bookInfo objects from which
+ * @param inventory Reference to the InventoryList of bookInfo objects from which
  *                  a book will be removed.
  * @post inventory.size() is reduced by 1.
 
  */
-void deleteBook(std::vector<bookInfo>& inventory);
+void deleteBook(InventoryList& inventory);
 
 /**
  * @brief Searches the inventory for a book based on user input.
  *
- * @param inventory Reference to the vector of bookInfo objects to search through.
+ * @param inventory Reference to the InventoryList of bookInfo objects to search through.
  * @return The index of the found book, -1 if not found, or -2 if user input is empty.
  */
-int lookUpBook(std::vector<bookInfo> &inventory);
+bookNode* lookUpBook(InventoryList& inventory);
+
+// Overloaded lookUpBook for editBook, detects ENTER cancel
+bookNode* lookUpBook(InventoryList& inventory, bool& userCanceled);
 
 #endif
 

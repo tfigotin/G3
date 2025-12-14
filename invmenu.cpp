@@ -11,6 +11,7 @@
  ****************************************************************/
 
 #include "menuhelpers.h"
+#include "inventoryList.h"
 #include "invmenu.h"
 #include "bookinfo.h"
 #include <iostream>
@@ -18,21 +19,11 @@
 #include <limits>
 #include <algorithm>
 #include <iomanip>
+#include <vector>
 using namespace std;
 
-const int MAX_BOOKS = 20;
+//const int MAX_BOOKS = 20;
 
-//search inventory for ISBN
-int findISBN(const vector<bookInfo>& inventory, const string& isbn) {
-	for(size_t i = 0; i < inventory.size(); i++) {
-		if (inventory[i].getISBN() == isbn)
-			return i;
-	}
-	return -1;
-}
-
-// Print menu, read input (user types), then overwrite the prompt line so right '*' aligns.
-// Resulting choice returned in 'choice'.
 void printInvMenu(string &invChoice)
 {
     printBorder();
@@ -92,7 +83,7 @@ void printInvMenu(string &invChoice)
 
 
 //Print AddBookMenu
-void printAddBookMenu(vector<bookInfo> &inventory, string &addBookChoice, bookInfo &newBook)
+void printAddBookMenu(InventoryList& inventory, string &addBookChoice, bookInfo &newBook)
 	{
 	 const int MENU_SIZE = 10;
     string addBookArr[MENU_SIZE] = {"Return to Inventory Menu", "Enter Book Title", "Enter ISBN", "Enter Author", "Enter Publisher", "Enter Date Added (mm/dd/yyyy)",
@@ -107,7 +98,7 @@ void printAddBookMenu(vector<bookInfo> &inventory, string &addBookChoice, bookIn
 	 cout << "*";
 
 	 cout << right
-	 		<< setw(42) << "DATABASE SIZE: " << setw(2) << MAX_BOOKS - inventory.size() << " CURRENT BOOK COUNT: " << setw(2) << inventory.size() << " *" << endl
+	 		<< setw(42) << "DATABASE SIZE: " << setw(2) << inventory.size() << " CURRENT BOOK COUNT: " << setw(2) << inventory.size() << " *" << endl
 	 		<< left;
 
     printEmptyLine();
@@ -192,7 +183,7 @@ void printAddBookMenu(vector<bookInfo> &inventory, string &addBookChoice, bookIn
 
 
 //Print Edit Book Menu
-void printEditBookMenu(std::vector<bookInfo>&, string &editBookChoice, bookInfo &editBook)
+void printEditBookMenu(InventoryList& inventory, string &editBookChoice, bookInfo &editBook)
 	{
 	 const int MENU_SIZE = 10;
     string addBookArr[MENU_SIZE] = {"Return to Inventory Menu", "Edit Book Title", "Edit ISBN", "Edit Author", "Edit Publisher", "Edit Date Added (mm/dd/yyyy)",
@@ -284,7 +275,7 @@ void printEditBookMenu(std::vector<bookInfo>&, string &editBookChoice, bookInfo 
     printBorder();
 }
 
-void invMenu(std::vector<bookInfo>& inventory)
+void invMenu(InventoryList& inventory)
 {
     string invChoice;
     do {
@@ -292,9 +283,9 @@ void invMenu(std::vector<bookInfo>& inventory)
         printInvMenu(invChoice);
 
         if (invChoice == "1") {
-				int index = lookUpBook(inventory);
-				if (index != -1)
-        		cout << "\n(Book index " << index << " selected.)\n";
+				bookNode* node = lookUpBook(inventory);
+				if (node != NULL)
+        		cout << "\n(Book index " << node << " selected.)\n";
 		  }
 		  else if (invChoice == "2")
      	      addBook(inventory);
@@ -318,39 +309,52 @@ void invMenu(std::vector<bookInfo>& inventory)
 }
 
 
-int lookUpBook(vector<bookInfo>& inventory)
+bookNode* lookUpBook(InventoryList& inventory)
 {
     cout << "\n==================== Look Up Book ====================\n";
 
-    if (inventory.empty())
+    if (!inventory.getHead())
     {
         cout << "Inventory is empty. Nothing to look up.\n";
-        return -1;
+        return NULL;
     }
 
     // Prompt user for search term
     cout << "Enter book title or ISBN (partial, case-insensitive)\n";
     cout << "Or press ENTER to cancel.\n> ";
 
-    string search;
-    getline(cin, search);
+    string key;
+    getline(cin, key);
 
-    if (search.empty())
+    if (key.empty())
     {
         cout << "Returning to Inventory Menu...\n";
-        return -2; //return -2 if user enters nothing
+  		  return NULL;
     }
 
-    // Convert input to lowercase for comparison
-    auto toLower = [](string s) {
-        transform(s.begin(), s.end(), s.begin(), ::tolower);
-        return s;
-    };
+	 transform(key.begin(), key.end(), key.begin(), ::tolower);
 
-    string key = toLower(search);
-    vector<int> matches;
+	 vector<bookNode*> matches;
 
-    // Search through all books
+    // Traverse linked list
+    for (bookNode* curr = inventory.getHead(); curr; curr = curr->next)
+    {
+        string title = curr->book.getBookTitle();
+        string isbn  = curr->book.getISBN();
+
+        transform(title.begin(), title.end(),
+                  title.begin(), ::tolower);
+        transform(isbn.begin(), isbn.end(),
+                  isbn.begin(), ::tolower);
+
+        if (title.find(key) != string::npos ||
+            isbn.find(key)  != string::npos)
+        {
+            matches.push_back(curr);
+        }
+    }
+
+    /* Search through all books
     for (size_t i = 0; i < inventory.size(); ++i)
     {
         string title = toLower(inventory[i].getBookTitle());
@@ -361,26 +365,27 @@ int lookUpBook(vector<bookInfo>& inventory)
             matches.push_back(i);
         }
     }
+	 */
 
     // Handle no matches
     if (matches.empty())
     {
-        cout << "\nNo matches found for \"" << search << "\".\n";
-        return -1;
+        cout << "\nNo matches found for \"" << key << "\".\n";
+        return NULL;
     }
 
     // Display results
     cout << "\nMatches found:\n";
     cout << "------------------------------------------------------\n";
-    for (size_t i = 0; i < matches.size(); ++i) //compare unsigned to unsigned
+    for (size_t i = 0; i < matches.size(); i++) //compare unsigned to unsigned
     {
-        const bookInfo& b = inventory[matches[i]];
+        //const bookInfo& b = inventory[matches[i]];
         cout << setw(2) << (i + 1) << ") "
-             << b.getBookTitle() << " — "
-             << b.getAuthor() << " — "
-             << b.getISBN()
-             << " — Qty: " << b.getQtyOnHand()
-             << " — $" << fixed << setprecision(2) << b.getRetailValue() << '\n';
+             << matches[i]->book.getBookTitle() << " — "
+             << matches[i]->book.getAuthor() << " — "
+             << matches[i]->book.getISBN()
+             << " — Qty: " << matches[i]->book.getQtyOnHand()
+             << " — $" << fixed << setprecision(2) << matches[i]->book.getRetailValue() << '\n';
     }
 
     // Let user choose one
@@ -400,15 +405,15 @@ int lookUpBook(vector<bookInfo>& inventory)
         if (choice == 0)
         {
             cout << "Canceled.\n";
-            return -1;
+            return NULL;
         }
                   //compare unsigned ints
-        else if (choice > 0 && static_cast<size_t>(choice) <= matches.size())
+        else if (choice >= 1 && choice <= (int)matches.size())
         {
-				int selectedIndex = matches[choice - 1];
+				//int selectedIndex = matches[choice - 1];
             cout << "\n";
-            displayBookInfo(inventory[selectedIndex]);
-            return selectedIndex;
+            //displayBookInfo(node->book);
+            return matches[choice-1];
 		  }
         else
         {
@@ -417,13 +422,105 @@ int lookUpBook(vector<bookInfo>& inventory)
     }
 }
 
-void addBook(std::vector<bookInfo>& inventory)
+//Overload lookUpBook for userCanceled input
+bookNode* lookUpBook(InventoryList& inventory, bool& userCanceled)
+{
+    userCanceled = false;  // default
+
+    cout << "\n==================== Look Up Book ====================\n";
+
+    if (!inventory.getHead())
+    {
+        cout << "Inventory is empty. Nothing to look up.\n";
+        return NULL;
+    }
+
+    // Prompt the user
+    cout << "Enter book title or ISBN (partial, case-insensitive)\n";
+    cout << "Or press ENTER to cancel.\n> ";
+
+    string key;
+    getline(cin, key);
+
+    if (key.empty())
+    {
+        userCanceled = true;  // user pressed ENTER
+        return NULL;
+    }
+
+    vector<bookNode*> matches;
+
+    for (bookNode* curr = inventory.getHead(); curr; curr = curr->next)
+    {
+        string title = curr->book.getBookTitle();
+        string isbn  = curr->book.getISBN();
+
+        transform(title.begin(), title.end(), title.begin(), ::tolower);
+        transform(isbn.begin(), isbn.end(), isbn.begin(), ::tolower);
+
+        string lowerKey = key;
+        transform(lowerKey.begin(), lowerKey.end(), lowerKey.begin(), ::tolower);
+
+        if (title.find(lowerKey) != string::npos || isbn.find(lowerKey) != string::npos)
+        {
+            matches.push_back(curr);
+        }
+    }
+
+    if (matches.empty())
+    {
+        cout << "\nNo matches found for \"" << key << "\".\n";
+        return NULL;
+    }
+
+    cout << "\nMatches found:\n";
+    cout << "------------------------------------------------------\n";
+    for (size_t i = 0; i < matches.size(); i++)
+    {
+        cout << setw(2) << (i + 1) << ") "
+             << matches[i]->book.getBookTitle() << " — "
+             << matches[i]->book.getAuthor() << " — "
+             << matches[i]->book.getISBN()
+             << " — Qty: " << matches[i]->book.getQtyOnHand()
+             << " — $" << fixed << setprecision(2) << matches[i]->book.getRetailValue() << '\n';
+    }
+
+    int choice;
+    while (true)
+    {
+        cout << "\nSelect # to view details, or 0 to cancel: ";
+        if (!(cin >> choice))
+        {
+            cin.clear();
+            cin.ignore(100, '\n');
+            cout << "Invalid input. Enter a number.\n";
+            continue;
+        }
+        cin.ignore(100, '\n');
+
+        if (choice == 0)
+        {
+            userCanceled = true;
+            return NULL;
+        }
+        else if (choice >= 1 && choice <= (int)matches.size())
+        {
+            return matches[choice-1];
+        }
+        else
+        {
+            cout << "Invalid selection. Try again.\n";
+        }
+    }
+}
+
+void addBook(InventoryList& inventory)
 {
 	string addBookChoice;
 	bookInfo newBook;
 	bool unsavedChanges = false;
 
-	if (inventory.size() >= MAX_BOOKS)
+	/*if (inventory.size() >= MAX_BOOKS)
 	{
    	cout << "\n**************************************************\n";
       cout << "*           Inventory Database is FULL!          *\n";
@@ -431,6 +528,7 @@ void addBook(std::vector<bookInfo>& inventory)
       cout << "**************************************************\n\n";
    	return;
 	}
+	*/
 
 	do {
 		clearScreen();
@@ -440,7 +538,7 @@ void addBook(std::vector<bookInfo>& inventory)
 		{
     		string title;
    		cout << "Enter book title: ";
-   		getline(cin, title);
+   		getline(cin >> ws, title);
     		newBook.setBookTitle(title);
 			unsavedChanges = true;
 		}
@@ -448,7 +546,7 @@ void addBook(std::vector<bookInfo>& inventory)
 		{
       	string isbn;
          cout << "Enter ISBN: ";
-         getline(cin, isbn);
+         getline(cin >> ws, isbn);
          newBook.setISBN(isbn);
 			unsavedChanges = true;
 		}
@@ -456,7 +554,7 @@ void addBook(std::vector<bookInfo>& inventory)
 		{
       	string author;
          cout << "Enter Author: ";
-         getline(cin, author);
+         getline(cin >> ws, author);
          newBook.setAuthor(author);
 			unsavedChanges = true;
 		}
@@ -464,7 +562,7 @@ void addBook(std::vector<bookInfo>& inventory)
 		{
       	string publisher;
          cout << "Enter Publisher: ";
-         getline(cin, publisher);
+         getline(cin >> ws, publisher);
          newBook.setPublisher(publisher);
 			unsavedChanges = true;
 		}
@@ -472,24 +570,43 @@ void addBook(std::vector<bookInfo>& inventory)
 		{
 			string dateAdded;
 			cout << "Enter Date Added (mm/dd/yyyy): ";
-			getline(cin, dateAdded);
+			getline(cin >> ws, dateAdded);
 			newBook.setDateAdded(dateAdded);
 			unsavedChanges = true;
 		}
 		else if (addBookChoice == "6")
 		{
 			int qty;
-			cout << "Enter Quantity on Hand: ";
-			cin >> qty;
+
+			do {
+				cout << "Enter Quantity on Hand: ";
+				if (!(cin >> qty) || qty < 0)
+				{
+					cin.clear();
+					cin.ignore(10000, '\n');
+					cout << "Invalid input.";
+				}
+			} while (!cin || qty < 0);
+
 			cin.ignore(10000, '\n');
+
 			newBook.setQtyOnHand(qty);
 			unsavedChanges = true;
 		}
 		else if (addBookChoice == "7")
 		{
 			double wholeValue;
-			cout << "Enter Wholesale Cost: ";
-			cin >> wholeValue;
+
+			do{
+				cout << "Enter Wholesale Cost: ";
+				if (!(cin >> wholeValue) || wholeValue < 0)
+				{
+					cin.clear();
+					cin.ignore(10000, '\n');
+					cout << "Invalid input.";
+				}
+			} while (!cin || wholeValue < 0);
+
 			cin.ignore(10000, '\n');
 			newBook.setWholeValue(wholeValue);
 			unsavedChanges = true;
@@ -497,8 +614,17 @@ void addBook(std::vector<bookInfo>& inventory)
 		else if (addBookChoice == "8")
 		{
 			double retail;
-			cout << "Enter Retail Price: ";
-			cin >> retail;
+
+			do{
+				cout << "Enter Retail Price: ";
+				if (!(cin >> retail) || retail < 0)
+				{
+					cin.clear();
+					cin.ignore(10000, '\n');
+					cout << "Invalid input.";
+				}
+			} while (!cin || retail < 0);
+
 			cin.ignore(10000, '\n');
 			newBook.setRetailValue(retail);
 			unsavedChanges = true;
@@ -506,12 +632,14 @@ void addBook(std::vector<bookInfo>& inventory)
 		else if (addBookChoice == "9")
 		{
 			cout << "Saving...\n";
-			inventory.push_back(newBook);
+			inventory.insert(newBook);
 			cout << "Book successfully added to inventory!\n";
 			unsavedChanges = false;
 			newBook = bookInfo(); // go back to default values
+			addBookChoice = "";
+			//cin.get();
 
-			// Check if inventory just reached MAX_BOOKS
+			/* Check if inventory just reached MAX_BOOKS
             if (inventory.size() >= MAX_BOOKS) {
                 cout << "\n**************************************************\n";
                 cout << "*           Inventory Database is FULL!          *\n";
@@ -519,6 +647,7 @@ void addBook(std::vector<bookInfo>& inventory)
                 cout << "**************************************************\n\n";
                 break; // exit addBook() and go back to invMenu()
             }
+			*/
 
 		}
 		else if (addBookChoice == "0")
@@ -528,7 +657,7 @@ void addBook(std::vector<bookInfo>& inventory)
 				char confirm;
 				cout << "You have unsaved changes. Do you wish to proceed? (Y/N)";
 				cin >> confirm;
-				cin.ignore();
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
 				if(toupper(confirm) == 'Y')
 				{
@@ -556,30 +685,13 @@ void addBook(std::vector<bookInfo>& inventory)
 			cin.get();
 		}
 
-    } while (addBookChoice != "0" && inventory.size() < MAX_BOOKS);
+    } while (addBookChoice != "0");
 
-	while(inventory.size() >= MAX_BOOKS && addBookChoice != "0")
-	{
-		clearScreen();
-      printAddBookMenu(inventory, addBookChoice, newBook);
-
-		if(addBookChoice == "0")
-		{
-			cout << "Returning To Inventory Menu...";
-		}
-		else
-		{
-		cout << "\n**************************************************\n";
-      cout << "*           Inventory Database is FULL!          *\n";
-      cout << "*    You cannot add any more books to the store. *\n";
-      cout << "**************************************************\n\n";
-		cin.get();
-		}
-	}
 }
 
-void editBook(std::vector<bookInfo>& inventory)
+void editBook(InventoryList& inventory)
 {
+
 	string editBookChoice;
 	bool unsavedChanges = false;
 	bool editing = true;
@@ -588,8 +700,13 @@ void editBook(std::vector<bookInfo>& inventory)
 
 	while(editing)
 	{
-		int idx = lookUpBook(inventory);
-		if (idx == -1)
+		bool userCanceled = false;
+		bookNode* node = lookUpBook(inventory, userCanceled);
+
+		if(userCanceled)
+			break;
+
+		else if (node == NULL)
 		{
 			cout << "Book not found.\n";
 			char again;
@@ -603,12 +720,8 @@ void editBook(std::vector<bookInfo>& inventory)
 			clearScreen();
 			continue;
 		}
-		if (idx == -2) //user enters nothing
-		{
-			break;
-		}
 
-		bookInfo &book = inventory[idx]; // Real book
+		bookInfo &book = node->book;     // Real book
 		bookInfo editBook = book;        // Copy of Book for unsaved changes
 
 		do
@@ -630,13 +743,13 @@ void editBook(std::vector<bookInfo>& inventory)
          	cout << "Enter ISBN: ";
          	getline(cin, isbn);
 
-				int index = findISBN(inventory, isbn);
+				bookNode* found = inventory.findISBN(isbn);
 
-				if(index != -1 && index != idx) {
+				if(found != NULL && found != node) {
 					cout << "ISBN already exists. Overwrite? (Y/N): ";
 					char ans;
 					cin >> ans;
-					cin.ignore();
+					cin.ignore(10000, '\n');
 
 					if(toupper(ans) != 'Y') {
 						cout << "Canceled.\n";
@@ -794,7 +907,7 @@ void editBook(std::vector<bookInfo>& inventory)
 	}
 }
 
-void deleteBook(std::vector<bookInfo>& inventory)
+void deleteBook(InventoryList& inventory)
 {
     if (inventory.empty())
     {
@@ -809,8 +922,16 @@ void deleteBook(std::vector<bookInfo>& inventory)
         clearScreen();
         cout << "\n==================== Delete Book ====================\n";
 
-        int idx = lookUpBook(inventory);
-        if (idx == -1)
+		  bool userCanceled = false;
+        bookNode* node = lookUpBook(inventory, userCanceled);
+
+		  if(userCanceled)
+		  {
+		  	  cout << "Deletion canceled.\n";
+			  break;
+		  }
+
+        if (node == NULL)
         {
             cout << "No book selected.\n";
         }
@@ -819,17 +940,16 @@ void deleteBook(std::vector<bookInfo>& inventory)
 
             // Confirm delete
             char confirm;
-            cout << "\nDelete this book? (y/n): ";
+            cout << "\nDelete \"" << node->book.getBookTitle() << "\"? (y/n): ";
             cin >> confirm;
             cin.ignore(10000, '\n');
 
             if (tolower(confirm) == 'y')
             {
-                // ERASE the element → plugs the hole
-                inventory.erase(inventory.begin() + idx);
+                // erase element
+                inventory.remove(node);
 
                 cout << "\nBook deleted successfully!\n";
-                cout << "(Inventory has been compacted — no holes.)\n";
             }
             else
             {
@@ -838,10 +958,16 @@ void deleteBook(std::vector<bookInfo>& inventory)
         }
 
         // Ask if user wants to delete another
-        cout << "\nDelete another? (y/n): ";
-        cin >> again;
-        cin.ignore(10000, '\n');
-    }
+		  if(!inventory.empty()) {
+		  	  cout << "\nDelete another? (y/n): ";
+			  cin >> again;
+			  cin.ignore(10000, '\n');
+		  }
+	     else {
+           cout << "\nInventory is now empty.\n";
+           break;
+    	  }
 
+	 }
     cout << "\nReturning to Inventory Menu...\n";
 }

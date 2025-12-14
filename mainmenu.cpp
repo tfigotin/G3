@@ -11,6 +11,7 @@
  ****************************************************************/
 
 #include "menuhelpers.h"
+#include "inventoryList.h"
 #include "cashier.h"
 #include "invmenu.h"
 #include "reports.h"
@@ -20,7 +21,7 @@
 using namespace std;
 
 // GLOBAL inventory accessible from reports.cpp, invmenu.cpp, etc.
-vector<bookInfo> inventory;
+InventoryList inventory;
 
 // Print menu, read input (user types), then overwrite the prompt line so right '*' aligns.
 // Resulting choice returned in 'choice'.
@@ -84,7 +85,7 @@ void printMainMenu(string &choice)
 int main()
 {
     string choice;
-	 vector<bookInfo> inventory;
+	 InventoryList inventory;
 
 	 clearScreen();
 

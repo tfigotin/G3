@@ -37,6 +37,7 @@ private:
 
 public:
 
+ 	bool operator<(const bookInfo& rhs) const;
     /****************** Constructors ********************/
 
     /**

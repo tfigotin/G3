@@ -15,7 +15,7 @@
 
 #pragma once
 
-#include "bookinfo.h"
+#include "inventoryList.h"
 #include <vector>
 #include <string>
 
@@ -26,24 +26,24 @@ using std::string;
 void printRepMenu(string &repChoice);
 
 // Main Reports Menu
-void repMenu(vector<bookInfo>& inventory);
+void repMenu(InventoryList& inventory);
 
 // 1. Inventory Listing
-void invListing(const vector<bookInfo>& inventory);
+void invListing(InventoryList& inventory);
 
 // 2. Inventory Wholesale Value
-void invWholesale(const vector<bookInfo>& inventory);
+void invWholesale(InventoryList& inventory);
 
 // 3. Inventory Retail Value
-void invRetail(const vector<bookInfo>& inventory);
+void invRetail(InventoryList& inventory);
 
 // 4. Listing by Quantity
-void quantList(const vector<bookInfo>& inventory);
+void quantList(InventoryList& inventory);
 
 // 5. Listing by Cost
-void costList(const vector<bookInfo>& inventory);
+void costList(InventoryList& inventory);
 
 // 6. Listing by Age
-void ageList(const vector<bookInfo>& inventory);
+void ageList(InventoryList& inventory);
 
 #endif
