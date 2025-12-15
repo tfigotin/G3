@@ -28,14 +28,14 @@ void printRepMenu(string &repChoice);
 // Main Reports Menu
 void repMenu(InventoryList& inventory);
 
-// 1. Inventory Listing
-void invListing(InventoryList& inventory);
+// 1. Repository Listing
+void repListing(InventoryList& inventory);
 
-// 2. Inventory Wholesale Value
-void invWholesale(InventoryList& inventory);
+// 2. Repository Wholesale Value
+void repWholesale(InventoryList& inventory);
 
-// 3. Inventory Retail Value
-void invRetail(InventoryList& inventory);
+// 3. Repository Retail Value
+void repRetail(InventoryList& inventory);
 
 // 4. Listing by Quantity
 void quantList(InventoryList& inventory);

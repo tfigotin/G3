@@ -75,9 +75,9 @@ void printRepMenu(string &repChoice)
     printCenteredLine("Reports");
     printEmptyLine();
 
-    printLeftLine(PROMPT_START_LENGTH, "1. Inventory Listing");
-    printLeftLine(PROMPT_START_LENGTH, "2. Inventory Wholesale Value");
-    printLeftLine(PROMPT_START_LENGTH, "3. Inventory Retail Value");
+    printLeftLine(PROMPT_START_LENGTH, "1. Repository Listing");
+    printLeftLine(PROMPT_START_LENGTH, "2. Repository Wholesale Value");
+    printLeftLine(PROMPT_START_LENGTH, "3. Repository Retail Value");
     printLeftLine(PROMPT_START_LENGTH, "4. Listing by Quantity");
     printLeftLine(PROMPT_START_LENGTH, "5. Listing by Cost");
     printLeftLine(PROMPT_START_LENGTH, "6. Listing by Age");
@@ -131,9 +131,9 @@ void repMenu(InventoryList& inventory)
         clearScreen();
         printRepMenu(repChoice);
 
-        if (repChoice == "1")          invListing(inventory);
-        else if (repChoice == "2")     invWholesale(inventory);
-        else if (repChoice == "3")     invRetail(inventory);
+        if (repChoice == "1")          repListing(inventory);
+        else if (repChoice == "2")     repWholesale(inventory);
+        else if (repChoice == "3")     repRetail(inventory);
         else if (repChoice == "4")     quantList(inventory);
         else if (repChoice == "5")     costList(inventory);
         else if (repChoice == "6")     ageList(inventory);
@@ -151,7 +151,7 @@ void repMenu(InventoryList& inventory)
 /***************************************************************
  * 1. Inventory Listing
  ***************************************************************/
-void invListing(InventoryList& inventory)
+void repListing(InventoryList& inventory)
 {
     clearScreen();
 	 drawHeader("Inventory Listing");
@@ -184,7 +184,7 @@ void invListing(InventoryList& inventory)
 /***************************************************************
  * 2. Wholesale Value
  ***************************************************************/
-void invWholesale(InventoryList& inventory)
+void repWholesale(InventoryList& inventory)
 {
     clearScreen();
     drawHeader("Inventory Wholesale Value");
@@ -245,7 +245,7 @@ void invWholesale(InventoryList& inventory)
 /***************************************************************
  * 3. Retail Value
  ***************************************************************/
-void invRetail(InventoryList& inventory)
+void repRetail(InventoryList& inventory)
 {
     clearScreen();
     drawHeader("Inventory Retail Value");
