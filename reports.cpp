@@ -59,7 +59,7 @@ static void drawHeader(const string &title)
     // Print header with date
     printBorder();
     printEmptyLine();
-    printCenteredLine(title + " — " + string(dateStr));
+    printCenteredLine(title + " - " + string(dateStr));
     printEmptyLine();
     printBorder();
 }
