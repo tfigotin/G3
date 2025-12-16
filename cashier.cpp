@@ -16,6 +16,7 @@
 #include <string>
 #include <sstream>
 #include <limits>
+#include <algorithm>
 
 using namespace std;
 
@@ -60,63 +61,247 @@ using namespace std;
         return s.substr(0, width - 3) + "..."; // add ellipsis
 	}
 
+	string toLower(const std::string& s) {
+   	string result = s;
+   	transform(result.begin(), result.end(), result.begin(),
+      				[](unsigned char c){ return std::tolower(c); });
+   	return result;
+	}
+
 	// Cashier function
-	void cashier() {
+void cashier(InventoryList& inventory) {
 
-	 string date, isbn, title;
-	 int quantity;
-	 double price;
+	const int MAX_CART = 20;
+	bookNode** cartNodes = new bookNode*[MAX_CART];
+	int* cartQty     = new int[MAX_CART];
+	int cartCount = 0;
 
-	 //Clear Screen from main menu
-	 cout << "\033[2J\033[1;1H";
+	//Clear Screen from main menu
+	cout << "\033[2J\033[1;1H";
 
-	 // Collect input first (prompts are simple console prompts)
-	 cout << "Date: ";
-	 getline(cin, date);
+	string date;
+   cout << "Date (MM/DD/YY): ";
+   cin.ignore();
+   getline(cin, date);
 
-	 cout << "Quantity of Book: ";
-	 while (!(cin >> quantity)) {
-	     cin.clear();
-	     cin.ignore(numeric_limits<streamsize>::max(), '\n');
-	     cout << "Please enter a valid number for quantity: ";
+	char more = 'Y';
+   while (toupper(more) == 'Y' && cartCount < MAX_CART) {
+   	// Display inventory
+   	cout << "\nAvailable Books:\n";
+   	bookNode* curr = inventory.getHead();
+   	int idx = 0;
+   	while (curr) {
+     		cout << idx << ". " << curr->book.getBookTitle()
+      		  << " | ISBN: " << curr->book.getISBN()
+              << " | Price: $" << fixed << setprecision(2) << curr->book.getRetailValue()
+              << " | Qty: " << curr->book.getQtyOnHand() << endl;
+      	curr = curr->next;
+      	idx++;
+      }
+
+      string input;
+		cout << "Enter Index, ISBN, or Title to add to cart (-1 to checkout): ";
+		getline(cin, input);
+
+		if (input == "-1")
+			break;
+
+		bookNode* node = nullptr;
+		curr = inventory.getHead();
+      idx = 0;
+
+		//Index match
+		while (curr) {
+      	if (input == to_string(idx)) {
+         	node = curr;
+            break;
+      	}
+         curr = curr->next;
+         idx++;
+      }
+
+		//ISBN match
+		if (!node) node = inventory.findISBN(input);
+
+		if (!node) {
+      	curr = inventory.getHead();
+         	string inputLower = toLower(input);
+            while (curr) {
+            	if (toLower(curr->book.getBookTitle()) == inputLower) {
+               	node = curr;
+                  break;
+               }
+               curr = curr->next;
+      	}
+		}
+
+		if (!node) {
+      	cout << "Book not found. Try again.\n";
+      	continue;
+		}
+
+
+		int qty;
+      cout << "Enter quantity (available: " << node->book.getQtyOnHand() << "): ";
+      while (!(cin >> qty) || qty <= 0 || qty > node->book.getQtyOnHand()) {
+      	cin.clear();
+         cin.ignore(numeric_limits<streamsize>::max(), '\n');
+         cout << "Invalid quantity. Enter again (max " << node->book.getQtyOnHand() << "): ";
+      }
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+		/*
+		cout << "Title: ";
+		getline(cin, title);
+
+		cout << "Price: $";
+		while (!(cin >> price)) {
+			cin.clear();
+	      cin.ignore(numeric_limits<streamsize>::max(), '\n');
+	      cout << "Please enter a valid price (e.g. 12.95): ";
 	 	}
-	 cin.ignore(numeric_limits<streamsize>::max(), '\n');
+	   cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		*/
 
-	 cout << "ISBN: ";
-	 getline(cin, isbn);
+		cartNodes[cartCount] = node;
+      cartQty[cartCount] = qty;
+      cartCount++;
 
-	 cout << "Title: ";
-	 getline(cin, title);
+		if (cartCount >= MAX_CART) {
+      	cout << "Cart full.\n";
+         break;
+      }
 
-	 cout << "Price: $";
-	 while (!(cin >> price)) {
-	     cin.clear();
-	     cin.ignore(numeric_limits<streamsize>::max(), '\n');
-	     cout << "Please enter a valid price (e.g. 12.95): ";
-	 	}
-	 cin.ignore(numeric_limits<streamsize>::max(), '\n');
+      cout << "Add another book? (Y/N): ";
+      cin >> more;
+      cin.ignore(numeric_limits<streamsize>::max(), '\n');
+	}
 
-	 // Now print the nicely formatted box with all values
-	 cout << "\033[2J\033[1;1H"; // clear the screen
-	 printTopBorder();
-	 printLine("Serendipity Booksellers");
-	 printLine("Cashier Module");
-	 printLine(""); // blank line
+	// Handle empty cart
+   if (cartCount == 0) {
+   	cout << "No items in cart.\n";
+      delete[] cartNodes;
+      delete[] cartQty;
+      return;
+   }
 
-	 printLine("Date: " + date);
+   // --- Confirm purchase ---
+   char confirm;
+   cout << "\nProceed with purchase? (Y/N): ";
+   cin >> confirm;
+   cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
-	 // convert quantity to string
-	 printLine("Quantity of Book: " + to_string(quantity));
+   if (toupper(confirm) != 'Y') {
+   	cout << "Purchase canceled.\n";
+      delete[] cartNodes;
+      delete[] cartQty;
+      return;
+   }
+	// Receipt header
+   ostringstream header;
+   header << left << setw(5) << "Qty"
+          << setw(15) << "ISBN"
+          << setw(25) << "Title"
+          << right << setw(8) << "Price"
+          << setw(10) << "Total";
+   printReceiptLine(header.str());
+   printReceiptLine(string(RECEIPT_CONTENT, '_'));
 
-	 printLine("ISBN: " + isbn);
-	 printLine("Title: " + truncate(title, CONTENT_PAD - 7));
+   // Line items
+   float subtotal = 0.0f;
+   for (int i = 0; i < cartCount; i++) {
+   	float lineTotal = cartQty[i] * cartNodes[i]->book.getRetailValue();
+      subtotal += lineTotal;
 
-	 // format price to two decimals
-	 ostringstream oss;
-	 oss << fixed << setprecision(2) << price;
-	 printLine("Price: $" + oss.str());
+      ostringstream line;
+      line << left << setw(5) << cartQty[i]
+           << setw(15) << cartNodes[i]->book.getISBN()
+           << setw(25) << truncate(cartNodes[i]->book.getBookTitle(), 25)
+           << right << setw(8) << fixed << setprecision(2) << cartNodes[i]->book.getRetailValue()
+           << setw(10) << fixed << setprecision(2) << lineTotal;
+      printReceiptLine(line.str());
+	}
 
-	 printBottomBorder();
+	printReceiptLine(""); // blank line before totals
+
+   // Totals
+   float tax = subtotal * 0.06f;
+   float total = subtotal + tax;
+
+   ostringstream sub, taxline, tot;
+   sub     << right << setw(56) << "Subtotal" << setw(7) << "$" << fixed << setprecision(2) << subtotal;
+   taxline << right << setw(56) << "Tax"      << setw(7) << "$" << fixed << setprecision(2) << tax;
+   tot     << right << setw(56) << "Total"    << setw(7) << "$" << fixed << setprecision(2) << total;
+
+   printReceiptLine(sub.str());
+   printReceiptLine(taxline.str());
+   printReceiptLine(tot.str());
+   printReceiptLine("");
+   printReceiptLine("Thank You for Shopping at Serendipity!");
+   printReceiptBottom();
+
+   // --- Adjust inventory quantities ---
+   for (int i = 0; i < cartCount; i++) {
+   	cartNodes[i]->book.setQtyOnHand(cartNodes[i]->book.getQtyOnHand() - cartQty[i]);
+   }
+
+   // --- Cleanup ---
+   delete[] cartNodes;
+   delete[] cartQty;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	/*
+	// Now print the nicely formatted box with all values
+	cout << "\033[2J\033[1;1H"; // clear the screen
+	printTopBorder();
+	printLine("Serendipity Booksellers");
+	printLine("Cashier Module");
+	printLine(""); // blank line
+	printLine("Date: " + date);
+
+	// convert quantity to string
+	printLine("Quantity of Book: " + to_string(qty));
+
+	printLine("ISBN: " + isbn);
+	printLine("Title: " + truncate(title, CONTENT_PAD - 7));
+
+	// format price to two decimals
+	ostringstream oss;
+	oss << fixed << setprecision(2) << price;
+	printLine("Price: $" + oss.str());
+
+	printBottomBorder();
 
 	// Pause before checkout
 	cout << "Please press Enter to checkout...";
@@ -190,8 +375,22 @@ using namespace std;
 	printReceiptLine("Thank You for Shopping at Serendipity!");
 	printReceiptBottom();
 
+
+	for (int i = 0; i < cartCount; i++) {
+		bookNode* node = inventory.getHead();
+   	for (int j = 0; j < cartIndices[i]; j++)
+   		node = node->next;
+
+   	node->book.setQtyOnHand(node->book.getQtyOnHand() - cartQty[i]);
 	}
 
+	delete[] cartIndices;
+	delete[] cartQty;
+
+}
+
+
+*/
 
 
 

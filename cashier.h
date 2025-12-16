@@ -12,11 +12,12 @@
 #ifndef CASHIER_H
 #define CASHIER_H
 
+#include "inventoryList.h"
 #include <string>
 using namespace std;
 
 // function prototype for cashier module
-void cashier();
+void cashier(InventoryList& inventory);
 
 // prototypes for helpers (if you need them outside cashier.cpp)
 void printTopBorder();

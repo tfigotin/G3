@@ -94,7 +94,7 @@ int main()
         printMainMenu(choice);
 
         if (choice == "1")
-				cashier();
+				cashier(inventory);
         else if (choice == "2")
             invMenu(inventory);
         else if (choice == "3")
