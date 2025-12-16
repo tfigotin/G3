@@ -140,15 +140,32 @@ void cashier(InventoryList& inventory) {
       	continue;
 		}
 
-
 		int qty;
-      cout << "Enter quantity (available: " << node->book.getQtyOnHand() << "): ";
-      while (!(cin >> qty) || qty <= 0 || qty > node->book.getQtyOnHand()) {
+		int availableStock = node->book.getQtyOnHand();
+
+		// Check if the book is already in cart
+		for (int i = 0; i < cartCount; i++) {
+    		if (cartNodes[i] == node) {
+        		availableStock -= cartQty[i];
+        		break;
+    		}
+		}
+
+		//if out of stock
+		if (availableStock == 0) {
+    		cout << "Sorry, this book is out of stock.\n" <<  "Press enter to continue...";
+			cin.get();
+    		continue;
+		}
+
+      cout << "Enter quantity (available: " << availableStock << "): ";
+      while (!(cin >> qty) || qty <= 0 || qty > availableStock) {
       	cin.clear();
          cin.ignore(numeric_limits<streamsize>::max(), '\n');
-         cout << "Invalid quantity. Enter again (max " << node->book.getQtyOnHand() << "): ";
+         cout << "Invalid quantity. Enter again (max " << availableStock << "): ";
       }
 		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
 
 		/*
 		cout << "Title: ";
