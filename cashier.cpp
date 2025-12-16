@@ -229,9 +229,15 @@ void cashier(InventoryList& inventory) {
    float total = subtotal + tax;
 
    ostringstream sub, taxline, tot;
-   sub     << right << setw(56) << "Subtotal" << setw(7) << "$" << fixed << setprecision(2) << subtotal;
-   taxline << right << setw(56) << "Tax"      << setw(7) << "$" << fixed << setprecision(2) << tax;
-   tot     << right << setw(56) << "Total"    << setw(7) << "$" << fixed << setprecision(2) << total;
+   	// labels on the left, values aligned with Total column
+	sub     << right << setw(56) << "Subtotal"
+        	  << setw(8) << ("$" + (ostringstream() << fixed << setprecision(2) << subtotal).str());
+
+	taxline << right << setw(56) << "Tax"
+           << setw(8) << ("$" + (ostringstream() << fixed << setprecision(2) << tax).str());
+
+	tot     << right << setw(56) << "Total"
+           << setw(8) << ("$" + (ostringstream() << fixed << setprecision(2) << total).str());
 
    printReceiptLine(sub.str());
    printReceiptLine(taxline.str());

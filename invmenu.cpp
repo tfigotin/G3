@@ -98,7 +98,7 @@ void printAddBookMenu(InventoryList& inventory, string &addBookChoice, bookInfo 
 	 cout << "*";
 
 	 cout << right
-	 		<< setw(42) << "DATABASE SIZE: " << setw(2) << inventory.size() << " CURRENT BOOK COUNT: " << setw(2) << inventory.size() << " *" << endl
+	 		<< setw(40) << "DATABASE SIZE: " << setw(3) << inventory.size() << " CURRENT BOOK COUNT: " << setw(3) << inventory.size() << " *" << endl
 	 		<< left;
 
     printEmptyLine();
